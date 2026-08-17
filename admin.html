@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EC Admin Portal - Vascon Venus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800">
+
+  <!-- LOGIN SECTION -->
+  <div id="login-section" class="flex min-h-screen items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md border border-slate-200">
+      <div class="text-center mb-6">
+        <i class="fa-solid fa-shield-halved text-amber-500 text-4xl mb-2"></i>
+        <h1 class="text-2xl font-bold text-slate-900">EC Admin Login</h1>
+        <p class="text-sm text-slate-500">Vascon Venus Apartment Portal</p>
+      </div>
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Email</label>
+          <input type="email" id="email" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" placeholder="admin@vasconvenus.com">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Password</label>
+          <input type="password" id="password" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" placeholder="••••••••">
+        </div>
+        <button type="submit" id="login-btn" class="w-full bg-slate-900 text-white font-bold py-2.5 rounded-lg hover:bg-slate-800 transition">Log In</button>
+        <p id="login-error" class="text-red-500 text-xs text-center hidden"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD SECTION (Hidden by default) -->
+  <div id="dashboard-section" class="hidden">
+    <!-- Navbar -->
+    <nav class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center shadow">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-building text-amber-400 text-xl"></i>
+        <span class="font-bold tracking-wide">Vascon Venus Admin</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span id="user-display" class="text-xs text-slate-300"></span>
+        <button onclick="handleLogout()" class="bg-red-600 hover:bg-red-700 text-xs font-semibold px-3 py-1.5 rounded transition">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-5xl mx-auto p-6 space-y-8">
+
+      <!-- Action 1: Upload Meeting Minutes -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <div class="flex items-center space-x-2 mb-4">
+          <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
+          <h2 class="text-xl font-bold text-slate-900">Publish Meeting Minutes (PDF)</h2>
+        </div>
+        <form id="minutes-form" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Meeting Date</label>
+              <input type="date" id="m-date" required class="w-full border px-3 py-2 rounded-lg">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Meeting Type</label>
+              <select id="m-type" class="w-full border px-3 py-2 rounded-lg">
+                <option value="Monthly EC">Monthly EC Meeting</option>
+                <option value="AGM">Annual General Meeting (AGM)</option>
+                <option value="EGM">Extraordinary General Meeting (EGM)</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Agenda Summary</label>
+            <input type="text" id="m-agenda" required placeholder="e.g., Lift AMC renewal, Solar vendor evaluation" class="w-full border px-3 py-2 rounded-lg">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Select PDF File</label>
+            <input type="file" id="m-file" accept="application/pdf" required class="w-full border p-2 rounded-lg text-sm">
+          </div>
+          <button type="submit" id="minutes-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-5 py-2 rounded-lg">Publish Minutes</button>
+        </form>
+      </div>
+
+      <!-- Action 2: Post New Notice -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <div class="flex items-center space-x-2 mb-4">
+          <i class="fa-solid fa-bullhorn text-amber-500 text-xl"></i>
+          <h2 class="text-xl font-bold text-slate-900">Publish Notice / Announcement</h2>
+        </div>
+        <form id="notice-form" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Notice Title</label>
+              <input type="text" id="n-title" required placeholder="e.g., Water Supply Disruption" class="w-full border px-3 py-2 rounded-lg">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Category</label>
+              <select id="n-category" class="w-full border px-3 py-2 rounded-lg">
+                <option value="General">General</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Social">Social / Festival</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Notice Details</label>
+            <textarea id="n-desc" rows="3" required placeholder="Type the full notice message here..." class="w-full border px-3 py-2 rounded-lg"></textarea>
+          </div>
+          <div class="flex items-center space-x-2">
+            <input type="checkbox" id="n-urgent" class="w-4 h-4 text-red-600">
+            <label for="n-urgent" class="text-sm text-red-600 font-medium">Mark as High Priority (Red Alert)</label>
+          </div>
+          <button type="submit" id="notice-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-5 py-2 rounded-lg">Post Notice</button>
+        </form>
+      </div>
+
+      <!-- Action 3: Add / Update Ongoing Work -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <div class="flex items-center space-x-2 mb-4">
+          <i class="fa-solid fa-list-check text-blue-500 text-xl"></i>
+          <h2 class="text-xl font-bold text-slate-900">Add Ongoing Work / Maintenance Status</h2>
+        </div>
+        <form id="work-form" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Work/Project Title</label>
+              <input type="text" id="w-title" required placeholder="e.g., CCTV Network Upgrades" class="w-full border px-3 py-2 rounded-lg">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Status Tag</label>
+              <select id="w-status" class="w-full border px-3 py-2 rounded-lg">
+                <option value="Planning">Planning</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Testing">Testing</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Progress Percentage (0 - 100%)</label>
+              <input type="number" id="w-progress" min="0" max="100" required placeholder="75" class="w-full border px-3 py-2 rounded-lg">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Target Completion Date</label>
+              <input type="date" id="w-date" class="w-full border px-3 py-2 rounded-lg">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Short Description</label>
+            <input type="text" id="w-desc" placeholder="e.g., Installing 16 HD cameras in basement and lobby." class="w-full border px-3 py-2 rounded-lg">
+          </div>
+          <button type="submit" id="work-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-5 py-2 rounded-lg">Save Work Item</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // 1. YOUR SUPABASE CREDENTIALS
+    const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Auth State Checker
+    async function checkAuth() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        document.getElementById('login-section').classList.add('hidden');
+        document.getElementById('dashboard-section').classList.remove('hidden');
+        document.getElementById('user-display').innerText = session.user.email;
+      } else {
+        document.getElementById('login-section').classList.remove('hidden');
+        document.getElementById('dashboard-section').classList.add('hidden');
+      }
+    }
+
+    // Login Handler
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('login-btn');
+      const err = document.getElementById('login-error');
+
+      btn.innerText = "Signing in...";
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      
+      if (error) {
+        err.innerText = error.message;
+        err.classList.remove('hidden');
+        btn.innerText = "Log In";
+      } else {
+        checkAuth();
+      }
+    });
+
+    // Logout Handler
+    async function handleLogout() {
+      await supabase.auth.signOut();
+      window.location.reload();
+    }
+
+    // Form 1: Upload Meeting Minutes
+    document.getElementById('minutes-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('minutes-btn');
+      btn.innerText = "Uploading PDF & Saving...";
+      btn.disabled = true;
+
+      const file = document.getElementById('m-file').files[0];
+      const date = document.getElementById('m-date').value;
+      const type = document.getElementById('m-type').value;
+      const agenda = document.getElementById('m-agenda').value;
+
+      // Unique file name
+      const fileName = `minutes_${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
+
+      // Upload file to Supabase Storage
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('society-vault')
+        .upload(fileName, file);
+
+      if (uploadError) {
+        alert("Upload error: " + uploadError.message);
+        btn.innerText = "Publish Minutes";
+        btn.disabled = false;
+        return;
+      }
+
+      // Get public URL
+      const { data: publicUrlData } = supabase.storage
+        .from('society-vault')
+        .getPublicUrl(fileName);
+
+      // Insert record in table
+      const { error: dbError } = await supabase.from('meeting_minutes').insert([{
+        meeting_date: date,
+        meeting_type: type,
+        agenda_summary: agenda,
+        pdf_url: publicUrlData.publicUrl
+      }]);
+
+      if (dbError) {
+        alert("Database error: " + dbError.message);
+      } else {
+        alert("Meeting minutes published successfully!");
+        document.getElementById('minutes-form').reset();
+      }
+      btn.innerText = "Publish Minutes";
+      btn.disabled = false;
+    });
+
+    // Form 2: Post Notice
+    document.getElementById('notice-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = document.getElementById('n-title').value;
+      const category = document.getElementById('n-category').value;
+      const description = document.getElementById('n-desc').value;
+      const is_urgent = document.getElementById('n-urgent').checked;
+
+      const { error } = await supabase.from('notices').insert([{
+        title, category, description, is_urgent
+      }]);
+
+      if (error) alert("Error: " + error.message);
+      else {
+        alert("Notice posted successfully!");
+        document.getElementById('notice-form').reset();
+      }
+    });
+
+    // Form 3: Add Work Item
+    document.getElementById('work-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = document.getElementById('w-title').value;
+      const status = document.getElementById('w-status').value;
+      const progress_percentage = document.getElementById('w-progress').value;
+      const target_date = document.getElementById('w-date').value || null;
+      const description = document.getElementById('w-desc').value;
+
+      const { error } = await supabase.from('works_tracker').insert([{
+        title, status, progress_percentage: parseInt(progress_percentage), target_date, description
+      }]);
+
+      if (error) alert("Error: " + error.message);
+      else {
+        alert("Work status recorded!");
+        document.getElementById('work-form').reset();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', checkAuth);
+  </script>
+</body>
+</html>
