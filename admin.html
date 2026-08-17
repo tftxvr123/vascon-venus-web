@@ -5,113 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EC Admin Portal - Vascon Venus</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-100 min-h-screen text-slate-800">
+<body class="bg-slate-100 min-h-screen text-slate-800 font-sans">
 
   <!-- LOGIN SECTION -->
   <div id="login-section" class="flex min-h-screen items-center justify-center p-4">
-    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md border border-slate-200">
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-slate-200">
+      
       <div class="text-center mb-6">
-        <i class="fa-solid fa-shield-halved text-amber-500 text-4xl mb-2"></i>
-        <h1 class="text-2xl font-bold text-slate-900">EC Admin Login</h1>
-        <p class="text-sm text-slate-500">Vascon Venus Apartment Portal</p>
+        <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3 text-amber-600 text-2xl">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h1 class="text-2xl font-extrabold text-slate-900">Vascon Venus Admin</h1>
+        <p class="text-xs text-slate-500 mt-1">Sign in to manage the apartment portal</p>
       </div>
+
+      <!-- Alert Box -->
+      <div id="error-box" class="hidden mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg font-medium"></div>
+      <div id="success-box" class="hidden mb-4 p-3 bg-green-50 border border-green-200 text-green-700 text-xs rounded-lg font-medium"></div>
+
       <form id="login-form" class="space-y-4">
         <div>
-          <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Email</label>
-          <input type="email" id="email" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" placeholder="admin@vasconvenus.com">
+          <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Email</label>
+          <input type="email" id="email" required placeholder="admin@vasconvenus.com" class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-sm">
         </div>
+
         <div>
-          <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Password</label>
-          <input type="password" id="password" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" placeholder="••••••••">
+          <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Password</label>
+          <input type="password" id="password" required placeholder="••••••••" class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-sm">
         </div>
-        <button type="submit" id="login-btn" class="w-full bg-slate-900 text-white font-bold py-2.5 rounded-lg hover:bg-slate-800 transition">Log In</button>
-        <p id="login-error" class="text-red-500 text-xs text-center hidden"></p>
+
+        <button type="submit" id="login-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg text-sm transition">
+          Log In to Dashboard
+        </button>
       </form>
     </div>
   </div>
 
-  <!-- DASHBOARD SECTION (Hidden by default) -->
-  <div id="dashboard-section" class="hidden">
-    <!-- Navbar -->
-    <nav class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center shadow">
+  <!-- DASHBOARD SECTION (Shows after Login) -->
+  <div id="dashboard-section" class="hidden min-h-screen bg-slate-50">
+    
+    <!-- Top Nav -->
+    <nav class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center shadow sticky top-0 z-50">
       <div class="flex items-center space-x-2">
         <i class="fa-solid fa-building text-amber-400 text-xl"></i>
-        <span class="font-bold tracking-wide">Vascon Venus Admin</span>
+        <span class="font-bold tracking-wide">VASCON VENUS ADMIN</span>
       </div>
       <div class="flex items-center space-x-4">
-        <span id="user-display" class="text-xs text-slate-300"></span>
-        <button onclick="handleLogout()" class="bg-red-600 hover:bg-red-700 text-xs font-semibold px-3 py-1.5 rounded transition">Logout</button>
+        <a href="index.html" target="_blank" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded transition">
+          <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> View Website
+        </a>
+        <button onclick="handleLogout()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-semibold px-3 py-1.5 rounded transition">Logout</button>
       </div>
     </nav>
 
     <!-- Main Content -->
     <div class="max-w-5xl mx-auto p-6 space-y-8">
 
-      <!-- Action 1: Upload Meeting Minutes -->
-      <!-- Action 1: Upload Meeting Minutes with 1-Click Email Broadcast -->
+      <!-- 1. Post Notice -->
       <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-        <div class="flex items-center space-x-2 mb-4">
-          <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
-          <h2 class="text-xl font-bold text-slate-900">Publish Meeting Minutes & Broadcast</h2>
-        </div>
-        <form id="minutes-form" class="space-y-4">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Meeting Date</label>
-              <input type="date" id="m-date" required class="w-full border px-3 py-2 rounded-lg">
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Meeting Type</label>
-              <select id="m-type" class="w-full border px-3 py-2 rounded-lg">
-                <option value="Monthly EC">Monthly EC Meeting</option>
-                <option value="AGM">Annual General Meeting (AGM)</option>
-                <option value="EGM">Extraordinary General Meeting (EGM)</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Agenda & Key Resolutions Summary</label>
-            <textarea id="m-agenda" rows="3" required placeholder="e.g. 1. Approved Lift AMC with OTIS. 2. Solar vendor finalized for Wing A & B." class="w-full border px-3 py-2 rounded-lg"></textarea>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Select Minutes PDF</label>
-            <input type="file" id="m-file" accept="application/pdf" required class="w-full border p-2 rounded-lg text-sm">
-          </div>
-
-          <!-- The 1-Click Broadcast Checkbox -->
-          <div class="bg-amber-50 p-4 rounded-lg border border-amber-200 flex items-center space-x-3">
-            <input type="checkbox" id="m-broadcast" checked class="w-5 h-5 text-amber-600 rounded">
-            <div>
-              <label for="m-broadcast" class="font-bold text-slate-900 text-sm">Send Email Broadcast to All Owners</label>
-              <p class="text-xs text-slate-500">Automatically sends the meeting agenda and PDF download link to all emails in the Owners Directory.</p>
-            </div>
-          </div>
-
-          <button type="submit" id="minutes-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-3 rounded-lg flex items-center space-x-2">
-            <i class="fa-solid fa-paper-plane"></i>
-            <span>Publish & Send to Owners</span>
-          </button>
-        </form>
-      </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Agenda Summary</label>
-            <input type="text" id="m-agenda" required placeholder="e.g., Lift AMC renewal, Solar vendor evaluation" class="w-full border px-3 py-2 rounded-lg">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Select PDF File</label>
-            <input type="file" id="m-file" accept="application/pdf" required class="w-full border p-2 rounded-lg text-sm">
-          </div>
-          <button type="submit" id="minutes-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-5 py-2 rounded-lg">Publish Minutes</button>
-        </form>
-      </div>
-
-      <!-- Action 2: Post New Notice -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border">
         <div class="flex items-center space-x-2 mb-4">
           <i class="fa-solid fa-bullhorn text-amber-500 text-xl"></i>
           <h2 class="text-xl font-bold text-slate-900">Publish Notice / Announcement</h2>
@@ -119,46 +74,122 @@
         <form id="notice-form" class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Notice Title</label>
-              <input type="text" id="n-title" required placeholder="e.g., Water Supply Disruption" class="w-full border px-3 py-2 rounded-lg">
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Notice Title *</label>
+              <input type="text" id="n-title" required placeholder="e.g. Water Tank Cleaning" class="w-full border px-3 py-2 rounded-lg text-sm">
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-600 mb-1">Category</label>
-              <select id="n-category" class="w-full border px-3 py-2 rounded-lg">
+              <select id="n-category" class="w-full border px-3 py-2 rounded-lg text-sm">
                 <option value="General">General</option>
                 <option value="Urgent">Urgent</option>
                 <option value="Maintenance">Maintenance</option>
-                <option value="Social">Social / Festival</option>
+                <option value="Social">Social / Event</option>
               </select>
             </div>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Notice Details</label>
-            <textarea id="n-desc" rows="3" required placeholder="Type the full notice message here..." class="w-full border px-3 py-2 rounded-lg"></textarea>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Notice Message *</label>
+            <textarea id="n-desc" rows="3" required placeholder="Type full notice text here..." class="w-full border px-3 py-2 rounded-lg text-sm"></textarea>
           </div>
           <div class="flex items-center space-x-2">
             <input type="checkbox" id="n-urgent" class="w-4 h-4 text-red-600">
-            <label for="n-urgent" class="text-sm text-red-600 font-medium">Mark as High Priority (Red Alert)</label>
+            <label for="n-urgent" class="text-sm text-red-600 font-medium">Mark as High Priority Alert (Red)</label>
           </div>
-          <button type="submit" id="notice-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-5 py-2 rounded-lg">Post Notice</button>
+          <button type="submit" id="notice-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg">Post Notice</button>
         </form>
       </div>
 
-      <!-- Action 3: Add / Update Ongoing Work -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border">
+      <!-- 2. Publish Meeting Minutes -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <div class="flex items-center space-x-2 mb-4">
-          <i class="fa-solid fa-list-check text-blue-500 text-xl"></i>
-          <h2 class="text-xl font-bold text-slate-900">Add Ongoing Work / Maintenance Status</h2>
+          <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
+          <h2 class="text-xl font-bold text-slate-900">Publish Meeting Minutes (PDF)</h2>
+        </div>
+        <form id="minutes-form" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Meeting Date *</label>
+              <input type="date" id="m-date" required class="w-full border px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Meeting Type</label>
+              <select id="m-type" class="w-full border px-3 py-2 rounded-lg text-sm">
+                <option value="Monthly EC">Monthly EC Meeting</option>
+                <option value="AGM">Annual General Meeting (AGM)</option>
+                <option value="EGM">Extraordinary General Meeting (EGM)</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Agenda & Summary *</label>
+            <input type="text" id="m-agenda" required placeholder="e.g. Lift AMC renewal, Solar vendor finalized" class="w-full border px-3 py-2 rounded-lg text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Select Minutes PDF *</label>
+            <input type="file" id="m-file" accept="application/pdf" required class="w-full border p-2 rounded-lg text-sm">
+          </div>
+          <button type="submit" id="minutes-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg">Publish Minutes</button>
+        </form>
+      </div>
+
+      <!-- 3. Add Resident & Flat Record -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center space-x-2 mb-4">
+          <i class="fa-solid fa-address-book text-blue-500 text-xl"></i>
+          <h2 class="text-xl font-bold text-slate-900">Add / Update Resident Directory</h2>
+        </div>
+        <form id="resident-form" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Flat Number *</label>
+              <input type="text" id="r-flat" required placeholder="e.g. A-304" class="w-full border px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Owner Name *</label>
+              <input type="text" id="r-owner" required placeholder="Owner Full Name" class="w-full border px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Occupancy Status</label>
+              <select id="r-status" class="w-full border px-3 py-2 rounded-lg text-sm">
+                <option value="Owner Occupied">Owner Occupied</option>
+                <option value="Tenant Occupied">Tenant Occupied</option>
+                <option value="Vacant">Vacant</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Owner Phone</label>
+              <input type="text" id="r-phone" placeholder="+91 98765 00000" class="w-full border px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Tenant Name (if rented)</label>
+              <input type="text" id="r-tenant" placeholder="Tenant Full Name" class="w-full border px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Parking Slot</label>
+              <input type="text" id="r-parking" placeholder="e.g. P-22" class="w-full border px-3 py-2 rounded-lg text-sm">
+            </div>
+          </div>
+          <button type="submit" id="resident-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg">Save Flat Record</button>
+        </form>
+      </div>
+
+      <!-- 4. Update Ongoing Works -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center space-x-2 mb-4">
+          <i class="fa-solid fa-list-check text-green-500 text-xl"></i>
+          <h2 class="text-xl font-bold text-slate-900">Add Ongoing Work / Maintenance</h2>
         </div>
         <form id="work-form" class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Work/Project Title</label>
-              <input type="text" id="w-title" required placeholder="e.g., CCTV Network Upgrades" class="w-full border px-3 py-2 rounded-lg">
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Work Title *</label>
+              <input type="text" id="w-title" required placeholder="e.g. CCTV Upgrades" class="w-full border px-3 py-2 rounded-lg text-sm">
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Status Tag</label>
-              <select id="w-status" class="w-full border px-3 py-2 rounded-lg">
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Status</label>
+              <select id="w-status" class="w-full border px-3 py-2 rounded-lg text-sm">
                 <option value="Planning">Planning</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Testing">Testing</option>
@@ -168,19 +199,19 @@
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Progress Percentage (0 - 100%)</label>
-              <input type="number" id="w-progress" min="0" max="100" required placeholder="75" class="w-full border px-3 py-2 rounded-lg">
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Progress Percentage (0 - 100%) *</label>
+              <input type="number" id="w-progress" min="0" max="100" required placeholder="75" class="w-full border px-3 py-2 rounded-lg text-sm">
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-600 mb-1">Target Completion Date</label>
-              <input type="date" id="w-date" class="w-full border px-3 py-2 rounded-lg">
+              <input type="date" id="w-date" class="w-full border px-3 py-2 rounded-lg text-sm">
             </div>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Short Description</label>
-            <input type="text" id="w-desc" placeholder="e.g., Installing 16 HD cameras in basement and lobby." class="w-full border px-3 py-2 rounded-lg">
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Description</label>
+            <input type="text" id="w-desc" placeholder="Details about vendor, scope, etc." class="w-full border px-3 py-2 rounded-lg text-sm">
           </div>
-          <button type="submit" id="work-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-5 py-2 rounded-lg">Save Work Item</button>
+          <button type="submit" id="work-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg">Save Work Item</button>
         </form>
       </div>
 
@@ -189,51 +220,76 @@
 
   <!-- SCRIPT LOGIC -->
   <script>
-    // 1. YOUR SUPABASE CREDENTIALS
-    const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // -------------------------------------------------------------
+    // PASTE YOUR ACTUAL SUPABASE KEYS HERE:
+    // -------------------------------------------------------------
+    const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
 
-    // Auth State Checker
-    async function checkAuth() {
+    let supabase;
+    const errorBox = document.getElementById('error-box');
+    const successBox = document.getElementById('success-box');
+
+    try {
+      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // Check login session
+    async function checkSession() {
+      if (!supabase) return;
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
         document.getElementById('login-section').classList.add('hidden');
         document.getElementById('dashboard-section').classList.remove('hidden');
-        document.getElementById('user-display').innerText = session.user.email;
-      } else {
-        document.getElementById('login-section').classList.remove('hidden');
-        document.getElementById('dashboard-section').classList.add('hidden');
       }
     }
 
     // Login Handler
     document.getElementById('login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
       const btn = document.getElementById('login-btn');
-      const err = document.getElementById('login-error');
 
       btn.innerText = "Signing in...";
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      
+      btn.disabled = true;
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
-        err.innerText = error.message;
-        err.classList.remove('hidden');
-        btn.innerText = "Log In";
+        errorBox.innerText = error.message;
+        errorBox.classList.remove('hidden');
+        btn.innerText = "Log In to Dashboard";
+        btn.disabled = false;
       } else {
-        checkAuth();
+        document.getElementById('login-section').classList.add('hidden');
+        document.getElementById('dashboard-section').classList.remove('hidden');
       }
     });
 
-    // Logout Handler
     async function handleLogout() {
-      await supabase.auth.signOut();
+      if (supabase) await supabase.auth.signOut();
       window.location.reload();
     }
 
-    // Form 1: Upload Meeting Minutes
+    // 1. Post Notice
+    document.getElementById('notice-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = document.getElementById('n-title').value.trim();
+      const category = document.getElementById('n-category').value;
+      const description = document.getElementById('n-desc').value.trim();
+      const is_urgent = document.getElementById('n-urgent').checked;
+
+      const { error } = await supabase.from('notices').insert([{ title, category, description, is_urgent }]);
+      if (error) alert("Error: " + error.message);
+      else {
+        alert("Notice published successfully!");
+        document.getElementById('notice-form').reset();
+      }
+    });
+
+    // 2. Upload Meeting Minutes
     document.getElementById('minutes-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('minutes-btn');
@@ -243,16 +299,11 @@
       const file = document.getElementById('m-file').files[0];
       const date = document.getElementById('m-date').value;
       const type = document.getElementById('m-type').value;
-      const agenda = document.getElementById('m-agenda').value;
+      const agenda = document.getElementById('m-agenda').value.trim();
 
-      // Unique file name
       const fileName = `minutes_${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
 
-      // Upload file to Supabase Storage
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from('society-vault')
-        .upload(fileName, file);
-
+      const { error: uploadError } = await supabase.storage.from('society-vault').upload(fileName, file);
       if (uploadError) {
         alert("Upload error: " + uploadError.message);
         btn.innerText = "Publish Minutes";
@@ -260,22 +311,14 @@
         return;
       }
 
-      // Get public URL
-      const { data: publicUrlData } = supabase.storage
-        .from('society-vault')
-        .getPublicUrl(fileName);
+      const { data: publicUrlData } = supabase.storage.from('society-vault').getPublicUrl(fileName);
 
-      // Insert record in table
       const { error: dbError } = await supabase.from('meeting_minutes').insert([{
-        meeting_date: date,
-        meeting_type: type,
-        agenda_summary: agenda,
-        pdf_url: publicUrlData.publicUrl
+        meeting_date: date, meeting_type: type, agenda_summary: agenda, pdf_url: publicUrlData.publicUrl
       }]);
 
-      if (dbError) {
-        alert("Database error: " + dbError.message);
-      } else {
+      if (dbError) alert("Database error: " + dbError.message);
+      else {
         alert("Meeting minutes published successfully!");
         document.getElementById('minutes-form').reset();
       }
@@ -283,36 +326,44 @@
       btn.disabled = false;
     });
 
-    // Form 2: Post Notice
-    document.getElementById('notice-form').addEventListener('submit', async (e) => {
+    // 3. Save Flat Record
+    document.getElementById('resident-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const title = document.getElementById('n-title').value;
-      const category = document.getElementById('n-category').value;
-      const description = document.getElementById('n-desc').value;
-      const is_urgent = document.getElementById('n-urgent').checked;
+      const btn = document.getElementById('resident-btn');
+      btn.innerText = "Saving...";
+      btn.disabled = true;
 
-      const { error } = await supabase.from('notices').insert([{
-        title, category, description, is_urgent
-      }]);
+      const flat_no = document.getElementById('r-flat').value.trim();
+      const owner_name = document.getElementById('r-owner').value.trim();
+      const occupancy_status = document.getElementById('r-status').value;
+      const owner_phone = document.getElementById('r-phone').value.trim();
+      const tenant_name = document.getElementById('r-tenant').value.trim() || null;
+      const parking_slot = document.getElementById('r-parking').value.trim() || null;
+
+      const { error } = await supabase.from('resident_directory').upsert([{
+        flat_no, owner_name, occupancy_status, owner_phone, tenant_name, parking_slot
+      }], { onConflict: 'flat_no' });
 
       if (error) alert("Error: " + error.message);
       else {
-        alert("Notice posted successfully!");
-        document.getElementById('notice-form').reset();
+        alert("Record for Flat " + flat_no + " saved!");
+        document.getElementById('resident-form').reset();
       }
+      btn.innerText = "Save Flat Record";
+      btn.disabled = false;
     });
 
-    // Form 3: Add Work Item
+    // 4. Save Work Item
     document.getElementById('work-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const title = document.getElementById('w-title').value;
+      const title = document.getElementById('w-title').value.trim();
       const status = document.getElementById('w-status').value;
-      const progress_percentage = document.getElementById('w-progress').value;
+      const progress_percentage = parseInt(document.getElementById('w-progress').value);
       const target_date = document.getElementById('w-date').value || null;
-      const description = document.getElementById('w-desc').value;
+      const description = document.getElementById('w-desc').value.trim();
 
       const { error } = await supabase.from('works_tracker').insert([{
-        title, status, progress_percentage: parseInt(progress_percentage), target_date, description
+        title, status, progress_percentage, target_date, description
       }]);
 
       if (error) alert("Error: " + error.message);
@@ -322,7 +373,7 @@
       }
     });
 
-    window.addEventListener('DOMContentLoaded', checkAuth);
+    window.addEventListener('DOMContentLoaded', checkSession);
   </script>
 </body>
 </html>
