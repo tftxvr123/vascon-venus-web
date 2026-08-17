@@ -6,6 +6,8 @@
   <title>Vascon Venus Apartment - Official Portal</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Supabase JS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
@@ -19,11 +21,13 @@
       </div>
       <div class="hidden md:flex space-x-6 text-sm font-medium">
         <a href="#amenities" class="hover:text-amber-400 transition">Amenities</a>
-        <a href="#ec-team" class="hover:text-amber-400 transition">EC Committee</a>
         <a href="#notices" class="hover:text-amber-400 transition">Notices</a>
         <a href="#tracker" class="hover:text-amber-400 transition">Work Tracker</a>
         <a href="#minutes" class="hover:text-amber-400 transition">Meeting Minutes</a>
+        <a href="#directory" class="hover:text-amber-400 transition">Directory</a>
+        <a href="#ec-team" class="hover:text-amber-400 transition">EC Team</a>
       </div>
+      <!-- EC Login Link -->
       <a href="admin.html" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg text-sm transition">
         EC Login
       </a>
@@ -36,21 +40,22 @@
       <span class="text-amber-400 uppercase tracking-widest text-xs font-bold">Welcome to our Community</span>
       <h1 class="text-4xl md:text-6xl font-extrabold mt-2 mb-4">Vascon Venus Apartment</h1>
       <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto">
-        A vibrant, peaceful, and well-managed residential community. Stay connected with society updates, works, and committee initiatives.
+        A vibrant, peaceful, and well-managed residential community. Stay connected with society updates, works, and committee records.
       </p>
       <div class="mt-8 flex justify-center gap-4">
         <a href="#notices" class="bg-amber-500 text-slate-900 px-6 py-3 rounded-lg font-bold hover:bg-amber-400 transition">View Notices</a>
-        <a href="#tracker" class="bg-slate-700 border border-slate-600 px-6 py-3 rounded-lg font-bold hover:bg-slate-600 transition">Current Works</a>
+        <a href="#directory" class="bg-slate-700 border border-slate-600 px-6 py-3 rounded-lg font-bold hover:bg-slate-600 transition">Resident Directory</a>
       </div>
     </div>
   </header>
- <!-- Amenities Showcase Section -->
+
+  <!-- Amenities Showcase Section -->
   <section id="amenities" class="max-w-7xl mx-auto px-4 py-16">
     <div class="text-center max-w-3xl mx-auto mb-12">
       <span class="text-amber-600 font-bold uppercase text-xs tracking-wider">Lifestyle & Living</span>
       <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-1">Apartment Amenities</h2>
       <p class="text-gray-500 mt-2 text-sm md:text-base">
-        Explore the world-class facilities and amenities available for all residents and families at Vascon Venus.
+        Explore the facilities and amenities available for all residents and families at Vascon Venus.
       </p>
     </div>
 
@@ -59,67 +64,67 @@
       <!-- Amenity 1: Swimming Pool -->
       <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
         <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80" alt="Swimming Pool" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-          <span class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium">6:00 AM - 9:00 PM</span>
+          <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80" alt="Swimming Pool" class="w-full h-full object-cover">
+          <span class="absolute top-3 right-3 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full font-medium">6:00 AM - 9:00 PM</span>
         </div>
         <div class="p-6">
           <div class="flex items-center space-x-2 text-amber-500 mb-2">
             <i class="fa-solid fa-person-swimming text-lg"></i>
             <h3 class="font-bold text-slate-900 text-lg">Swimming Pool & Kids Pool</h3>
           </div>
-          <p class="text-sm text-gray-600">Crystal-clear adult pool with dedicated safe splash area for children and poolside lounge chairs.</p>
+          <p class="text-sm text-gray-600">Crystal-clear adult pool with dedicated safe splash area for children and poolside lounge.</p>
         </div>
       </div>
 
-      <!-- Amenity 2: Fitness Gym -->
+      <!-- Amenity 2: Gym -->
       <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
         <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&auto=format&fit=crop&q=80" alt="Gymnasium" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-          <span class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium">5:30 AM - 10:30 PM</span>
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&auto=format&fit=crop&q=80" alt="Gymnasium" class="w-full h-full object-cover">
+          <span class="absolute top-3 right-3 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full font-medium">5:30 AM - 10:30 PM</span>
         </div>
         <div class="p-6">
           <div class="flex items-center space-x-2 text-amber-500 mb-2">
             <i class="fa-solid fa-dumbbell text-lg"></i>
             <h3 class="font-bold text-slate-900 text-lg">Modern Fitness Center</h3>
           </div>
-          <p class="text-sm text-gray-600">Fully air-conditioned gym equipped with cardio machines, free weights, and dedicated stretching zones.</p>
+          <p class="text-sm text-gray-600">Air-conditioned gym equipped with cardio machines, weights, and stretching zones.</p>
         </div>
       </div>
 
       <!-- Amenity 3: Clubhouse -->
       <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
         <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&auto=format&fit=crop&q=80" alt="Clubhouse" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-          <span class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium">Resident Booking</span>
+          <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&auto=format&fit=crop&q=80" alt="Clubhouse" class="w-full h-full object-cover">
+          <span class="absolute top-3 right-3 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full font-medium">Resident Booking</span>
         </div>
         <div class="p-6">
           <div class="flex items-center space-x-2 text-amber-500 mb-2">
             <i class="fa-solid fa-users text-lg"></i>
             <h3 class="font-bold text-slate-900 text-lg">Community Clubhouse</h3>
           </div>
-          <p class="text-sm text-gray-600">Spacious banquet hall for society meetings, private resident parties, and festival celebrations.</p>
+          <p class="text-sm text-gray-600">Spacious hall for society meetings, private resident functions, and celebrations.</p>
         </div>
       </div>
 
-      <!-- Amenity 4: Children's Play Park -->
+      <!-- Amenity 4: Play Area -->
       <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
         <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=600&auto=format&fit=crop&q=80" alt="Play Area" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-          <span class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium">Open All Day</span>
+          <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=600&auto=format&fit=crop&q=80" alt="Play Area" class="w-full h-full object-cover">
+          <span class="absolute top-3 right-3 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full font-medium">Open All Day</span>
         </div>
         <div class="p-6">
           <div class="flex items-center space-x-2 text-amber-500 mb-2">
             <i class="fa-solid fa-shapes text-lg"></i>
-            <h3 class="font-bold text-slate-900 text-lg">Children's Play Area</h3>
+            <h3 class="font-bold text-slate-900 text-lg">Children's Play Park</h3>
           </div>
-          <p class="text-sm text-gray-600">Safe, soft-turfed outdoor playground with swings, slides, and obstacle fun for kids of all ages.</p>
+          <p class="text-sm text-gray-600">Safe, soft-turfed playground with swings, slides, and fun activities for kids.</p>
         </div>
       </div>
 
-      <!-- Amenity 5: EV Charging Stations -->
+      <!-- Amenity 5: EV Charging -->
       <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
         <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&auto=format&fit=crop&q=80" alt="EV Charging" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&auto=format&fit=crop&q=80" alt="EV Charging" class="w-full h-full object-cover">
           <span class="absolute top-3 right-3 bg-green-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">24/7 Access</span>
         </div>
         <div class="p-6">
@@ -127,14 +132,14 @@
             <i class="fa-solid fa-charging-station text-lg"></i>
             <h3 class="font-bold text-slate-900 text-lg">EV Charging Points</h3>
           </div>
-          <p class="text-sm text-gray-600">Dedicated electric vehicle charging points installed across visitor and designated parking zones.</p>
+          <p class="text-sm text-gray-600">Dedicated electric vehicle charging points for residents and visitors.</p>
         </div>
       </div>
 
-      <!-- Amenity 6: 24/7 Security & Power Backup -->
+      <!-- Amenity 6: Security -->
       <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
         <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&auto=format&fit=crop&q=80" alt="Security" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+          <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&auto=format&fit=crop&q=80" alt="Security" class="w-full h-full object-cover">
           <span class="absolute top-3 right-3 bg-blue-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">24x7 Support</span>
         </div>
         <div class="p-6">
@@ -142,15 +147,14 @@
             <i class="fa-solid fa-shield-halved text-lg"></i>
             <h3 class="font-bold text-slate-900 text-lg">24/7 Security & CCTV</h3>
           </div>
-          <p class="text-sm text-gray-600">Guarded entry gates with boom barriers, 24/7 CCTV surveillance, and 100% power backup for lifts and commons.</p>
+          <p class="text-sm text-gray-600">Guarded entry gates with boom barriers, 24/7 CCTV, and power backup.</p>
         </div>
       </div>
 
     </div>
   </section>
 
-  
-  <!-- Notice Board / Announcements -->
+  <!-- Announcements & Notices Section -->
   <section id="notices" class="max-w-7xl mx-auto px-4 py-16">
     <div class="flex items-center justify-between mb-8">
       <div>
@@ -159,140 +163,18 @@
       </div>
       <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">Live Updates</span>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- Notice 1 -->
-      <div class="bg-white border-l-4 border-red-500 p-6 rounded-r-lg shadow-sm">
-        <span class="text-xs font-semibold text-red-500 uppercase">Urgent Maintenance</span>
-        <h3 class="text-lg font-bold text-gray-800 mt-1">Water Supply Shutdown</h3>
-        <p class="text-sm text-gray-600 mt-2">Tank cleaning scheduled for Friday from 10:00 AM to 2:00 PM. Please store water in advance.</p>
-        <span class="block text-xs text-gray-400 mt-4"><i class="fa-regular fa-clock mr-1"></i> Today, 9:00 AM</span>
-      </div>
-
-      <!-- Notice 2 -->
-      <div class="bg-white border-l-4 border-blue-500 p-6 rounded-r-lg shadow-sm">
-        <span class="text-xs font-semibold text-blue-500 uppercase">General Body</span>
-        <h3 class="text-lg font-bold text-gray-800 mt-1">Annual General Meeting (AGM)</h3>
-        <p class="text-sm text-gray-600 mt-2">The 2025 Annual General Meeting will be held in the Clubhouse on the 28th of this month.</p>
-        <span class="block text-xs text-gray-400 mt-4"><i class="fa-regular fa-clock mr-1"></i> Yesterday</span>
-      </div>
-
-      <!-- Notice 3 -->
-      <div class="bg-white border-l-4 border-green-500 p-6 rounded-r-lg shadow-sm">
-        <span class="text-xs font-semibold text-green-500 uppercase">Social & Culture</span>
-        <h3 class="text-lg font-bold text-gray-800 mt-1">Festival Celebration & Dinner</h3>
-        <p class="text-sm text-gray-600 mt-2">Join us for community cultural programs and dinner next Saturday starting at 6:30 PM.</p>
-        <span class="block text-xs text-gray-400 mt-4"><i class="fa-regular fa-clock mr-1"></i> 3 days ago</span>
-      </div>
+    <div id="notices-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="col-span-3 text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading notices...</div>
     </div>
   </section>
 
-  <!-- Live Work Tracker & Status -->
+  <!-- Live Work Tracker Status -->
   <section id="tracker" class="bg-slate-100 py-16">
     <div class="max-w-7xl mx-auto px-4">
       <h2 class="text-3xl font-bold text-slate-900">Current Works Status</h2>
       <p class="text-gray-500 mb-8">Real-time status of ongoing repairs, upgrades, and maintenance</p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Work Item 1 -->
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-          <div class="flex justify-between items-center mb-2">
-            <h4 class="font-bold text-slate-800 text-lg">CCTV Network Upgradation</h4>
-            <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-0.5 rounded-full font-medium">In Progress</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-4">Installing 16 new HD night-vision cameras across parking & perimeter.</p>
-          <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
-            <div class="bg-blue-600 h-3 rounded-full" style="width: 75%"></div>
-          </div>
-          <div class="flex justify-between text-xs text-gray-500">
-            <span>Progress: 75%</span>
-            <span>Target: Nov 20, 2025</span>
-          </div>
-        </div>
-
-        <!-- Work Item 2 -->
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-          <div class="flex justify-between items-center mb-2">
-            <h4 class="font-bold text-slate-800 text-lg">Lift Modernization (Wing A)</h4>
-            <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-0.5 rounded-full font-medium">Testing Phase</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-4">Motor replacement and cabin refurbishment by OTIS Engineers.</p>
-          <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
-            <div class="bg-amber-500 h-3 rounded-full" style="width: 90%"></div>
-          </div>
-          <div class="flex justify-between text-xs text-gray-500">
-            <span>Progress: 90%</span>
-            <span>Target: Nov 15, 2025</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Executive Committee (EC) Members -->
-  <section id="ec-team" class="max-w-7xl mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-slate-900 text-center">Executive Committee (2026 - 2027)</h2>
-    <p class="text-gray-500 text-center mb-12">Reach out to committee members for any queries or society concerns</p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- Member 1 -->
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center">
-        <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-4">
-          <i class="fa-solid fa-user"></i>
-        </div>
-        <h3 class="font-bold text-slate-900 text-lg">Edwin Paul</h3>
-        <p class="text-amber-600 text-sm font-semibold">President</p>
-        <p class="text-xs text-gray-400 mt-1">Flat: A-207</p>
-        <div class="mt-4 pt-4 border-t flex justify-center space-x-4 text-slate-600">
-          <a href="tel:+919876543210" class="hover:text-blue-600"><i class="fa-solid fa-phone"></i></a>
-          <a href="https://wa.me/918428912486" class="hover:text-green-600"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="mailto:vasconvenusec@gmail.com" class="hover:text-red-500"><i class="fa-solid fa-envelope"></i></a>
-        </div>
-      </div>
-
-      <!-- Member 2 -->
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center">
-        <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-4">
-          <i class="fa-solid fa-user"></i>
-        </div>
-        <h3 class="font-bold text-slate-900 text-lg">Pradeep Shetty</h3>
-        <p class="text-amber-600 text-sm font-semibold">Secretary</p>
-        <p class="text-xs text-gray-400 mt-1">Flat: A-204</p>
-        <div class="mt-4 pt-4 border-t flex justify-center space-x-4 text-slate-600">
-          <a href="tel:+919876543211" class="hover:text-blue-600"><i class="fa-solid fa-phone"></i></a>
-          <a href="https://wa.me/919876543211" class="hover:text-green-600"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="mailto:vasconvenusec@gmail.com" class="hover:text-red-500"><i class="fa-solid fa-envelope"></i></a>
-        </div>
-      </div>
-
-      <!-- Member 3 -->
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center">
-        <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-4">
-          <i class="fa-solid fa-user"></i>
-        </div>
-        <h3 class="font-bold text-slate-900 text-lg">Abdul Rehman</h3>
-        <p class="text-amber-600 text-sm font-semibold">Treasurer</p>
-        <p class="text-xs text-gray-400 mt-1">Flat:B-311</p>
-        <div class="mt-4 pt-4 border-t flex justify-center space-x-4 text-slate-600">
-          <a href="tel:+919876543212" class="hover:text-blue-600"><i class="fa-solid fa-phone"></i></a>
-          <a href="https://wa.me/919876543212" class="hover:text-green-600"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="mailto:vasconvenusec@gmail.com" class="hover:text-red-500"><i class="fa-solid fa-envelope"></i></a>
-        </div>
-      </div>
-
-      <!-- Member 4 -->
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center">
-        <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-4">
-          <i class="fa-solid fa-user"></i>
-        </div>
-        <h3 class="font-bold text-slate-900 text-lg">Sunil Kumar MP</h3>
-        <p class="text-amber-600 text-sm font-semibold">Vice President</p>
-        <p class="text-xs text-gray-400 mt-1">Flat: B-211</p>
-        <div class="mt-4 pt-4 border-t flex justify-center space-x-4 text-slate-600">
-          <a href="tel:+919876543213" class="hover:text-blue-600"><i class="fa-solid fa-phone"></i></a>
-          <a href="https://wa.me/919876543213" class="hover:text-green-600"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="mailto:vasconvenusec@gmail.com" class="hover:text-red-500"><i class="fa-solid fa-envelope"></i></a>
-        </div>
+      <div id="tracker-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="col-span-2 text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading works progress...</div>
       </div>
     </div>
   </section>
@@ -306,33 +188,19 @@
           <p class="text-gray-500">Official records and resolutions passed in committee meetings</p>
         </div>
       </div>
-
-      <div class="overflow-x-auto">
+      <div class="overflow-x-auto shadow-sm rounded-lg border">
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="bg-slate-100 text-slate-700 text-sm uppercase">
               <th class="py-3 px-4 font-semibold">Date</th>
               <th class="py-3 px-4 font-semibold">Meeting Type</th>
               <th class="py-3 px-4 font-semibold">Key Topics Discussed</th>
-              <th class="py-3 px-4 font-semibold text-right">Download</th>
+              <th class="py-3 px-4 font-semibold text-right">Action</th>
             </tr>
           </thead>
-          <tbody class="divide-y text-sm">
+          <tbody id="minutes-container" class="divide-y text-sm bg-white">
             <tr>
-              <td class="py-4 px-4 font-medium text-slate-800">Oct 12, 2025</td>
-              <td class="py-4 px-4"><span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Monthly EC</span></td>
-              <td class="py-4 px-4 text-gray-600">Solar vendor evaluation, Diwali bonus for staff, security audit</td>
-              <td class="py-4 px-4 text-right">
-                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fa-solid fa-file-pdf mr-1 text-red-500"></i> PDF</a>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 font-medium text-slate-800">Sep 15, 2025</td>
-              <td class="py-4 px-4"><span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs">AGM</span></td>
-              <td class="py-4 px-4 text-gray-600">Annual financial review, election of new EC members, sinking fund review</td>
-              <td class="py-4 px-4 text-right">
-                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fa-solid fa-file-pdf mr-1 text-red-500"></i> PDF</a>
-              </td>
+              <td colspan="4" class="text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading meeting records...</td>
             </tr>
           </tbody>
         </table>
@@ -379,14 +247,196 @@
     </div>
   </section>
 
+  <!-- Executive Committee Members -->
+  <section id="ec-team" class="max-w-7xl mx-auto px-4 py-16 bg-slate-50 border-t">
+    <h2 class="text-3xl font-bold text-slate-900 text-center">Executive Committee (2024 - 2026)</h2>
+    <p class="text-gray-500 text-center mb-12">Reach out to committee members for any queries or society concerns</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
+        <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-3"><i class="fa-solid fa-user"></i></div>
+        <h3 class="font-bold text-slate-900">President</h3>
+        <p class="text-xs text-gray-400">Vascon Venus EC</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
+        <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-3"><i class="fa-solid fa-user"></i></div>
+        <h3 class="font-bold text-slate-900">Secretary</h3>
+        <p class="text-xs text-gray-400">Vascon Venus EC</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
+        <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-3"><i class="fa-solid fa-user"></i></div>
+        <h3 class="font-bold text-slate-900">Treasurer</h3>
+        <p class="text-xs text-gray-400">Vascon Venus EC</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
+        <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-3"><i class="fa-solid fa-user"></i></div>
+        <h3 class="font-bold text-slate-900">Maintenance Head</h3>
+        <p class="text-xs text-gray-400">Vascon Venus EC</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="bg-slate-900 text-slate-400 py-10 text-sm">
     <div class="max-w-7xl mx-auto px-4 text-center">
       <p class="font-bold text-white text-base mb-1">Vascon Venus Co-operative Housing Society</p>
-      <p class="mb-4">Vascon Venus Complex, Society Main Road</p>
       <p>&copy; 2025 Vascon Venus Apartment. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- DYNAMIC JAVASCRIPT LOGIC -->
+  <script>
+    // -------------------------------------------------------------
+    // PASTE YOUR ACTUAL SUPABASE KEYS HERE:
+    // -------------------------------------------------------------
+    const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let allResidents = [];
+
+    // 1. Fetch Live Notices
+    async function loadNotices() {
+      const container = document.getElementById('notices-container');
+      const { data: notices, error } = await supabase
+        .from('notices')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error || !notices || notices.length === 0) {
+        container.innerHTML = `<div class="col-span-3 text-center py-6 text-gray-500">No active notices at this moment.</div>`;
+        return;
+      }
+
+      container.innerHTML = notices.map(n => `
+        <div class="bg-white border-l-4 ${n.is_urgent ? 'border-red-500' : 'border-blue-500'} p-6 rounded-r-lg shadow-sm">
+          <span class="text-xs font-semibold ${n.is_urgent ? 'text-red-500' : 'text-blue-500'} uppercase tracking-wide">${n.category || 'General'}</span>
+          <h3 class="text-lg font-bold text-slate-900 mt-1">${n.title}</h3>
+          <p class="text-sm text-gray-600 mt-2 whitespace-pre-line">${n.description}</p>
+          <span class="block text-xs text-gray-400 mt-4"><i class="fa-regular fa-clock mr-1"></i> ${new Date(n.created_at).toLocaleDateString()}</span>
+        </div>
+      `).join('');
+    }
+
+    // 2. Fetch Live Works
+    async function loadWorkTracker() {
+      const container = document.getElementById('tracker-container');
+      const { data: works, error } = await supabase
+        .from('works_tracker')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error || !works || works.length === 0) {
+        container.innerHTML = `<div class="col-span-2 text-center py-6 text-gray-500">No current works in progress.</div>`;
+        return;
+      }
+
+      container.innerHTML = works.map(w => `
+        <div class="bg-white p-6 rounded-xl shadow-sm border">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-bold text-slate-800 text-lg">${w.title}</h4>
+            <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-0.5 rounded-full font-semibold">${w.status}</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">${w.description || ''}</p>
+          <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+            <div class="bg-blue-600 h-3 rounded-full" style="width: ${w.progress_percentage}%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-500">
+            <span>Progress: <strong>${w.progress_percentage}%</strong></span>
+            <span>Target: <strong>${w.target_date ? new Date(w.target_date).toLocaleDateString() : 'Ongoing'}</strong></span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 3. Fetch Live Meeting Minutes
+    async function loadMeetingMinutes() {
+      const container = document.getElementById('minutes-container');
+      const { data: minutes, error } = await supabase
+        .from('meeting_minutes')
+        .select('*')
+        .order('meeting_date', { ascending: false });
+
+      if (error || !minutes || minutes.length === 0) {
+        container.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-gray-500">No meeting minutes published yet.</td></tr>`;
+        return;
+      }
+
+      container.innerHTML = minutes.map(m => `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="py-4 px-4 font-medium text-slate-800">${new Date(m.meeting_date).toLocaleDateString()}</td>
+          <td class="py-4 px-4"><span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded text-xs font-semibold">${m.meeting_type}</span></td>
+          <td class="py-4 px-4 text-gray-600">${m.agenda_summary}</td>
+          <td class="py-4 px-4 text-right">
+            <a href="${m.pdf_url}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded hover:bg-blue-50 transition">
+              <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
+            </a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // 4. Fetch Resident Directory
+    async function loadDirectory() {
+      const container = document.getElementById('directory-container');
+      const { data, error } = await supabase
+        .from('resident_directory')
+        .select('*')
+        .order('flat_no', { ascending: true });
+
+      if (error || !data || data.length === 0) {
+        container.innerHTML = `<tr><td colspan="5" class="text-center py-6 text-gray-400">No resident records found.</td></tr>`;
+        return;
+      }
+
+      allResidents = data;
+      renderDirectory(allResidents);
+    }
+
+    function renderDirectory(list) {
+      const container = document.getElementById('directory-container');
+      if (list.length === 0) {
+        container.innerHTML = `<tr><td colspan="5" class="text-center py-6 text-gray-500">No matching flats or residents found.</td></tr>`;
+        return;
+      }
+
+      container.innerHTML = list.map(r => `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="py-3.5 px-4 font-bold text-slate-900">${r.flat_no}</td>
+          <td class="py-3.5 px-4 font-medium text-slate-800">${r.owner_name}</td>
+          <td class="py-3.5 px-4">
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${
+              r.occupancy_status === 'Owner Occupied' ? 'bg-green-100 text-green-800' :
+              r.occupancy_status === 'Tenant Occupied' ? 'bg-blue-100 text-blue-800' :
+              'bg-gray-100 text-gray-700'
+            }">
+              ${r.occupancy_status}
+            </span>
+          </td>
+          <td class="py-3.5 px-4 text-slate-600">${r.tenant_name || '<span class="text-gray-400">N/A</span>'}</td>
+          <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">${r.parking_slot || 'N/A'}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Live Instant Search Filter
+    function filterDirectory() {
+      const query = document.getElementById('dir-search').value.toLowerCase().trim();
+      const filtered = allResidents.filter(r => 
+        r.flat_no.toLowerCase().includes(query) || 
+        r.owner_name.toLowerCase().includes(query) ||
+        (r.tenant_name && r.tenant_name.toLowerCase().includes(query))
+      );
+      renderDirectory(filtered);
+    }
+
+    // Initialize all data loaders on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadNotices();
+      loadWorkTracker();
+      loadMeetingMinutes();
+      loadDirectory();
+    });
+  </script>
 </body>
 </html>
