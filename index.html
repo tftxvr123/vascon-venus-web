@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vascon Venus Apartment - Official Portal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navigation Bar -->
+  <nav class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-building text-amber-400 text-2xl"></i>
+        <span class="font-bold text-xl tracking-wide">VASCON VENUS</span>
+      </div>
+      <div class="hidden md:flex space-x-6 text-sm font-medium">
+        <a href="#amenities" class="hover:text-amber-400 transition">Amenities</a>
+        <a href="#ec-team" class="hover:text-amber-400 transition">EC Committee</a>
+        <a href="#notices" class="hover:text-amber-400 transition">Notices</a>
+        <a href="#tracker" class="hover:text-amber-400 transition">Work Tracker</a>
+        <a href="#minutes" class="hover:text-amber-400 transition">Meeting Minutes</a>
+      </div>
+      <button class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg text-sm transition">
+        EC Login
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative bg-slate-800 text-white py-24 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+      <span class="text-amber-400 uppercase tracking-widest text-xs font-bold">Welcome to our Community</span>
+      <h1 class="text-4xl md:text-6xl font-extrabold mt-2 mb-4">Vascon Venus Apartment</h1>
+      <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto">
+        A vibrant, peaceful, and well-managed residential community. Stay connected with society updates, works, and committee initiatives.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <a href="#notices" class="bg-amber-500 text-slate-900 px-6 py-3 rounded-lg font-bold hover:bg-amber-400 transition">View Notices</a>
+        <a href="#tracker" class="bg-slate-700 border border-slate-600 px-6 py-3 rounded-lg font-bold hover:bg-slate-600 transition">Current Works</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notice Board / Announcements -->
+  <section id="notices" class="max-w-7xl mx-auto px-4 py-16">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h2 class="text-3xl font-bold text-slate-900">Announcements & Notices</h2>
+        <p class="text-gray-500">Official updates from the Executive Committee</p>
+      </div>
+      <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">Live Updates</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Notice 1 -->
+      <div class="bg-white border-l-4 border-red-500 p-6 rounded-r-lg shadow-sm">
+        <span class="text-xs font-semibold text-red-500 uppercase">Urgent Maintenance</span>
+        <h3 class="text-lg font-bold text-gray-800 mt-1">Water Supply Shutdown</h3>
+        <p class="text-sm text-gray-600 mt-2">Tank cleaning scheduled for Friday from 10:00 AM to 2:00 PM. Please store water in advance.</p>
+        <span class="block text-xs text-gray-400 mt-4"><i class="fa-regular fa-clock mr-1"></i> Today, 9:00 AM</span>
+      </div>
+
+      <!-- Notice 2 -->
+      <div class="bg-white border-l-4 border-blue-500 p-6 rounded-r-lg shadow-sm">
+        <span class="text-xs font-semibold text-blue-500 uppercase">General Body</span>
+        <h3 class="text-lg font-bold text-gray-800 mt-1">Annual General Meeting (AGM)</h3>
+        <p class="text-sm text-gray-600 mt-2">The 2025 Annual General Meeting will be held in the Clubhouse on the 28th of this month.</p>
+        <span class="block text-xs text-gray-400 mt-4"><i class="fa-regular fa-clock mr-1"></i> Yesterday</span>
+      </div>
+
+      <!-- Notice 3 -->
+      <div class="bg-white border-l-4 border-green-500 p-6 rounded-r-lg shadow-sm">
+        <span class="text-xs font-semibold text-green-500 uppercase">Social & Culture</span>
+        <h3 class="text-lg font-bold text-gray-800 mt-1">Festival Celebration & Dinner</h3>
+        <p class="text-sm text-gray-600 mt-2">Join us for community cultural programs and dinner next Saturday starting at 6:30 PM.</p>
+        <span class="block text-xs text-gray-400 mt-4"><i class="fa-regular fa-clock mr-1"></i> 3 days ago</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Work Tracker & Status -->
+  <section id="tracker" class="bg-slate-100 py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900">Current Works Status</h2>
+      <p class="text-gray-500 mb-8">Real-time status of ongoing repairs, upgrades, and maintenance</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Work Item 1 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-bold text-slate-800 text-lg">CCTV Network Upgradation</h4>
+            <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-0.5 rounded-full font-medium">In Progress</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">Installing 16 new HD night-vision cameras across parking & perimeter.</p>
+          <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+            <div class="bg-blue-600 h-3 rounded-full" style="width: 75%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-500">
+            <span>Progress: 75%</span>
+            <span>Target: Nov 20, 2025</span>
+          </div>
+        </div>
+
+        <!-- Work Item 2 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-bold text-slate-800 text-lg">Lift Modernization (Wing A)</h4>
+            <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-0.5 rounded-full font-medium">Testing Phase</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">Motor replacement and cabin refurbishment by OTIS Engineers.</p>
+          <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+            <div class="bg-amber-500 h-3 rounded-full" style="width: 90%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-500">
+            <span>Progress: 90%</span>
+            <span>Target: Nov 15, 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Committee (EC) Members -->
+  <section id="ec-team" class="max-w-7xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-slate-900 text-center">Executive Committee (2024 - 2026)</h2>
+    <p class="text-gray-500 text-center mb-12">Reach out to committee members for any queries or society concerns</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Member 1 -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center">
+        <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-4">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <h3 class="font-bold text-slate-900 text-lg">Rajesh Sharma</h3>
+        <p class="text-amber-600 text-sm font-semibold">President</p>
+        <p class="text-xs text-gray-400 mt-1">Flat: A-402</p>
+        <div class="mt-4 pt-4 border-t flex justify-center space-x-4 text-slate-600">
+          <a href="tel:+919876543210" class="hover:text-blue-600"><i class="fa-solid fa-phone"></i></a>
+          <a href="https://wa.me/919876543210" class="hover:text-green-600"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:ec@vasconvenus.com" class="hover:text-red-500"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <!-- Member 2 -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center">
+        <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-4">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <h3 class="font-bold text-slate-900 text-lg">Priya Nair</h3>
+        <p class="text-amber-600 text-sm font-semibold">Secretary</p>
+        <p class="text-xs text-gray-400 mt-1">Flat: B-105</p>
+        <div class="mt-4 pt-4 border-t flex justify-center space-x-4 text-slate-600">
+          <a href="tel:+919876543211" class="hover:text-blue-600"><i class="fa-solid fa-phone"></i></a>
+          <a href="https://wa.me/919876543211" class="hover:text-green-600"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:secretary@vasconvenus.com" class="hover:text-red-500"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <!-- Member 3 -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center">
+        <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-4">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <h3 class="font-bold text-slate-900 text-lg">Amitabh Roy</h3>
+        <p class="text-amber-600 text-sm font-semibold">Treasurer</p>
+        <p class="text-xs text-gray-400 mt-1">Flat: C-701</p>
+        <div class="mt-4 pt-4 border-t flex justify-center space-x-4 text-slate-600">
+          <a href="tel:+919876543212" class="hover:text-blue-600"><i class="fa-solid fa-phone"></i></a>
+          <a href="https://wa.me/919876543212" class="hover:text-green-600"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:treasurer@vasconvenus.com" class="hover:text-red-500"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <!-- Member 4 -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center">
+        <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-4">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <h3 class="font-bold text-slate-900 text-lg">Suresh Kulkarni</h3>
+        <p class="text-amber-600 text-sm font-semibold">Maintenance Head</p>
+        <p class="text-xs text-gray-400 mt-1">Flat: B-304</p>
+        <div class="mt-4 pt-4 border-t flex justify-center space-x-4 text-slate-600">
+          <a href="tel:+919876543213" class="hover:text-blue-600"><i class="fa-solid fa-phone"></i></a>
+          <a href="https://wa.me/919876543213" class="hover:text-green-600"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:maintenance@vasconvenus.com" class="hover:text-red-500"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meeting Minutes Archive -->
+  <section id="minutes" class="bg-white py-16 border-t">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center mb-6">
+        <div>
+          <h2 class="text-3xl font-bold text-slate-900">EC Meeting Minutes</h2>
+          <p class="text-gray-500">Official records and resolutions passed in committee meetings</p>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-100 text-slate-700 text-sm uppercase">
+              <th class="py-3 px-4 font-semibold">Date</th>
+              <th class="py-3 px-4 font-semibold">Meeting Type</th>
+              <th class="py-3 px-4 font-semibold">Key Topics Discussed</th>
+              <th class="py-3 px-4 font-semibold text-right">Download</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y text-sm">
+            <tr>
+              <td class="py-4 px-4 font-medium text-slate-800">Oct 12, 2025</td>
+              <td class="py-4 px-4"><span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Monthly EC</span></td>
+              <td class="py-4 px-4 text-gray-600">Solar vendor evaluation, Diwali bonus for staff, security audit</td>
+              <td class="py-4 px-4 text-right">
+                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fa-solid fa-file-pdf mr-1 text-red-500"></i> PDF</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-medium text-slate-800">Sep 15, 2025</td>
+              <td class="py-4 px-4"><span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs">AGM</span></td>
+              <td class="py-4 px-4 text-gray-600">Annual financial review, election of new EC members, sinking fund review</td>
+              <td class="py-4 px-4 text-right">
+                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fa-solid fa-file-pdf mr-1 text-red-500"></i> PDF</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-10 text-sm">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="font-bold text-white text-base mb-1">Vascon Venus Co-operative Housing Society</p>
+      <p class="mb-4">Vascon Venus Complex, Society Main Road</p>
+      <p>&copy; 2025 Vascon Venus Apartment. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
