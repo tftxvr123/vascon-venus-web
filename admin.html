@@ -51,10 +51,11 @@
     <div class="max-w-5xl mx-auto p-6 space-y-8">
 
       <!-- Action 1: Upload Meeting Minutes -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border">
+      <!-- Action 1: Upload Meeting Minutes with 1-Click Email Broadcast -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <div class="flex items-center space-x-2 mb-4">
           <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
-          <h2 class="text-xl font-bold text-slate-900">Publish Meeting Minutes (PDF)</h2>
+          <h2 class="text-xl font-bold text-slate-900">Publish Meeting Minutes & Broadcast</h2>
         </div>
         <form id="minutes-form" class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -71,6 +72,32 @@
               </select>
             </div>
           </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Agenda & Key Resolutions Summary</label>
+            <textarea id="m-agenda" rows="3" required placeholder="e.g. 1. Approved Lift AMC with OTIS. 2. Solar vendor finalized for Wing A & B." class="w-full border px-3 py-2 rounded-lg"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Select Minutes PDF</label>
+            <input type="file" id="m-file" accept="application/pdf" required class="w-full border p-2 rounded-lg text-sm">
+          </div>
+
+          <!-- The 1-Click Broadcast Checkbox -->
+          <div class="bg-amber-50 p-4 rounded-lg border border-amber-200 flex items-center space-x-3">
+            <input type="checkbox" id="m-broadcast" checked class="w-5 h-5 text-amber-600 rounded">
+            <div>
+              <label for="m-broadcast" class="font-bold text-slate-900 text-sm">Send Email Broadcast to All Owners</label>
+              <p class="text-xs text-slate-500">Automatically sends the meeting agenda and PDF download link to all emails in the Owners Directory.</p>
+            </div>
+          </div>
+
+          <button type="submit" id="minutes-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-3 rounded-lg flex items-center space-x-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Publish & Send to Owners</span>
+          </button>
+        </form>
+      </div>
           <div>
             <label class="block text-xs font-semibold text-slate-600 mb-1">Agenda Summary</label>
             <input type="text" id="m-agenda" required placeholder="e.g., Lift AMC renewal, Solar vendor evaluation" class="w-full border px-3 py-2 rounded-lg">
