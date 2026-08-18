@@ -955,6 +955,37 @@
       syncSupabaseWorks();
       syncSupabaseMinutes();
     });
+
+// Guaranteed Modal Functions
+    function openPoolModal() {
+      const modal = document.getElementById('pool-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+        const today = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('pool-date');
+        if (dateInput) dateInput.value = today;
+      }
+    }
+
+    function closePoolModal() {
+      const modal = document.getElementById('pool-modal');
+      if (modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    function handlePoolBooking(e) {
+      e.preventDefault();
+      const date = document.getElementById('pool-date').value;
+      const slot = document.getElementById('pool-slot').value;
+      const flat = document.getElementById('pool-flat').value.toUpperCase();
+      const count = document.getElementById('pool-count').value;
+
+      alert(`✅ Pool Slot Confirmed!\n\nFlat: ${flat}\nDate: ${date}\nTime: ${slot}\nSwimmers: ${count}\n\nPlease carry your resident ID card to the pool deck.`);
+      closePoolModal();
+      document.getElementById('pool-book-form').reset();
+    }
+    
   </script>
 </body>
 </html>
