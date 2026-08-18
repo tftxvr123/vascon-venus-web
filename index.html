@@ -451,11 +451,12 @@
       </div>
     </div>
     <!-- Inside Directory Header -->
+<!-- Wing Filter Pills -->
 <div class="flex items-center space-x-2 text-xs font-semibold">
-  <button onclick="filterByWing('')" class="bg-slate-900 text-white px-3 py-1.5 rounded-lg">All</button>
-  <button onclick="filterByWing('A-')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing A</button>
-  <button onclick="filterByWing('B-')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing B</button>
-  <button onclick="filterByWing('C-')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing C</button>
+  <button onclick="filterByWing('', this)" class="wing-btn bg-slate-900 text-white px-3 py-1.5 rounded-lg shadow-sm transition">All</button>
+  <button onclick="filterByWing('A-', this)" class="wing-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing A</button>
+  <button onclick="filterByWing('B-', this)" class="wing-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing B</button>
+  <button onclick="filterByWing('C-', this)" class="wing-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing C</button>
 </div>
 
     <!-- Directory Table with Immediate Display -->
@@ -872,6 +873,34 @@
     }
 
     syncSupabaseMinutes();
+
+    // Filter Directory by Wing
+    function filterByWing(wingPrefix, btnElement) {
+      // 1. Update active button colors
+      const buttons = document.querySelectorAll('.wing-btn');
+      buttons.forEach(btn => {
+        btn.className = "wing-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition";
+      });
+      if (btnElement) {
+        btnElement.className = "wing-btn bg-slate-900 text-white px-3 py-1.5 rounded-lg shadow-sm transition";
+      }
+
+      // 2. Filter table rows
+      const tbody = document.getElementById("directory-container");
+      const trs = tbody.getElementsByTagName("tr");
+
+      for (let i = 0; i < trs.length; i++) {
+        const flatCell = trs[i].getElementsByTagName("td")[0];
+        if (flatCell) {
+          const flatText = (flatCell.textContent || flatCell.innerText).trim();
+          if (wingPrefix === '' || flatText.startsWith(wingPrefix)) {
+            trs[i].style.display = "";
+          } else {
+            trs[i].style.display = "none";
+          }
+        }
+      }
+    }
   </script>
 </body>
 </html>
