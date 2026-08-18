@@ -450,6 +450,13 @@
         <input type="text" id="dir-search" oninput="filterDirectory()" placeholder="Type Flat No or Name to filter..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm">
       </div>
     </div>
+    <!-- Inside Directory Header -->
+<div class="flex items-center space-x-2 text-xs font-semibold">
+  <button onclick="filterByWing('')" class="bg-slate-900 text-white px-3 py-1.5 rounded-lg">All</button>
+  <button onclick="filterByWing('A-')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing A</button>
+  <button onclick="filterByWing('B-')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing B</button>
+  <button onclick="filterByWing('C-')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing C</button>
+</div>
 
     <!-- Directory Table with Immediate Display -->
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
