@@ -154,17 +154,71 @@
     </div>
   </section>
 
-  <!-- Announcements & Notices Section -->
+ <!-- Announcements & Notices Section (Pre-Rendered & Live Synced) -->
   <section id="notices" class="max-w-7xl mx-auto px-4 py-16">
     <div class="flex items-center justify-between mb-8">
       <div>
-        <h2 class="text-3xl font-bold text-slate-900">Announcements & Notices</h2>
-        <p class="text-gray-500">Official updates from the Executive Committee</p>
+        <span class="text-amber-600 font-bold uppercase text-xs tracking-wider">Official Circulars</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Announcements & Notices</h2>
+        <p class="text-gray-500 text-sm">Official circulars and alerts from the Executive Committee</p>
       </div>
-      <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">Live Updates</span>
+      <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1.5 rounded-full flex items-center">
+        <span class="w-2 h-2 rounded-full bg-amber-500 mr-2 animate-pulse"></span>
+        Live Notice Board
+      </span>
     </div>
+
+    <!-- Notice Cards Grid -->
     <div id="notices-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="col-span-3 text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading notices...</div>
+      
+      <!-- Notice 1: High Priority Urgent -->
+      <div class="bg-white border-l-4 border-red-500 p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-red-600 uppercase tracking-wide bg-red-50 px-2.5 py-0.5 rounded">High Priority</span>
+          <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> Today</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mt-3">Water Supply Shutdown</h3>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Overhead and underground tank cleaning scheduled for Friday from 10:00 AM to 2:00 PM. Please store sufficient water in advance.
+        </p>
+        <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+          <span><i class="fa-solid fa-user-shield mr-1"></i> Vascon Venus EC</span>
+          <span class="text-red-500 font-medium">All Wings</span>
+        </div>
+      </div>
+
+      <!-- Notice 2: General / AGM -->
+      <div class="bg-white border-l-4 border-blue-500 p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wide bg-blue-50 px-2.5 py-0.5 rounded">General Body</span>
+          <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> Yesterday</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mt-3">Annual General Meeting (AGM)</h3>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          The 2025 AGM will be held in the Community Clubhouse on Sunday the 28th of this month at 6:00 PM. All flat owners are requested to attend.
+        </p>
+        <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+          <span><i class="fa-solid fa-user-shield mr-1"></i> Secretary</span>
+          <span class="text-blue-500 font-medium">Clubhouse</span>
+        </div>
+      </div>
+
+      <!-- Notice 3: Social & Event -->
+      <div class="bg-white border-l-4 border-green-500 p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-green-600 uppercase tracking-wide bg-green-50 px-2.5 py-0.5 rounded">Social & Event</span>
+          <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 3 days ago</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mt-3">Diwali Celebration & Dinner</h3>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Join us for community cultural programs, music, and buffet dinner next Saturday starting at 6:30 PM in the central amphitheater.
+        </p>
+        <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+          <span><i class="fa-solid fa-heart text-red-400 mr-1"></i> Cultural Comm.</span>
+          <span class="text-green-600 font-medium">All Residents</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
