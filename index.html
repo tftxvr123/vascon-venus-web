@@ -435,6 +435,10 @@
       </div>
     </div>
   </section>
+
+
+
+  
  <!-- Searchable Resident & Flat Directory Section (Pre-Rendered) -->
   <section id="directory" class="max-w-7xl mx-auto px-4 py-16">
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -444,20 +448,22 @@
         <p class="text-gray-500 text-sm">Directory of apartment owners, tenants, and parking allocations</p>
       </div>
 
-      <!-- Live Search Bar -->
-      <div class="w-full md:w-80 relative">
-        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3.5 text-gray-400 text-sm"></i>
-        <input type="text" id="dir-search" oninput="filterDirectory()" placeholder="Type Flat No or Name to filter..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm">
+      <!-- Live Search & Wing Filters -->
+      <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+        <!-- Wing Filter Pills -->
+        <div class="flex items-center space-x-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200">
+          <button type="button" onclick="filterByWing('', this)" class="wing-btn bg-slate-900 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition">All</button>
+          <button type="button" onclick="filterByWing('A', this)" class="wing-btn hover:bg-slate-200 text-slate-700 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition">Wing A</button>
+          <button type="button" onclick="filterByWing('B', this)" class="wing-btn hover:bg-slate-200 text-slate-700 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition">Wing B</button>
+          <button type="button" onclick="filterByWing('C', this)" class="wing-btn hover:bg-slate-200 text-slate-700 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition">Wing C</button>
+        </div>
+
+        <!-- Search Input -->
+        <div class="relative w-full sm:w-64">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400 text-xs"></i>
+          <input type="text" id="dir-search" oninput="applyCombinedFilter()" placeholder="Search resident or flat..." class="w-full pl-8 pr-3 py-2 bg-white border border-gray-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm">
+        </div>
       </div>
-    </div>
-    <!-- Inside Directory Header -->
-<!-- Wing Filter Pills -->
-<div class="flex items-center space-x-2 text-xs font-semibold">
-  <button onclick="filterByWing('', this)" class="wing-btn bg-slate-900 text-white px-3 py-1.5 rounded-lg shadow-sm transition">All</button>
-  <button onclick="filterByWing('A-', this)" class="wing-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing A</button>
-  <button onclick="filterByWing('B-', this)" class="wing-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing B</button>
-  <button onclick="filterByWing('C-', this)" class="wing-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition">Wing C</button>
-</div>
 
     <!-- Directory Table with Immediate Display -->
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
