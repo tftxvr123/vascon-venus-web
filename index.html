@@ -222,13 +222,135 @@
     </div>
   </section>
 
-  <!-- Live Work Tracker Status -->
+ <!-- Live Work Tracker & Status Section (Pre-Rendered & Live Synced) -->
   <section id="tracker" class="bg-slate-100 py-16">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-slate-900">Current Works Status</h2>
-      <p class="text-gray-500 mb-8">Real-time status of ongoing repairs, upgrades, and maintenance</p>
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+        <div>
+          <span class="text-blue-600 font-bold uppercase text-xs tracking-wider">Infrastructure & Maintenance</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Current Works Status</h2>
+          <p class="text-gray-500 text-sm">Real-time status of ongoing repairs, upgrades, and maintenance across all wings</p>
+        </div>
+        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1.5 rounded-full self-start md:self-auto flex items-center">
+          <i class="fa-solid fa-screwdriver-wrench mr-1.5"></i> Active Projects
+        </span>
+      </div>
+
+      <!-- Works Cards Grid -->
       <div id="tracker-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="col-span-2 text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading works progress...</div>
+        
+        <!-- Work 1: CCTV Network Upgrades -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Security & Surveillance</span>
+              <h4 class="font-bold text-slate-900 text-lg mt-0.5">CCTV Network Upgrades</h4>
+            </div>
+            <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full font-semibold">In Progress</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">Installing 16 new night-vision HD cameras in parking basement, perimeter walls, and main lobby.</p>
+          
+          <!-- Progress Bar -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between text-xs font-bold text-slate-700">
+              <span>Work Progress</span>
+              <span>75%</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+              <div class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: 75%"></div>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+            <span><i class="fa-regular fa-calendar mr-1"></i> Target: Nov 20, 2025</span>
+            <span class="font-medium text-slate-700">Vendor: SecureVision Tech</span>
+          </div>
+        </div>
+
+        <!-- Work 2: Lift Modernization Wing A -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">Vertical Transport</span>
+              <h4 class="font-bold text-slate-900 text-lg mt-0.5">Lift Modernization (Wing A)</h4>
+            </div>
+            <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-semibold">Testing Phase</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">Motor replacement, cabin refurbishment, and safety sensor recalibration by OTIS engineers.</p>
+          
+          <!-- Progress Bar -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between text-xs font-bold text-slate-700">
+              <span>Work Progress</span>
+              <span>90%</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+              <div class="bg-amber-500 h-3 rounded-full transition-all duration-500" style="width: 90%"></div>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+            <span><i class="fa-regular fa-calendar mr-1"></i> Target: Nov 15, 2025</span>
+            <span class="font-medium text-slate-700">Vendor: OTIS Elevators</span>
+          </div>
+        </div>
+
+        <!-- Work 3: Solar Panel Installation -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="text-xs font-semibold text-purple-600 uppercase tracking-wider">Green Energy</span>
+              <h4 class="font-bold text-slate-900 text-lg mt-0.5">Common Area Solar Grid (50kW)</h4>
+            </div>
+            <span class="bg-purple-100 text-purple-800 text-xs px-2.5 py-1 rounded-full font-semibold">Structure Done</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">Rooftop mounting structure complete on Wing B & C. Inverter and panel wiring underway.</p>
+          
+          <!-- Progress Bar -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between text-xs font-bold text-slate-700">
+              <span>Work Progress</span>
+              <span>45%</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+              <div class="bg-purple-600 h-3 rounded-full transition-all duration-500" style="width: 45%"></div>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+            <span><i class="fa-regular fa-calendar mr-1"></i> Target: Dec 10, 2025</span>
+            <span class="font-medium text-slate-700">Vendor: Tata Solar</span>
+          </div>
+        </div>
+
+        <!-- Work 4: Rainwater Harvesting Servicing -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="text-xs font-semibold text-green-600 uppercase tracking-wider">Water Management</span>
+              <h4 class="font-bold text-slate-900 text-lg mt-0.5">Rainwater Harvesting Desilting</h4>
+            </div>
+            <span class="bg-green-100 text-green-800 text-xs px-2.5 py-1 rounded-full font-semibold">Completed</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">Filter pit cleaning, sand replacement, and recharge bore desilting completed before winter.</p>
+          
+          <!-- Progress Bar -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between text-xs font-bold text-slate-700">
+              <span>Work Progress</span>
+              <span>100%</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+              <div class="bg-green-600 h-3 rounded-full transition-all duration-500" style="width: 100%"></div>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+            <span><i class="fa-regular fa-calendar mr-1"></i> Completed: Oct 30, 2025</span>
+            <span class="font-medium text-green-600"><i class="fa-solid fa-circle-check mr-1"></i> Verified</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
