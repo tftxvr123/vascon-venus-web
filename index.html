@@ -64,104 +64,31 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
-     <!-- Swimming Pool Modal (Pop-up) -->
-  <div id="pool-modal" style="display: none;" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 relative">
-      
-      <!-- Modal Header -->
-      <div class="bg-slate-900 text-white p-6 flex justify-between items-center sticky top-0 z-10">
-        <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center text-xl">
-            <i class="fa-solid fa-person-swimming"></i>
+      <!-- Amenity 1: Swimming Pool (Clickable Card) -->
+      <div onclick="openPoolModal()" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:border-amber-400 transition duration-300 cursor-pointer group flex flex-col justify-between">
+        <div>
+          <div class="h-48 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80" alt="Swimming Pool" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-3 right-3 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full font-medium">6:00 AM - 9:00 PM</span>
+            <span class="absolute bottom-3 left-3 bg-amber-500 text-slate-950 text-xs px-2.5 py-1 rounded-full font-bold shadow-md">
+              <i class="fa-solid fa-calendar-check mr-1"></i> Book Slot & Rules
+            </span>
           </div>
-          <div>
-            <h3 class="text-xl font-bold">Vascon Venus Swimming Pool</h3>
-            <p class="text-xs text-slate-400">Timings, Guidelines & Resident Slot Reservation</p>
+          <div class="p-6 pb-2">
+            <div class="flex items-center space-x-2 text-amber-500 mb-2">
+              <i class="fa-solid fa-person-swimming text-lg"></i>
+              <h3 class="font-bold text-slate-900 text-lg group-hover:text-amber-600 transition">Swimming Pool & Kids Pool</h3>
+            </div>
+            <p class="text-sm text-gray-600">Crystal-clear pool with dedicated kids zone. Click to view operational timings, dress code, and reserve slots.</p>
           </div>
         </div>
-        <button type="button" onclick="closePoolModal()" class="text-slate-400 hover:text-white text-3xl font-bold leading-none">&times;</button>
+        <div class="p-6 pt-2">
+          <button type="button" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>View Guidelines & Book Slot</span>
+          </button>
+        </div>
       </div>
-
-      <div class="p-6 space-y-6 text-sm text-slate-700">
-
-        <!-- 1. Timings & Batches -->
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-          <h4 class="font-bold text-slate-900 text-sm flex items-center mb-2">
-            <i class="fa-regular fa-clock text-amber-500 mr-2"></i> Operational Timings & Batches
-          </h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="bg-white p-3 rounded-lg border border-slate-100">
-              <span class="font-bold text-slate-800 block mb-1">Morning Session:</span>
-              <p class="text-slate-600">6:00 AM – 10:30 AM (All Residents)</p>
-            </div>
-            <div class="bg-white p-3 rounded-lg border border-slate-100">
-              <span class="font-bold text-slate-800 block mb-1">Evening Session:</span>
-              <p class="text-slate-600">4:00 PM – 9:00 PM (All Residents)</p>
-            </div>
-          </div>
-          <p class="text-[11px] text-amber-700 mt-2 font-medium">⚠️ Closed on Tuesdays from 10:00 AM to 4:00 PM for filtration and chlorination.</p>
-        </div>
-
-        <!-- 2. Dress Code & Pool Rules -->
-        <div class="space-y-2">
-          <h4 class="font-bold text-slate-900 text-sm flex items-center">
-            <i class="fa-solid fa-shirt text-blue-500 mr-2"></i> Dress Code & Mandatory Rules
-          </h4>
-          <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 leading-relaxed">
-            <li><strong>Mandatory Swimwear:</strong> Proper nylon or spandex swimming costumes are compulsory. Cotton t-shirts/shorts are strictly prohibited.</li>
-            <li><strong>Pre-Shower:</strong> Mandatory shower at the poolside shower stations before entering the pool.</li>
-            <li><strong>Kids Supervision:</strong> Children under 12 years must always be accompanied by an adult guardian.</li>
-            <li><strong>Footwear & Food:</strong> Outside footwear and glassware/eatables are strictly not allowed on the pool deck.</li>
-          </ul>
-        </div>
-
-        <!-- 3. Slot Booking Form -->
-        <div class="bg-amber-50/70 p-5 rounded-2xl border border-amber-200">
-          <h4 class="font-bold text-slate-900 text-sm flex items-center mb-1">
-            <i class="fa-solid fa-calendar-check text-amber-600 mr-2"></i> Reserve Pool Slot (Residents Only)
-          </h4>
-          <p class="text-xs text-slate-500 mb-4">Book a 1-hour slot for yourself or family members (max 4 per flat per day).</p>
-
-          <form id="pool-book-form" onsubmit="handlePoolBooking(event)" class="space-y-3">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Select Date</label>
-                <input type="date" id="pool-date" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Select Time Slot</label>
-                <select id="pool-slot" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
-                  <option value="6:00 AM - 7:00 AM">6:00 AM – 7:00 AM (Morning)</option>
-                  <option value="7:00 AM - 8:00 AM">7:00 AM – 8:00 AM (Morning)</option>
-                  <option value="8:00 AM - 9:00 AM">8:00 AM – 9:00 AM (Morning)</option>
-                  <option value="4:00 PM - 5:00 PM">4:00 PM – 5:00 PM (Evening)</option>
-                  <option value="5:00 PM - 6:00 PM">5:00 PM – 6:00 PM (Evening)</option>
-                  <option value="6:00 PM - 7:00 PM">6:00 PM – 7:00 PM (Evening)</option>
-                  <option value="7:00 PM - 8:00 PM">7:00 PM – 8:00 PM (Evening)</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Flat Number</label>
-                <input type="text" id="pool-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Number of Swimmers</label>
-                <input type="number" id="pool-count" min="1" max="4" value="1" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
-              </div>
-            </div>
-
-            <button type="submit" id="pool-book-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-lg text-xs transition mt-2">
-              Confirm Pool Slot Reservation
-            </button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div>
 
       <!-- Amenity 2: Gym -->
       <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
@@ -622,8 +549,8 @@
   </section>
 
   <!-- Swimming Pool Modal (Pop-up) -->
-  <div id="pool-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100">
+  <div id="pool-modal" style="display: none;" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 relative">
       
       <!-- Modal Header -->
       <div class="bg-slate-900 text-white p-6 flex justify-between items-center sticky top-0 z-10">
@@ -636,7 +563,7 @@
             <p class="text-xs text-slate-400">Timings, Guidelines & Resident Slot Reservation</p>
           </div>
         </div>
-        <button type="button" onclick="closePoolModal()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+        <button type="button" onclick="closePoolModal()" class="text-slate-400 hover:text-white text-3xl font-bold leading-none">&times;</button>
       </div>
 
       <div class="p-6 space-y-6 text-sm text-slate-700">
@@ -666,7 +593,7 @@
           </h4>
           <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 leading-relaxed">
             <li><strong>Mandatory Swimwear:</strong> Proper nylon or spandex swimming costumes are compulsory. Cotton t-shirts/shorts are strictly prohibited.</li>
-            <li><strong>Pre-Shower:</strong> Mandatory shower at the poolside shower stations before entering the water.</li>
+            <li><strong>Pre-Shower:</strong> Mandatory shower at the poolside shower stations before entering the pool.</li>
             <li><strong>Kids Supervision:</strong> Children under 12 years must always be accompanied by an adult guardian.</li>
             <li><strong>Footwear & Food:</strong> Outside footwear and glassware/eatables are strictly not allowed on the pool deck.</li>
           </ul>
@@ -753,7 +680,6 @@
     function filterByWing(wing, btnElement) {
       selectedWing = wing.toUpperCase().trim();
 
-      // Update button styling
       const buttons = document.querySelectorAll('.wing-btn');
       buttons.forEach(b => {
         b.className = "wing-btn hover:bg-slate-200 text-slate-700 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition";
@@ -793,22 +719,24 @@
     }
 
     // -------------------------------------------------------------
-    // SWIMMING POOL MODAL LOGIC
+    // SWIMMING POOL MODAL CONTROLS
     // -------------------------------------------------------------
     function openPoolModal() {
-      const today = new Date().toISOString().split('T')[0];
-      const dateInput = document.getElementById('pool-date');
-      if (dateInput) dateInput.value = today;
-      document.getElementById('pool-modal').classList.remove('hidden');
+      const modal = document.getElementById('pool-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+        const today = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('pool-date');
+        if (dateInput) dateInput.value = today;
+      }
     }
 
     function closePoolModal() {
-      document.getElementById('pool-modal').classList.add('hidden');
+      const modal = document.getElementById('pool-modal');
+      if (modal) {
+        modal.style.display = 'none';
+      }
     }
-
-    document.getElementById('pool-modal').addEventListener('click', function(e) {
-      if (e.target === this) closePoolModal();
-    });
 
     function handlePoolBooking(e) {
       e.preventDefault();
@@ -955,37 +883,6 @@
       syncSupabaseWorks();
       syncSupabaseMinutes();
     });
-
-// Guaranteed Modal Functions
-    function openPoolModal() {
-      const modal = document.getElementById('pool-modal');
-      if (modal) {
-        modal.style.display = 'flex';
-        const today = new Date().toISOString().split('T')[0];
-        const dateInput = document.getElementById('pool-date');
-        if (dateInput) dateInput.value = today;
-      }
-    }
-
-    function closePoolModal() {
-      const modal = document.getElementById('pool-modal');
-      if (modal) {
-        modal.style.display = 'none';
-      }
-    }
-
-    function handlePoolBooking(e) {
-      e.preventDefault();
-      const date = document.getElementById('pool-date').value;
-      const slot = document.getElementById('pool-slot').value;
-      const flat = document.getElementById('pool-flat').value.toUpperCase();
-      const count = document.getElementById('pool-count').value;
-
-      alert(`✅ Pool Slot Confirmed!\n\nFlat: ${flat}\nDate: ${date}\nTime: ${slot}\nSwimmers: ${count}\n\nPlease carry your resident ID card to the pool deck.`);
-      closePoolModal();
-      document.getElementById('pool-book-form').reset();
-    }
-    
   </script>
 </body>
 </html>
