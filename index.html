@@ -355,35 +355,82 @@
     </div>
   </section>
 
-  <!-- Meeting Minutes Archive -->
-  <section id="minutes" class="bg-white py-16 border-t">
+ <!-- Meeting Minutes Archive Section (Pre-Rendered & Live Synced) -->
+  <section id="minutes" class="bg-white py-16 border-t border-gray-200">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="flex justify-between items-center mb-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div>
-          <h2 class="text-3xl font-bold text-slate-900">EC Meeting Minutes</h2>
-          <p class="text-gray-500">Official records and resolutions passed in committee meetings</p>
+          <span class="text-amber-600 font-bold uppercase text-xs tracking-wider">Official Records</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 mt-1">EC Meeting Minutes Archive</h2>
+          <p class="text-gray-500 text-sm">Official records, resolutions, and approved meeting minutes available for all flat owners</p>
         </div>
+        <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1.5 rounded-full self-start md:self-auto flex items-center">
+          <i class="fa-solid fa-file-shield mr-1.5"></i> Verified Documents
+        </span>
       </div>
-      <div class="overflow-x-auto shadow-sm rounded-lg border">
-        <table class="w-full text-left border-collapse">
-          <thead>
-            <tr class="bg-slate-100 text-slate-700 text-sm uppercase">
-              <th class="py-3 px-4 font-semibold">Date</th>
-              <th class="py-3 px-4 font-semibold">Meeting Type</th>
-              <th class="py-3 px-4 font-semibold">Key Topics Discussed</th>
-              <th class="py-3 px-4 font-semibold text-right">Action</th>
-            </tr>
-          </thead>
-          <tbody id="minutes-container" class="divide-y text-sm bg-white">
-            <tr>
-              <td colspan="4" class="text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading meeting records...</td>
-            </tr>
-          </tbody>
-        </table>
+
+      <!-- Minutes Table with Immediate Display -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                <th class="py-3.5 px-4 font-semibold">Meeting Date</th>
+                <th class="py-3.5 px-4 font-semibold">Meeting Type</th>
+                <th class="py-3.5 px-4 font-semibold">Key Topics & Resolutions Passed</th>
+                <th class="py-3.5 px-4 font-semibold text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="minutes-container" class="divide-y divide-gray-100 text-sm">
+              <!-- Default Meeting Minutes (Instant View) -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-4 px-4 font-bold text-slate-900">Oct 12, 2025</td>
+                <td class="py-4 px-4">
+                  <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">Monthly EC</span>
+                </td>
+                <td class="py-4 px-4 text-slate-600">
+                  Solar panel vendor finalized for Wing A & B. Diwali bonus approved for maintenance and security staff.
+                </td>
+                <td class="py-4 px-4 text-right">
+                  <a href="#" onclick="alert('Sample PDF preview. Real uploaded PDFs from Admin portal will open directly.'); return false;" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
+                  </a>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-4 px-4 font-bold text-slate-900">Sep 15, 2025</td>
+                <td class="py-4 px-4">
+                  <span class="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full text-xs font-semibold">AGM 2025</span>
+                </td>
+                <td class="py-4 px-4 text-slate-600">
+                  Annual financial audit report approval, election of 2024-2026 EC members, sinking fund review.
+                </td>
+                <td class="py-4 px-4 text-right">
+                  <a href="#" onclick="alert('Sample PDF preview. Real uploaded PDFs from Admin portal will open directly.'); return false;" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
+                  </a>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-4 px-4 font-bold text-slate-900">Aug 20, 2025</td>
+                <td class="py-4 px-4">
+                  <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">Monthly EC</span>
+                </td>
+                <td class="py-4 px-4 text-slate-600">
+                  CCTV upgrade vendor quotations review, swimming pool filtration servicing timeline finalized.
+                </td>
+                <td class="py-4 px-4 text-right">
+                  <a href="#" onclick="alert('Sample PDF preview. Real uploaded PDFs from Admin portal will open directly.'); return false;" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
-
  <!-- Searchable Resident & Flat Directory Section (Pre-Rendered) -->
   <section id="directory" class="max-w-7xl mx-auto px-4 py-16">
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -780,6 +827,40 @@
     }
 
     syncSupabaseWorks();
+
+    // Live Background Sync for Meeting Minutes
+    async function syncSupabaseMinutes() {
+      try {
+        if (typeof supabase !== 'undefined' && supabase) {
+          const { data, error } = await supabase
+            .from('meeting_minutes')
+            .select('*')
+            .order('meeting_date', { ascending: false });
+
+          if (!error && data && data.length > 0) {
+            const tbody = document.getElementById("minutes-container");
+            tbody.innerHTML = data.map(m => `
+              <tr class="hover:bg-slate-50 transition border-b border-gray-100">
+                <td class="py-4 px-4 font-bold text-slate-900">${new Date(m.meeting_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                <td class="py-4 px-4">
+                  <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">${m.meeting_type}</span>
+                </td>
+                <td class="py-4 px-4 text-slate-600">${m.agenda_summary}</td>
+                <td class="py-4 px-4 text-right">
+                  <a href="${m.pdf_url}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
+                  </a>
+                </td>
+              </tr>
+            `).join('');
+          }
+        }
+      } catch (e) {
+        console.log("Using pre-rendered meeting minutes.");
+      }
+    }
+
+    syncSupabaseMinutes();
   </script>
 </body>
 </html>
