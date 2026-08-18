@@ -83,7 +83,7 @@
           </div>
         </div>
         <div class="p-6 pt-2">
-          <button type="button" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition">
+          <button type="button" onclick="openPoolModal()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition">
             <i class="fa-solid fa-calendar-check"></i>
             <span>View Guidelines & Book Slot</span>
           </button>
@@ -168,7 +168,7 @@
     </div>
   </section>
 
-  <!-- Announcements & Notices Section (Pre-Rendered & Live Synced) -->
+  <!-- Announcements & Notices Section -->
   <section id="notices" class="max-w-7xl mx-auto px-4 py-16">
     <div class="flex items-center justify-between mb-8">
       <div>
@@ -182,10 +182,8 @@
       </span>
     </div>
 
-    <!-- Notice Cards Grid -->
     <div id="notices-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      
-      <!-- Notice 1: High Priority Urgent -->
+      <!-- Notice 1 -->
       <div class="bg-white border-l-4 border-red-500 p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-red-600 uppercase tracking-wide bg-red-50 px-2.5 py-0.5 rounded">High Priority</span>
@@ -201,7 +199,7 @@
         </div>
       </div>
 
-      <!-- Notice 2: General / AGM -->
+      <!-- Notice 2 -->
       <div class="bg-white border-l-4 border-blue-500 p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-blue-600 uppercase tracking-wide bg-blue-50 px-2.5 py-0.5 rounded">General Body</span>
@@ -217,7 +215,7 @@
         </div>
       </div>
 
-      <!-- Notice 3: Social & Event -->
+      <!-- Notice 3 -->
       <div class="bg-white border-l-4 border-green-500 p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-green-600 uppercase tracking-wide bg-green-50 px-2.5 py-0.5 rounded">Social & Event</span>
@@ -232,11 +230,10 @@
           <span class="text-green-600 font-medium">All Residents</span>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- Live Work Tracker & Status Section (Pre-Rendered & Live Synced) -->
+  <!-- Live Work Tracker Section -->
   <section id="tracker" class="bg-slate-100 py-16">
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -250,10 +247,8 @@
         </span>
       </div>
 
-      <!-- Works Cards Grid -->
       <div id="tracker-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Work 1: CCTV Network Upgrades -->
+        <!-- Work 1 -->
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
           <div class="flex justify-between items-start mb-3">
             <div>
@@ -263,7 +258,6 @@
             <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full font-semibold">In Progress</span>
           </div>
           <p class="text-sm text-gray-600 mb-4">Installing 16 new night-vision HD cameras in parking basement, perimeter walls, and main lobby.</p>
-          
           <div class="space-y-1.5">
             <div class="flex justify-between text-xs font-bold text-slate-700">
               <span>Work Progress</span>
@@ -273,14 +267,13 @@
               <div class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: 75%"></div>
             </div>
           </div>
-          
           <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
             <span><i class="fa-regular fa-calendar mr-1"></i> Target: Nov 20, 2025</span>
             <span class="font-medium text-slate-700">Vendor: SecureVision Tech</span>
           </div>
         </div>
 
-        <!-- Work 2: Lift Modernization Wing A -->
+        <!-- Work 2 -->
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
           <div class="flex justify-between items-start mb-3">
             <div>
@@ -290,7 +283,6 @@
             <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-semibold">Testing Phase</span>
           </div>
           <p class="text-sm text-gray-600 mb-4">Motor replacement, cabin refurbishment, and safety sensor recalibration by OTIS engineers.</p>
-          
           <div class="space-y-1.5">
             <div class="flex justify-between text-xs font-bold text-slate-700">
               <span>Work Progress</span>
@@ -300,14 +292,13 @@
               <div class="bg-amber-500 h-3 rounded-full transition-all duration-500" style="width: 90%"></div>
             </div>
           </div>
-          
           <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
             <span><i class="fa-regular fa-calendar mr-1"></i> Target: Nov 15, 2025</span>
             <span class="font-medium text-slate-700">Vendor: OTIS Elevators</span>
           </div>
         </div>
 
-        <!-- Work 3: Solar Panel Installation -->
+        <!-- Work 3 -->
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
           <div class="flex justify-between items-start mb-3">
             <div>
@@ -317,7 +308,6 @@
             <span class="bg-purple-100 text-purple-800 text-xs px-2.5 py-1 rounded-full font-semibold">Structure Done</span>
           </div>
           <p class="text-sm text-gray-600 mb-4">Rooftop mounting structure complete on Wing B & C. Inverter and panel wiring underway.</p>
-          
           <div class="space-y-1.5">
             <div class="flex justify-between text-xs font-bold text-slate-700">
               <span>Work Progress</span>
@@ -327,14 +317,13 @@
               <div class="bg-purple-600 h-3 rounded-full transition-all duration-500" style="width: 45%"></div>
             </div>
           </div>
-          
           <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
             <span><i class="fa-regular fa-calendar mr-1"></i> Target: Dec 10, 2025</span>
             <span class="font-medium text-slate-700">Vendor: Tata Solar</span>
           </div>
         </div>
 
-        <!-- Work 4: Rainwater Harvesting Servicing -->
+        <!-- Work 4 -->
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
           <div class="flex justify-between items-start mb-3">
             <div>
@@ -344,7 +333,6 @@
             <span class="bg-green-100 text-green-800 text-xs px-2.5 py-1 rounded-full font-semibold">Completed</span>
           </div>
           <p class="text-sm text-gray-600 mb-4">Filter pit cleaning, sand replacement, and recharge bore desilting completed before winter.</p>
-          
           <div class="space-y-1.5">
             <div class="flex justify-between text-xs font-bold text-slate-700">
               <span>Work Progress</span>
@@ -354,18 +342,16 @@
               <div class="bg-green-600 h-3 rounded-full transition-all duration-500" style="width: 100%"></div>
             </div>
           </div>
-          
           <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
             <span><i class="fa-regular fa-calendar mr-1"></i> Completed: Oct 30, 2025</span>
             <span class="font-medium text-green-600"><i class="fa-solid fa-circle-check mr-1"></i> Verified</span>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- Meeting Minutes Archive Section (Pre-Rendered & Live Synced) -->
+  <!-- Meeting Minutes Archive Section -->
   <section id="minutes" class="bg-white py-16 border-t border-gray-200">
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -440,7 +426,7 @@
     </div>
   </section>
 
-  <!-- Searchable Resident & Flat Directory Section (Pre-Rendered & Filterable) -->
+  <!-- Searchable Resident Directory Section -->
   <section id="directory" class="max-w-7xl mx-auto px-4 py-16">
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
       <div>
@@ -548,7 +534,7 @@
     </div>
   </section>
 
-  <!-- Swimming Pool Modal (Pop-up) -->
+  <!-- ONLY ONE SWIMMING POOL MODAL -->
   <div id="pool-modal" style="display: none;" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 relative">
       
@@ -593,7 +579,7 @@
           </h4>
           <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 leading-relaxed">
             <li><strong>Mandatory Swimwear:</strong> Proper nylon or spandex swimming costumes are compulsory. Cotton t-shirts/shorts are strictly prohibited.</li>
-            <li><strong>Pre-Shower:</strong> Mandatory shower at the poolside shower stations before entering the pool.</li>
+            <li><strong>Pre-Shower:</strong> Mandatory shower at the poolside shower stations before entering the water.</li>
             <li><strong>Kids Supervision:</strong> Children under 12 years must always be accompanied by an adult guardian.</li>
             <li><strong>Footwear & Food:</strong> Outside footwear and glassware/eatables are strictly not allowed on the pool deck.</li>
           </ul>
@@ -637,7 +623,7 @@
               </div>
             </div>
 
-            <button type="submit" id="pool-book-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-lg text-xs transition mt-2">
+            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-lg text-xs transition mt-2">
               Confirm Pool Slot Reservation
             </button>
           </form>
@@ -655,7 +641,7 @@
     </div>
   </footer>
 
-  <!-- DYNAMIC JAVASCRIPT LOGIC -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
     // -------------------------------------------------------------
     // SUPABASE CONFIGURATION
@@ -673,11 +659,43 @@
     }
 
     // -------------------------------------------------------------
+    // SWIMMING POOL MODAL CONTROLS (GUARANTEED)
+    // -------------------------------------------------------------
+    window.openPoolModal = function() {
+      const modal = document.getElementById('pool-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+        const today = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('pool-date');
+        if (dateInput) dateInput.value = today;
+      }
+    };
+
+    window.closePoolModal = function() {
+      const modal = document.getElementById('pool-modal');
+      if (modal) {
+        modal.style.display = 'none';
+      }
+    };
+
+    window.handlePoolBooking = function(e) {
+      e.preventDefault();
+      const date = document.getElementById('pool-date').value;
+      const slot = document.getElementById('pool-slot').value;
+      const flat = document.getElementById('pool-flat').value.toUpperCase();
+      const count = document.getElementById('pool-count').value;
+
+      alert(`✅ Pool Slot Confirmed!\n\nFlat: ${flat}\nDate: ${date}\nTime: ${slot}\nSwimmers: ${count}\n\nPlease carry your resident ID card to the pool deck.`);
+      closePoolModal();
+      document.getElementById('pool-book-form').reset();
+    };
+
+    // -------------------------------------------------------------
     // DIRECTORY FILTER & WING LOGIC
     // -------------------------------------------------------------
     let selectedWing = '';
 
-    function filterByWing(wing, btnElement) {
+    window.filterByWing = function(wing, btnElement) {
       selectedWing = wing.toUpperCase().trim();
 
       const buttons = document.querySelectorAll('.wing-btn');
@@ -689,9 +707,9 @@
       }
 
       applyCombinedFilter();
-    }
+    };
 
-    function applyCombinedFilter() {
+    window.applyCombinedFilter = function() {
       const searchInput = document.getElementById("dir-search");
       const searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : "";
       const tbody = document.getElementById("directory-container");
@@ -716,39 +734,7 @@
           row.style.display = "none";
         }
       }
-    }
-
-    // -------------------------------------------------------------
-    // SWIMMING POOL MODAL CONTROLS
-    // -------------------------------------------------------------
-    function openPoolModal() {
-      const modal = document.getElementById('pool-modal');
-      if (modal) {
-        modal.style.display = 'flex';
-        const today = new Date().toISOString().split('T')[0];
-        const dateInput = document.getElementById('pool-date');
-        if (dateInput) dateInput.value = today;
-      }
-    }
-
-    function closePoolModal() {
-      const modal = document.getElementById('pool-modal');
-      if (modal) {
-        modal.style.display = 'none';
-      }
-    }
-
-    function handlePoolBooking(e) {
-      e.preventDefault();
-      const date = document.getElementById('pool-date').value;
-      const slot = document.getElementById('pool-slot').value;
-      const flat = document.getElementById('pool-flat').value.toUpperCase();
-      const count = document.getElementById('pool-count').value;
-
-      alert(`✅ Pool Slot Confirmed!\n\nFlat: ${flat}\nDate: ${date}\nTime: ${slot}\nSwimmers: ${count}\n\nPlease carry your resident ID card to the pool deck.`);
-      closePoolModal();
-      document.getElementById('pool-book-form').reset();
-    }
+    };
 
     // -------------------------------------------------------------
     // SUPABASE LIVE SYNC LOADERS
