@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,14 +15,13 @@
   <!-- Navigation Bar -->
   <nav class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-      <!-- AFTER -->
-<div class="flex items-center space-x-2.5">
-  <i class="fa-solid fa-building text-amber-400 text-2xl"></i>
-  <span class="font-bold text-xl tracking-wide">VASCON VENUS</span>
-  <span class="bg-amber-400 text-slate-900 text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow-sm">
-    BETA
-  </span>
-</div>
+      <div class="flex items-center space-x-2.5">
+        <i class="fa-solid fa-building text-amber-400 text-2xl"></i>
+        <span class="font-bold text-xl tracking-wide">VASCON VENUS</span>
+        <span class="bg-amber-400 text-slate-900 text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow-sm">
+          BETA
+        </span>
+      </div>
       <div class="hidden md:flex space-x-6 text-sm font-medium">
         <a href="#amenities" class="hover:text-amber-400 transition">Amenities</a>
         <a href="#notices" class="hover:text-amber-400 transition">Notices</a>
@@ -65,18 +64,21 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
-      <!-- Amenity 1: Swimming Pool -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
+      <!-- Amenity 1: Swimming Pool (Clickable for Rules & Slot Booking) -->
+      <div onclick="openPoolModal()" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:border-amber-400 transition duration-300 cursor-pointer group">
         <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80" alt="Swimming Pool" class="w-full h-full object-cover">
-          <span class="absolute top-3 right-3 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full font-medium">6:00 AM - 9:00 PM</span>
+          <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80" alt="Swimming Pool" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <span class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium">6:00 AM - 9:00 PM</span>
+          <span class="absolute bottom-3 left-3 bg-amber-500 text-slate-950 text-xs px-2.5 py-1 rounded-full font-bold shadow-md">
+            <i class="fa-solid fa-calendar-check mr-1"></i> Book Slot & Rules
+          </span>
         </div>
         <div class="p-6">
           <div class="flex items-center space-x-2 text-amber-500 mb-2">
             <i class="fa-solid fa-person-swimming text-lg"></i>
-            <h3 class="font-bold text-slate-900 text-lg">Swimming Pool & Kids Pool</h3>
+            <h3 class="font-bold text-slate-900 text-lg group-hover:text-amber-600 transition">Swimming Pool & Kids Pool</h3>
           </div>
-          <p class="text-sm text-gray-600">Crystal-clear adult pool with dedicated safe splash area for children and poolside lounge.</p>
+          <p class="text-sm text-gray-600">Crystal-clear pool with dedicated kids zone. Click to view pool guidelines and reserve time slots.</p>
         </div>
       </div>
 
@@ -158,7 +160,7 @@
     </div>
   </section>
 
- <!-- Announcements & Notices Section (Pre-Rendered & Live Synced) -->
+  <!-- Announcements & Notices Section (Pre-Rendered & Live Synced) -->
   <section id="notices" class="max-w-7xl mx-auto px-4 py-16">
     <div class="flex items-center justify-between mb-8">
       <div>
@@ -226,7 +228,7 @@
     </div>
   </section>
 
- <!-- Live Work Tracker & Status Section (Pre-Rendered & Live Synced) -->
+  <!-- Live Work Tracker & Status Section (Pre-Rendered & Live Synced) -->
   <section id="tracker" class="bg-slate-100 py-16">
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -254,7 +256,6 @@
           </div>
           <p class="text-sm text-gray-600 mb-4">Installing 16 new night-vision HD cameras in parking basement, perimeter walls, and main lobby.</p>
           
-          <!-- Progress Bar -->
           <div class="space-y-1.5">
             <div class="flex justify-between text-xs font-bold text-slate-700">
               <span>Work Progress</span>
@@ -282,7 +283,6 @@
           </div>
           <p class="text-sm text-gray-600 mb-4">Motor replacement, cabin refurbishment, and safety sensor recalibration by OTIS engineers.</p>
           
-          <!-- Progress Bar -->
           <div class="space-y-1.5">
             <div class="flex justify-between text-xs font-bold text-slate-700">
               <span>Work Progress</span>
@@ -310,7 +310,6 @@
           </div>
           <p class="text-sm text-gray-600 mb-4">Rooftop mounting structure complete on Wing B & C. Inverter and panel wiring underway.</p>
           
-          <!-- Progress Bar -->
           <div class="space-y-1.5">
             <div class="flex justify-between text-xs font-bold text-slate-700">
               <span>Work Progress</span>
@@ -338,7 +337,6 @@
           </div>
           <p class="text-sm text-gray-600 mb-4">Filter pit cleaning, sand replacement, and recharge bore desilting completed before winter.</p>
           
-          <!-- Progress Bar -->
           <div class="space-y-1.5">
             <div class="flex justify-between text-xs font-bold text-slate-700">
               <span>Work Progress</span>
@@ -359,7 +357,7 @@
     </div>
   </section>
 
- <!-- Meeting Minutes Archive Section (Pre-Rendered & Live Synced) -->
+  <!-- Meeting Minutes Archive Section (Pre-Rendered & Live Synced) -->
   <section id="minutes" class="bg-white py-16 border-t border-gray-200">
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -373,7 +371,6 @@
         </span>
       </div>
 
-      <!-- Minutes Table with Immediate Display -->
       <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
@@ -386,13 +383,12 @@
               </tr>
             </thead>
             <tbody id="minutes-container" class="divide-y divide-gray-100 text-sm">
-              <!-- Default Meeting Minutes (Instant View) -->
               <tr class="hover:bg-slate-50 transition">
                 <td class="py-4 px-4 font-bold text-slate-900">Oct 12, 2025</td>
                 <td class="py-4 px-4">
                   <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">Monthly EC</span>
                 </td>
-                <td class="py-4 px-4 text-slate-600">
+                <td class="py-4 px-4 text-gray-600">
                   Solar panel vendor finalized for Wing A & B. Diwali bonus approved for maintenance and security staff.
                 </td>
                 <td class="py-4 px-4 text-right">
@@ -406,7 +402,7 @@
                 <td class="py-4 px-4">
                   <span class="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full text-xs font-semibold">AGM 2025</span>
                 </td>
-                <td class="py-4 px-4 text-slate-600">
+                <td class="py-4 px-4 text-gray-600">
                   Annual financial audit report approval, election of 2024-2026 EC members, sinking fund review.
                 </td>
                 <td class="py-4 px-4 text-right">
@@ -420,7 +416,7 @@
                 <td class="py-4 px-4">
                   <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">Monthly EC</span>
                 </td>
-                <td class="py-4 px-4 text-slate-600">
+                <td class="py-4 px-4 text-gray-600">
                   CCTV upgrade vendor quotations review, swimming pool filtration servicing timeline finalized.
                 </td>
                 <td class="py-4 px-4 text-right">
@@ -436,10 +432,7 @@
     </div>
   </section>
 
-
-
-  
- <!-- Searchable Resident & Flat Directory Section (Pre-Rendered) -->
+  <!-- Searchable Resident & Flat Directory Section (Pre-Rendered & Filterable) -->
   <section id="directory" class="max-w-7xl mx-auto px-4 py-16">
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
       <div>
@@ -464,6 +457,7 @@
           <input type="text" id="dir-search" oninput="applyCombinedFilter()" placeholder="Search resident or flat..." class="w-full pl-8 pr-3 py-2 bg-white border border-gray-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm">
         </div>
       </div>
+    </div>
 
     <!-- Directory Table with Immediate Display -->
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
@@ -479,7 +473,6 @@
             </tr>
           </thead>
           <tbody id="directory-container" class="divide-y divide-gray-100 text-sm">
-            <!-- Default Rows (Instant View) -->
             <tr class="hover:bg-slate-50 transition border-b border-gray-100">
               <td class="py-3.5 px-4 font-bold text-slate-900">A-207</td>
               <td class="py-3.5 px-4 font-medium text-slate-800">Edwin Paul</td>
@@ -490,8 +483,8 @@
             <tr class="hover:bg-slate-50 transition border-b border-gray-100">
               <td class="py-3.5 px-4 font-bold text-slate-900">B-211</td>
               <td class="py-3.5 px-4 font-medium text-slate-800">Sunil Kumar</td>
-              <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-green-800">Owner Occupied</span></td>
-              <td class="py-3.5 px-4 text-slate-700 font-medium">   </td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Owner Occupied</span></td>
+              <td class="py-3.5 px-4 text-slate-400">N/A</td>
               <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">P-02</td>
             </tr>
             <tr class="hover:bg-slate-50 transition border-b border-gray-100">
@@ -504,7 +497,7 @@
             <tr class="hover:bg-slate-50 transition border-b border-gray-100">
               <td class="py-3.5 px-4 font-bold text-slate-900">A-001</td>
               <td class="py-3.5 px-4 font-medium text-slate-800">Niju Jose</td>
-              <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">Owner Occupied</span></td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Owner Occupied</span></td>
               <td class="py-3.5 px-4 text-slate-400">N/A</td>
               <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">P-15</td>
             </tr>
@@ -525,11 +518,10 @@
         <h3 class="font-bold text-slate-900 text-lg">Edwin Paul</h3>
         <p class="text-amber-600 text-sm font-semibold">President</p>
         <p class="text-xs text-gray-400 mt-1">Flat: A-207</p>
-
       </div>
       <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
         <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-3"><i class="fa-solid fa-user"></i></div>
-         <h3 class="font-bold text-slate-900 text-lg">Pradeep Shetty</h3>
+        <h3 class="font-bold text-slate-900 text-lg">Pradeep Shetty</h3>
         <p class="text-amber-600 text-sm font-semibold">Secretary</p>
         <p class="text-xs text-gray-400 mt-1">Flat: A-104</p>
       </div>
@@ -548,6 +540,105 @@
     </div>
   </section>
 
+  <!-- Swimming Pool Modal (Pop-up) -->
+  <div id="pool-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100">
+      
+      <!-- Modal Header -->
+      <div class="bg-slate-900 text-white p-6 flex justify-between items-center sticky top-0 z-10">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center text-xl">
+            <i class="fa-solid fa-person-swimming"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold">Vascon Venus Swimming Pool</h3>
+            <p class="text-xs text-slate-400">Timings, Guidelines & Resident Slot Reservation</p>
+          </div>
+        </div>
+        <button type="button" onclick="closePoolModal()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+      </div>
+
+      <div class="p-6 space-y-6 text-sm text-slate-700">
+
+        <!-- 1. Timings & Batches -->
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+          <h4 class="font-bold text-slate-900 text-sm flex items-center mb-2">
+            <i class="fa-regular fa-clock text-amber-500 mr-2"></i> Operational Timings & Batches
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="bg-white p-3 rounded-lg border border-slate-100">
+              <span class="font-bold text-slate-800 block mb-1">Morning Session:</span>
+              <p class="text-slate-600">6:00 AM – 10:30 AM (All Residents)</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg border border-slate-100">
+              <span class="font-bold text-slate-800 block mb-1">Evening Session:</span>
+              <p class="text-slate-600">4:00 PM – 9:00 PM (All Residents)</p>
+            </div>
+          </div>
+          <p class="text-[11px] text-amber-700 mt-2 font-medium">⚠️ Closed on Tuesdays from 10:00 AM to 4:00 PM for deep filtration and chlorination.</p>
+        </div>
+
+        <!-- 2. Dress Code & Pool Rules -->
+        <div class="space-y-2">
+          <h4 class="font-bold text-slate-900 text-sm flex items-center">
+            <i class="fa-solid fa-shirt text-blue-500 mr-2"></i> Dress Code & Mandatory Rules
+          </h4>
+          <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 leading-relaxed">
+            <li><strong>Mandatory Swimwear:</strong> Proper nylon or spandex swimming costumes are compulsory. Cotton t-shirts/shorts are strictly prohibited.</li>
+            <li><strong>Pre-Shower:</strong> Mandatory shower at the poolside shower stations before entering the water.</li>
+            <li><strong>Kids Supervision:</strong> Children under 12 years must always be accompanied by an adult guardian.</li>
+            <li><strong>Footwear & Food:</strong> Outside footwear and glassware/eatables are strictly not allowed on the pool deck.</li>
+          </ul>
+        </div>
+
+        <!-- 3. Slot Booking Form -->
+        <div class="bg-amber-50/70 p-5 rounded-2xl border border-amber-200">
+          <h4 class="font-bold text-slate-900 text-sm flex items-center mb-1">
+            <i class="fa-solid fa-calendar-check text-amber-600 mr-2"></i> Reserve Pool Slot (Residents Only)
+          </h4>
+          <p class="text-xs text-slate-500 mb-4">Book a 1-hour slot for yourself or family members (max 4 per flat per day).</p>
+
+          <form id="pool-book-form" onsubmit="handlePoolBooking(event)" class="space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Select Date</label>
+                <input type="date" id="pool-date" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Select Time Slot</label>
+                <select id="pool-slot" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+                  <option value="6:00 AM - 7:00 AM">6:00 AM – 7:00 AM (Morning)</option>
+                  <option value="7:00 AM - 8:00 AM">7:00 AM – 8:00 AM (Morning)</option>
+                  <option value="8:00 AM - 9:00 AM">8:00 AM – 9:00 AM (Morning)</option>
+                  <option value="4:00 PM - 5:00 PM">4:00 PM – 5:00 PM (Evening)</option>
+                  <option value="5:00 PM - 6:00 PM">5:00 PM – 6:00 PM (Evening)</option>
+                  <option value="6:00 PM - 7:00 PM">6:00 PM – 7:00 PM (Evening)</option>
+                  <option value="7:00 PM - 8:00 PM">7:00 PM – 8:00 PM (Evening)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Flat Number</label>
+                <input type="text" id="pool-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Number of Swimmers</label>
+                <input type="number" id="pool-count" min="1" max="4" value="1" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+              </div>
+            </div>
+
+            <button type="submit" id="pool-book-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-lg text-xs transition mt-2">
+              Confirm Pool Slot Reservation
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="bg-slate-900 text-slate-400 py-10 text-sm">
     <div class="max-w-7xl mx-auto px-4 text-center">
@@ -557,10 +648,9 @@
   </footer>
 
   <!-- DYNAMIC JAVASCRIPT LOGIC -->
- <!-- DYNAMIC JAVASCRIPT LOGIC WITH AUTO-FALLBACK -->
   <script>
     // -------------------------------------------------------------
-    // PASTE YOUR ACTUAL SUPABASE KEYS HERE:
+    // SUPABASE CONFIGURATION
     // -------------------------------------------------------------
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
@@ -574,207 +664,120 @@
       console.error("Supabase init error:", e);
     }
 
-    // Default Fallback Records (in case of network delay or missing keys)
-    const fallbackResidents = [
-      { flat_no: 'A-101', owner_name: 'Rajesh Sharma', occupancy_status: 'Owner Occupied', tenant_name: null, parking_slot: 'P-01' },
-      { flat_no: 'A-102', owner_name: 'Vikram Malhotra', occupancy_status: 'Tenant Occupied', tenant_name: 'Ananya Deshmukh', parking_slot: 'P-02' },
-      { flat_no: 'B-201', owner_name: 'Suresh Kulkarni', occupancy_status: 'Owner Occupied', tenant_name: null, parking_slot: 'P-14' },
-      { flat_no: 'B-202', owner_name: 'Priya Nair', occupancy_status: 'Vacant', tenant_name: null, parking_slot: 'P-15' },
-      { flat_no: 'C-301', owner_name: 'Amitabh Roy', occupancy_status: 'Owner Occupied', tenant_name: null, parking_slot: 'P-21' }
-    ];
+    // -------------------------------------------------------------
+    // DIRECTORY FILTER & WING LOGIC
+    // -------------------------------------------------------------
+    let selectedWing = '';
 
-    let allResidents = [];
+    function filterByWing(wing, btnElement) {
+      selectedWing = wing.toUpperCase().trim();
 
-    // 1. Fetch Resident Directory
-    async function loadDirectory() {
-      const container = document.getElementById('directory-container');
-      
+      // Update button styling
+      const buttons = document.querySelectorAll('.wing-btn');
+      buttons.forEach(b => {
+        b.className = "wing-btn hover:bg-slate-200 text-slate-700 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition";
+      });
+      if (btnElement) {
+        btnElement.className = "wing-btn bg-slate-900 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition";
+      }
+
+      applyCombinedFilter();
+    }
+
+    function applyCombinedFilter() {
+      const searchInput = document.getElementById("dir-search");
+      const searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : "";
+      const tbody = document.getElementById("directory-container");
+      if (!tbody) return;
+
+      const rows = tbody.getElementsByTagName("tr");
+
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const cells = row.getElementsByTagName("td");
+        if (cells.length === 0) continue;
+
+        const flatNumber = (cells[0].textContent || cells[0].innerText || "").toUpperCase().trim();
+        const fullRowText = (row.textContent || row.innerText || "").toLowerCase();
+
+        const matchesWing = (selectedWing === "") || flatNumber.startsWith(selectedWing + "-") || flatNumber.startsWith(selectedWing);
+        const matchesSearch = (searchQuery === "") || fullRowText.includes(searchQuery);
+
+        if (matchesWing && matchesSearch) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      }
+    }
+
+    // -------------------------------------------------------------
+    // SWIMMING POOL MODAL LOGIC
+    // -------------------------------------------------------------
+    function openPoolModal() {
+      const today = new Date().toISOString().split('T')[0];
+      const dateInput = document.getElementById('pool-date');
+      if (dateInput) dateInput.value = today;
+      document.getElementById('pool-modal').classList.remove('hidden');
+    }
+
+    function closePoolModal() {
+      document.getElementById('pool-modal').classList.add('hidden');
+    }
+
+    document.getElementById('pool-modal').addEventListener('click', function(e) {
+      if (e.target === this) closePoolModal();
+    });
+
+    function handlePoolBooking(e) {
+      e.preventDefault();
+      const date = document.getElementById('pool-date').value;
+      const slot = document.getElementById('pool-slot').value;
+      const flat = document.getElementById('pool-flat').value.toUpperCase();
+      const count = document.getElementById('pool-count').value;
+
+      alert(`✅ Pool Slot Confirmed!\n\nFlat: ${flat}\nDate: ${date}\nTime: ${slot}\nSwimmers: ${count}\n\nPlease carry your resident ID card to the pool deck.`);
+      closePoolModal();
+      document.getElementById('pool-book-form').reset();
+    }
+
+    // -------------------------------------------------------------
+    // SUPABASE LIVE SYNC LOADERS
+    // -------------------------------------------------------------
+    async function syncSupabaseDirectory() {
       try {
         if (supabase) {
-          const { data, error } = await supabase
-            .from('resident_directory')
-            .select('*')
-            .order('flat_no', { ascending: true });
-
+          const { data, error } = await supabase.from('resident_directory').select('*').order('flat_no', { ascending: true });
           if (!error && data && data.length > 0) {
-            allResidents = data;
-            renderDirectory(allResidents);
-            return;
+            const tbody = document.getElementById("directory-container");
+            tbody.innerHTML = data.map(r => `
+              <tr class="hover:bg-slate-50 transition border-b border-gray-100">
+                <td class="py-3.5 px-4 font-bold text-slate-900">${r.flat_no}</td>
+                <td class="py-3.5 px-4 font-medium text-slate-800">${r.owner_name}</td>
+                <td class="py-3.5 px-4">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${
+                    r.occupancy_status === 'Owner Occupied' ? 'bg-green-100 text-green-800' :
+                    r.occupancy_status === 'Tenant Occupied' ? 'bg-blue-100 text-blue-800' :
+                    'bg-gray-100 text-gray-700'
+                  }">
+                    ${r.occupancy_status || 'Owner Occupied'}
+                  </span>
+                </td>
+                <td class="py-3.5 px-4 text-slate-600">${r.tenant_name || '<span class="text-gray-400">N/A</span>'}</td>
+                <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">${r.parking_slot || 'N/A'}</td>
+              </tr>
+            `).join('');
           }
         }
-      } catch (err) {
-        console.warn("Using fallback residents:", err);
+      } catch (e) {
+        console.log("Using pre-rendered directory.");
       }
-
-      // If Supabase is offline or empty, use fallback data
-      allResidents = fallbackResidents;
-      renderDirectory(allResidents);
     }
 
-    function renderDirectory(list) {
-      const container = document.getElementById('directory-container');
-      if (!container) return;
-
-      if (list.length === 0) {
-        container.innerHTML = `<tr><td colspan="5" class="text-center py-6 text-gray-500 font-medium">No matching flats or residents found.</td></tr>`;
-        return;
-      }
-
-      container.innerHTML = list.map(r => `
-        <tr class="hover:bg-slate-50 transition border-b border-gray-100">
-          <td class="py-3.5 px-4 font-bold text-slate-900">${r.flat_no}</td>
-          <td class="py-3.5 px-4 font-medium text-slate-800">${r.owner_name}</td>
-          <td class="py-3.5 px-4">
-            <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${
-              r.occupancy_status === 'Owner Occupied' ? 'bg-green-100 text-green-800' :
-              r.occupancy_status === 'Tenant Occupied' ? 'bg-blue-100 text-blue-800' :
-              'bg-gray-100 text-gray-700'
-            }">
-              ${r.occupancy_status || 'Owner Occupied'}
-            </span>
-          </td>
-          <td class="py-3.5 px-4 text-slate-600">${r.tenant_name || '<span class="text-gray-400">N/A</span>'}</td>
-          <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">${r.parking_slot || 'N/A'}</td>
-        </tr>
-      `).join('');
-    }
-
-    // Live Instant Search Filter
-    function filterDirectory() {
-      const query = (document.getElementById('dir-search').value || '').toLowerCase().trim();
-      const filtered = allResidents.filter(r => 
-        (r.flat_no && r.flat_no.toLowerCase().includes(query)) || 
-        (r.owner_name && r.owner_name.toLowerCase().includes(query)) ||
-        (r.tenant_name && r.tenant_name.toLowerCase().includes(query))
-      );
-      renderDirectory(filtered);
-    }
-
-    // 2. Fetch Live Notices (with fallback)
-    async function loadNotices() {
-      const container = document.getElementById('notices-container');
-      if (!container) return;
-
+    async function syncSupabaseNotices() {
       try {
         if (supabase) {
           const { data, error } = await supabase.from('notices').select('*').order('created_at', { ascending: false });
-          if (!error && data && data.length > 0) {
-            container.innerHTML = data.map(n => `
-              <div class="bg-white border-l-4 ${n.is_urgent ? 'border-red-500' : 'border-blue-500'} p-6 rounded-r-lg shadow-sm">
-                <span class="text-xs font-semibold ${n.is_urgent ? 'text-red-500' : 'text-blue-500'} uppercase tracking-wide">${n.category || 'General'}</span>
-                <h3 class="text-lg font-bold text-slate-900 mt-1">${n.title}</h3>
-                <p class="text-sm text-gray-600 mt-2 whitespace-pre-line">${n.description}</p>
-                <span class="block text-xs text-gray-400 mt-4">${new Date(n.created_at).toLocaleDateString()}</span>
-              </div>
-            `).join('');
-            return;
-          }
-        }
-      } catch (e) {}
-
-      container.innerHTML = `
-        <div class="bg-white border-l-4 border-red-500 p-6 rounded-r-lg shadow-sm">
-          <span class="text-xs font-semibold text-red-500 uppercase tracking-wide">Urgent</span>
-          <h3 class="text-lg font-bold text-slate-900 mt-1">Water Supply Shutdown</h3>
-          <p class="text-sm text-gray-600 mt-2">Tank cleaning scheduled for Friday from 10:00 AM to 2:00 PM.</p>
-        </div>
-      `;
-    }
-
-    // 3. Fetch Live Works (with fallback)
-    async function loadWorkTracker() {
-      const container = document.getElementById('tracker-container');
-      if (!container) return;
-
-      try {
-        if (supabase) {
-          const { data, error } = await supabase.from('works_tracker').select('*').order('created_at', { ascending: false });
-          if (!error && data && data.length > 0) {
-            container.innerHTML = data.map(w => `
-              <div class="bg-white p-6 rounded-xl shadow-sm border">
-                <div class="flex justify-between items-center mb-2">
-                  <h4 class="font-bold text-slate-800 text-lg">${w.title}</h4>
-                  <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-0.5 rounded-full font-semibold">${w.status}</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-4">${w.description || ''}</p>
-                <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
-                  <div class="bg-blue-600 h-3 rounded-full" style="width: ${w.progress_percentage}%"></div>
-                </div>
-                <div class="flex justify-between text-xs text-gray-500">
-                  <span>Progress: <strong>${w.progress_percentage}%</strong></span>
-                  <span>Target: <strong>${w.target_date ? new Date(w.target_date).toLocaleDateString() : 'Ongoing'}</strong></span>
-                </div>
-              </div>
-            `).join('');
-            return;
-          }
-        }
-      } catch (e) {}
-
-      container.innerHTML = `
-        <div class="bg-white p-6 rounded-xl shadow-sm border">
-          <div class="flex justify-between items-center mb-2">
-            <h4 class="font-bold text-slate-800 text-lg">CCTV Network Upgrades</h4>
-            <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-0.5 rounded-full font-semibold">In Progress</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-4">Installing 16 new HD night-vision cameras in parking & perimeter.</p>
-          <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
-            <div class="bg-blue-600 h-3 rounded-full" style="width: 75%"></div>
-          </div>
-          <div class="flex justify-between text-xs text-gray-500">
-            <span>Progress: <strong>75%</strong></span>
-            <span>Target: <strong>Nov 20, 2025</strong></span>
-          </div>
-        </div>
-      `;
-    }
-
-    // 4. Fetch Live Meeting Minutes
-    async function loadMeetingMinutes() {
-      const container = document.getElementById('minutes-container');
-      if (!container) return;
-
-      try {
-        if (supabase) {
-          const { data, error } = await supabase.from('meeting_minutes').select('*').order('meeting_date', { ascending: false });
-          if (!error && data && data.length > 0) {
-            container.innerHTML = data.map(m => `
-              <tr class="hover:bg-slate-50 transition">
-                <td class="py-4 px-4 font-medium text-slate-800">${new Date(m.meeting_date).toLocaleDateString()}</td>
-                <td class="py-4 px-4"><span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded text-xs font-semibold">${m.meeting_type}</span></td>
-                <td class="py-4 px-4 text-gray-600">${m.agenda_summary}</td>
-                <td class="py-4 px-4 text-right">
-                  <a href="${m.pdf_url}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded hover:bg-blue-50 transition">
-                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
-                  </a>
-                </td>
-              </tr>
-            `).join('');
-            return;
-          }
-        }
-      } catch (e) {}
-
-      container.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-gray-500">No meeting minutes published yet.</td></tr>`;
-    }
-
-    // Start all loaders
-    document.addEventListener('DOMContentLoaded', () => {
-      loadNotices();
-      loadWorkTracker();
-      loadMeetingMinutes();
-      loadDirectory();
-    });
-
-    // Live Sync Notices from Supabase
-    async function syncSupabaseNotices() {
-      try {
-        if (typeof supabase !== 'undefined' && supabase) {
-          const { data, error } = await supabase
-            .from('notices')
-            .select('*')
-            .order('created_at', { ascending: false });
-
           if (!error && data && data.length > 0) {
             const container = document.getElementById('notices-container');
             container.innerHTML = data.map(n => `
@@ -800,17 +803,10 @@
       }
     }
 
-    syncSupabaseNotices();
-
-    // Live Background Sync for Works Tracker
     async function syncSupabaseWorks() {
       try {
-        if (typeof supabase !== 'undefined' && supabase) {
-          const { data, error } = await supabase
-            .from('works_tracker')
-            .select('*')
-            .order('created_at', { ascending: false });
-
+        if (supabase) {
+          const { data, error } = await supabase.from('works_tracker').select('*').order('created_at', { ascending: false });
           if (!error && data && data.length > 0) {
             const container = document.getElementById('tracker-container');
             container.innerHTML = data.map(w => `
@@ -844,17 +840,10 @@
       }
     }
 
-    syncSupabaseWorks();
-
-    // Live Background Sync for Meeting Minutes
     async function syncSupabaseMinutes() {
       try {
-        if (typeof supabase !== 'undefined' && supabase) {
-          const { data, error } = await supabase
-            .from('meeting_minutes')
-            .select('*')
-            .order('meeting_date', { ascending: false });
-
+        if (supabase) {
+          const { data, error } = await supabase.from('meeting_minutes').select('*').order('meeting_date', { ascending: false });
           if (!error && data && data.length > 0) {
             const tbody = document.getElementById("minutes-container");
             tbody.innerHTML = data.map(m => `
@@ -863,7 +852,7 @@
                 <td class="py-4 px-4">
                   <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">${m.meeting_type}</span>
                 </td>
-                <td class="py-4 px-4 text-slate-600">${m.agenda_summary}</td>
+                <td class="py-4 px-4 text-gray-600">${m.agenda_summary}</td>
                 <td class="py-4 px-4 text-right">
                   <a href="${m.pdf_url}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
                     <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
@@ -878,35 +867,13 @@
       }
     }
 
-    syncSupabaseMinutes();
-
-    // Filter Directory by Wing
-    function filterByWing(wingPrefix, btnElement) {
-      // 1. Update active button colors
-      const buttons = document.querySelectorAll('.wing-btn');
-      buttons.forEach(btn => {
-        btn.className = "wing-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition";
-      });
-      if (btnElement) {
-        btnElement.className = "wing-btn bg-slate-900 text-white px-3 py-1.5 rounded-lg shadow-sm transition";
-      }
-
-      // 2. Filter table rows
-      const tbody = document.getElementById("directory-container");
-      const trs = tbody.getElementsByTagName("tr");
-
-      for (let i = 0; i < trs.length; i++) {
-        const flatCell = trs[i].getElementsByTagName("td")[0];
-        if (flatCell) {
-          const flatText = (flatCell.textContent || flatCell.innerText).trim();
-          if (wingPrefix === '' || flatText.startsWith(wingPrefix)) {
-            trs[i].style.display = "";
-          } else {
-            trs[i].style.display = "none";
-          }
-        }
-      }
-    }
+    // Run loaders on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      syncSupabaseDirectory();
+      syncSupabaseNotices();
+      syncSupabaseWorks();
+      syncSupabaseMinutes();
+    });
   </script>
 </body>
 </html>
