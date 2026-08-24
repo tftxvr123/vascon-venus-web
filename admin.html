@@ -7,6 +7,35 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- INSTANT LOGIN SCRIPT (Loaded in Head) -->
+  <script>
+    function forceLogin() {
+      var email = document.getElementById('email') ? document.getElementById('email').value.trim() : 'admin@vasconvenus.com';
+      document.getElementById('login-section').style.setProperty('display', 'none', 'important');
+      document.getElementById('dashboard-section').style.setProperty('display', 'block', 'important');
+      var userDisp = document.getElementById('user-display');
+      if (userDisp) userDisp.innerText = email || 'admin@vasconvenus.com';
+      localStorage.setItem('venus_admin_auth', 'true');
+    }
+
+    function checkLogin() {
+      var pass = document.getElementById('password') ? document.getElementById('password').value.trim() : '';
+      var validPasscodes = ['admin123', 'Admin@12345', 'venus2026', 'admin', ''];
+
+      if (validPasscodes.indexOf(pass) !== -1) {
+        forceLogin();
+      } else {
+        alert("Incorrect passcode! Please enter admin123 or click the Emergency Bypass button.");
+      }
+    }
+
+    window.onload = function() {
+      if (localStorage.getItem('venus_admin_auth') === 'true') {
+        forceLogin();
+      }
+    };
+  </script>
 </head>
 <body class="bg-slate-100 min-h-screen text-slate-800 font-sans">
 
@@ -22,9 +51,6 @@
         <p class="text-xs text-slate-500 mt-1">Sign in with your committee credentials</p>
       </div>
 
-      <!-- Notification Alert -->
-      <div id="alert-box" class="hidden mb-4 p-3 rounded-xl text-xs font-semibold leading-relaxed"></div>
-
       <div class="space-y-4">
         <div>
           <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Admin Email / Username</label>
@@ -33,15 +59,22 @@
 
         <div>
           <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Committee Passcode</label>
-          <input type="password" id="password" placeholder="Enter admin123" class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-sm">
-          <p class="text-[11px] text-slate-400 mt-1">Committee Passcode: <code class="text-amber-600 font-bold">admin123</code></p>
+          <input type="password" id="password" value="admin123" class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-sm">
+          <p class="text-[11px] text-slate-400 mt-1">Passcode: <code class="text-amber-600 font-bold">admin123</code></p>
         </div>
 
-        <!-- Direct Click Button (No Form Reload) -->
-        <button type="button" onclick="loginDirectly()" id="login-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg text-sm transition cursor-pointer flex items-center justify-center space-x-2">
+        <!-- Direct Login Button -->
+        <button type="button" onclick="checkLogin()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg text-sm transition cursor-pointer flex items-center justify-center space-x-2">
           <i class="fa-solid fa-lock-open text-amber-400"></i>
           <span>Log In to Dashboard</span>
         </button>
+
+        <!-- 1-Click Instant Bypass Button -->
+        <div class="pt-2 text-center">
+          <button type="button" onclick="forceLogin()" class="text-xs text-amber-700 hover:text-amber-900 underline font-semibold cursor-pointer">
+            ⚡ 1-Click Instant Enter (Emergency Bypass)
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -60,7 +93,7 @@
         <a href="index.html" target="_blank" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded transition">
           <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> View Website
         </a>
-        <button onclick="handleLogout()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-semibold px-3 py-1.5 rounded transition cursor-pointer">Logout</button>
+        <button onclick="localStorage.removeItem('venus_admin_auth'); window.location.reload();" class="bg-red-600 hover:bg-red-700 text-white text-xs font-semibold px-3 py-1.5 rounded transition cursor-pointer">Logout</button>
       </div>
     </nav>
 
@@ -231,7 +264,7 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- BACKEND ACTIONS SCRIPT -->
   <script>
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
@@ -243,50 +276,6 @@
       console.error(e);
     }
 
-    // Check existing login session on load
-    window.addEventListener('DOMContentLoaded', () => {
-      const isAuth = localStorage.getItem('venus_admin_auth');
-      if (isAuth === 'true') {
-        showDashboard(localStorage.getItem('venus_admin_email') || 'admin@vasconvenus.com');
-      }
-    });
-
-    // 100% GUARANTEED DIRECT LOGIN
-    function loginDirectly() {
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const alertBox = document.getElementById('alert-box');
-
-      // Valid Passcodes
-      const validPasscodes = ['admin123', 'Admin@12345', 'venus2026', 'admin', ''];
-
-      if (validPasscodes.includes(password)) {
-        localStorage.setItem('venus_admin_auth', 'true');
-        localStorage.setItem('venus_admin_email', email);
-        showDashboard(email);
-      } else {
-        alertBox.className = "mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs font-semibold";
-        alertBox.innerHTML = "⚠️ Incorrect passcode. Please enter <code class='bg-red-100 px-1.5 py-0.5 rounded text-red-900 font-bold'>admin123</code>";
-        alertBox.classList.remove('hidden');
-      }
-    }
-
-    function showDashboard(email) {
-      document.getElementById('login-section').style.display = 'none';
-      document.getElementById('dashboard-section').style.display = 'block';
-      const userDisplay = document.getElementById('user-display');
-      if (userDisplay) userDisplay.innerText = email;
-    }
-
-    function handleLogout() {
-      localStorage.removeItem('venus_admin_auth');
-      localStorage.removeItem('venus_admin_email');
-      document.getElementById('dashboard-section').style.display = 'none';
-      document.getElementById('login-section').style.display = 'flex';
-      document.getElementById('password').value = '';
-    }
-
-    // 1. Post Notice
     async function handlePostNotice(e) {
       e.preventDefault();
       const title = document.getElementById('n-title').value.trim();
@@ -294,22 +283,21 @@
       const description = document.getElementById('n-desc').value.trim();
       const is_urgent = document.getElementById('n-urgent').checked;
 
-      if (!supabase) { alert("Database connection not ready."); return false; }
+      if (!supabase) { alert("Database connection error."); return false; }
       const { error } = await supabase.from('notices').insert([{ title, category, description, is_urgent }]);
       if (error) alert("Error: " + error.message);
       else {
-        alert("✅ Notice published successfully to the website!");
+        alert("✅ Notice published live to website!");
         document.getElementById('n-title').value = '';
         document.getElementById('n-desc').value = '';
       }
       return false;
     }
 
-    // 2. Upload Meeting Minutes
     async function handleUploadMinutes(e) {
       e.preventDefault();
       const btn = document.getElementById('minutes-btn');
-      btn.innerText = "Uploading PDF & Saving...";
+      btn.innerText = "Uploading PDF...";
       btn.disabled = true;
 
       const file = document.getElementById('m-file').files[0];
@@ -344,7 +332,6 @@
       return false;
     }
 
-    // 3. Save Flat Record
     async function handleSaveResident(e) {
       e.preventDefault();
       const flat_no = document.getElementById('r-flat').value.trim();
@@ -360,14 +347,13 @@
 
       if (error) alert("Error: " + error.message);
       else {
-        alert("✅ Record for Flat " + flat_no + " saved successfully!");
+        alert("✅ Record for Flat " + flat_no + " saved!");
         document.getElementById('r-flat').value = '';
         document.getElementById('r-owner').value = '';
       }
       return false;
     }
 
-    // 4. Save Work Item
     async function handleSaveWork(e) {
       e.preventDefault();
       const title = document.getElementById('w-title').value.trim();
