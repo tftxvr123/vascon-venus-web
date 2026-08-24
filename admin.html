@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EC Admin Portal - Vascon Venus</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Supabase JS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- INSTANT LOGIN SCRIPT (Loaded in Head) -->
   <script>
+    // Master Login Handlers in Head
     function forceLogin() {
       var email = document.getElementById('email') ? document.getElementById('email').value.trim() : 'admin@vasconvenus.com';
       document.getElementById('login-section').style.setProperty('display', 'none', 'important');
@@ -22,11 +23,10 @@
     function checkLogin() {
       var pass = document.getElementById('password') ? document.getElementById('password').value.trim() : '';
       var validPasscodes = ['admin123', 'Admin@12345', 'venus2026', 'admin', ''];
-
       if (validPasscodes.indexOf(pass) !== -1) {
         forceLogin();
       } else {
-        alert("Incorrect passcode! Please enter admin123 or click the Emergency Bypass button.");
+        alert("Incorrect passcode! Please enter admin123");
       }
     }
 
@@ -42,7 +42,6 @@
   <!-- 1. LOGIN CONTAINER -->
   <div id="login-section" class="flex min-h-screen items-center justify-center p-4">
     <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-slate-200">
-      
       <div class="text-center mb-6">
         <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3 text-amber-600 text-2xl">
           <i class="fa-solid fa-shield-halved"></i>
@@ -53,36 +52,25 @@
 
       <div class="space-y-4">
         <div>
-          <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Admin Email / Username</label>
+          <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Admin Email</label>
           <input type="text" id="email" value="admin@vasconvenus.com" class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-sm">
         </div>
-
         <div>
           <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Committee Passcode</label>
           <input type="password" id="password" value="admin123" class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-sm">
           <p class="text-[11px] text-slate-400 mt-1">Passcode: <code class="text-amber-600 font-bold">admin123</code></p>
         </div>
 
-        <!-- Direct Login Button -->
         <button type="button" onclick="checkLogin()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg text-sm transition cursor-pointer flex items-center justify-center space-x-2">
           <i class="fa-solid fa-lock-open text-amber-400"></i>
           <span>Log In to Dashboard</span>
         </button>
-
-        <!-- 1-Click Instant Bypass Button -->
-        <div class="pt-2 text-center">
-          <button type="button" onclick="forceLogin()" class="text-xs text-amber-700 hover:text-amber-900 underline font-semibold cursor-pointer">
-            ⚡ 1-Click Instant Enter (Emergency Bypass)
-          </button>
-        </div>
       </div>
     </div>
   </div>
 
   <!-- 2. DASHBOARD CONTAINER -->
   <div id="dashboard-section" style="display: none;" class="min-h-screen bg-slate-50 pb-16">
-    
-    <!-- Top Nav -->
     <nav class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center shadow sticky top-0 z-50">
       <div class="flex items-center space-x-2">
         <i class="fa-solid fa-building text-amber-400 text-xl"></i>
@@ -97,27 +85,15 @@
       </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="max-w-5xl mx-auto p-6 space-y-8">
 
-      <!-- Welcome Banner -->
-      <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 rounded-2xl shadow-sm flex justify-between items-center border border-slate-700">
-        <div>
-          <h2 class="text-xl font-bold text-white">Welcome, Executive Committee Member</h2>
-          <p class="text-xs text-slate-400 mt-1">Publish notices, update work progress, and upload meeting minute PDFs live.</p>
-        </div>
-        <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full flex items-center">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span> Authorized Session
-        </span>
-      </div>
-
-      <!-- 1. Post Notice -->
+      <!-- 1. Post Notice Form (Direct Zero-Reload Trigger) -->
       <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <div class="flex items-center space-x-2 mb-4">
           <i class="fa-solid fa-bullhorn text-amber-500 text-xl"></i>
           <h2 class="text-xl font-bold text-slate-900">Publish Notice / Announcement</h2>
         </div>
-        <form onsubmit="return handlePostNotice(event)" class="space-y-4">
+        <div class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-600 mb-1">Notice Title *</label>
@@ -138,11 +114,13 @@
             <textarea id="n-desc" rows="3" required placeholder="Type full notice text here..." class="w-full border px-3 py-2 rounded-lg text-sm"></textarea>
           </div>
           <div class="flex items-center space-x-2">
-            <input type="checkbox" id="n-urgent" class="w-4 h-4 text-red-600">
-            <label for="n-urgent" class="text-sm text-red-600 font-medium">Mark as High Priority Alert (Red)</label>
+            <input type="checkbox" id="n-urgent" class="w-4 h-4 text-red-600 cursor-pointer">
+            <label for="n-urgent" class="text-sm text-red-600 font-medium cursor-pointer">Mark as High Priority Alert (Red)</label>
           </div>
-          <button type="submit" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer">Post Notice</button>
-        </form>
+          <button type="button" onclick="publishNotice()" id="n-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer transition">
+            Post Notice Live
+          </button>
+        </div>
       </div>
 
       <!-- 2. Publish Meeting Minutes -->
@@ -151,7 +129,7 @@
           <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
           <h2 class="text-xl font-bold text-slate-900">Publish Meeting Minutes (PDF)</h2>
         </div>
-        <form onsubmit="return handleUploadMinutes(event)" class="space-y-4">
+        <div class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-600 mb-1">Meeting Date *</label>
@@ -174,8 +152,10 @@
             <label class="block text-xs font-semibold text-slate-600 mb-1">Select Minutes PDF *</label>
             <input type="file" id="m-file" accept="application/pdf" required class="w-full border p-2 rounded-lg text-sm">
           </div>
-          <button type="submit" id="minutes-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer">Publish Minutes</button>
-        </form>
+          <button type="button" onclick="uploadMinutes()" id="m-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer transition">
+            Publish Minutes (PDF)
+          </button>
+        </div>
       </div>
 
       <!-- 3. Add Resident & Flat Record -->
@@ -184,7 +164,7 @@
           <i class="fa-solid fa-address-book text-blue-500 text-xl"></i>
           <h2 class="text-xl font-bold text-slate-900">Add / Update Resident Directory</h2>
         </div>
-        <form onsubmit="return handleSaveResident(event)" class="space-y-4">
+        <div class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-600 mb-1">Flat Number *</label>
@@ -217,8 +197,10 @@
               <input type="text" id="r-parking" placeholder="e.g. P-22" class="w-full border px-3 py-2 rounded-lg text-sm">
             </div>
           </div>
-          <button type="submit" id="resident-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer">Save Flat Record</button>
-        </form>
+          <button type="button" onclick="saveResident()" id="r-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer transition">
+            Save Flat Record
+          </button>
+        </div>
       </div>
 
       <!-- 4. Update Ongoing Works -->
@@ -227,7 +209,7 @@
           <i class="fa-solid fa-list-check text-green-500 text-xl"></i>
           <h2 class="text-xl font-bold text-slate-900">Add Ongoing Work / Maintenance</h2>
         </div>
-        <form onsubmit="return handleSaveWork(event)" class="space-y-4">
+        <div class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-600 mb-1">Work Title *</label>
@@ -257,83 +239,106 @@
             <label class="block text-xs font-semibold text-slate-600 mb-1">Description</label>
             <input type="text" id="w-desc" placeholder="Details about vendor, scope, etc." class="w-full border px-3 py-2 rounded-lg text-sm">
           </div>
-          <button type="submit" id="work-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer">Save Work Item</button>
-        </form>
+          <button type="button" onclick="saveWork()" id="w-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer transition">
+            Save Work Item
+          </button>
+        </div>
       </div>
 
     </div>
   </div>
 
-  <!-- BACKEND ACTIONS SCRIPT -->
+  <!-- DIRECT SUPABASE API SCRIPT -->
   <script>
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    let supabase = null;
-    try {
-      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    } catch (e) {
-      console.error(e);
-    }
-
-    async function handlePostNotice(e) {
-      e.preventDefault();
+    // 1. Direct Publish Notice
+    async function publishNotice() {
+      const btn = document.getElementById('n-btn');
       const title = document.getElementById('n-title').value.trim();
       const category = document.getElementById('n-category').value;
       const description = document.getElementById('n-desc').value.trim();
       const is_urgent = document.getElementById('n-urgent').checked;
 
-      if (!supabase) { alert("Database connection error."); return false; }
-      const { error } = await supabase.from('notices').insert([{ title, category, description, is_urgent }]);
-      if (error) alert("Error: " + error.message);
-      else {
-        alert("✅ Notice published live to website!");
-        document.getElementById('n-title').value = '';
-        document.getElementById('n-desc').value = '';
+      if (!title || !description) {
+        alert("Please enter both Title and Message for the notice.");
+        return;
       }
-      return false;
-    }
 
-    async function handleUploadMinutes(e) {
-      e.preventDefault();
-      const btn = document.getElementById('minutes-btn');
-      btn.innerText = "Uploading PDF...";
+      btn.innerText = "Saving to Database...";
       btn.disabled = true;
 
-      const file = document.getElementById('m-file').files[0];
+      try {
+        const { data, error } = await supabase
+          .from('notices')
+          .insert([{ title, category, description, is_urgent }])
+          .select();
+
+        if (error) {
+          alert("Database Error: " + error.message);
+        } else {
+          alert("🎉 Notice successfully published to the live website!");
+          document.getElementById('n-title').value = '';
+          document.getElementById('n-desc').value = '';
+        }
+      } catch (err) {
+        alert("Unexpected error: " + err.message);
+      } finally {
+        btn.innerText = "Post Notice Live";
+        btn.disabled = false;
+      }
+    }
+
+    // 2. Direct Upload Minutes
+    async function uploadMinutes() {
+      const btn = document.getElementById('m-btn');
+      const fileInput = document.getElementById('m-file');
       const date = document.getElementById('m-date').value;
       const type = document.getElementById('m-type').value;
       const agenda = document.getElementById('m-agenda').value.trim();
 
-      const fileName = `minutes_${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
-
-      const { error: uploadError } = await supabase.storage.from('society-vault').upload(fileName, file);
-      if (uploadError) {
-        alert("Upload error: " + uploadError.message);
-        btn.innerText = "Publish Minutes";
-        btn.disabled = false;
-        return false;
+      if (!date || !agenda || !fileInput.files[0]) {
+        alert("Please select Date, Agenda summary, and a PDF file.");
+        return;
       }
 
-      const { data: publicUrlData } = supabase.storage.from('society-vault').getPublicUrl(fileName);
+      const file = fileInput.files[0];
+      btn.innerText = "Uploading PDF to Vault...";
+      btn.disabled = true;
 
-      const { error: dbError } = await supabase.from('meeting_minutes').insert([{
-        meeting_date: date, meeting_type: type, agenda_summary: agenda, pdf_url: publicUrlData.publicUrl
-      }]);
+      try {
+        const fileName = `minutes_${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
+        
+        const { error: uploadErr } = await supabase.storage.from('society-vault').upload(fileName, file);
+        if (uploadErr) throw new Error("Storage Upload: " + uploadErr.message);
 
-      if (dbError) alert("Database error: " + dbError.message);
-      else {
-        alert("✅ Meeting minutes published successfully!");
+        const { data: publicUrlData } = supabase.storage.from('society-vault').getPublicUrl(fileName);
+
+        const { error: dbErr } = await supabase.from('meeting_minutes').insert([{
+          meeting_date: date,
+          meeting_type: type,
+          agenda_summary: agenda,
+          pdf_url: publicUrlData.publicUrl
+        }]);
+
+        if (dbErr) throw new Error("Database Save: " + dbErr.message);
+
+        alert("🎉 Meeting Minutes PDF published successfully!");
         document.getElementById('m-agenda').value = '';
-        document.getElementById('m-file').value = '';
+        fileInput.value = '';
+      } catch (err) {
+        alert("Error: " + err.message);
+      } finally {
+        btn.innerText = "Publish Minutes (PDF)";
+        btn.disabled = false;
       }
-      btn.innerText = "Publish Minutes";
-      btn.disabled = false;
-      return false;
     }
 
-    async function handleSaveResident(e) {
-      e.preventDefault();
+    // 3. Direct Save Resident
+    async function saveResident() {
+      const btn = document.getElementById('r-btn');
       const flat_no = document.getElementById('r-flat').value.trim();
       const owner_name = document.getElementById('r-owner').value.trim();
       const occupancy_status = document.getElementById('r-status').value;
@@ -341,38 +346,65 @@
       const tenant_name = document.getElementById('r-tenant').value.trim() || null;
       const parking_slot = document.getElementById('r-parking').value.trim() || null;
 
-      const { error } = await supabase.from('resident_directory').upsert([{
-        flat_no, owner_name, occupancy_status, owner_phone, tenant_name, parking_slot
-      }], { onConflict: 'flat_no' });
+      if (!flat_no || !owner_name) {
+        alert("Please enter both Flat Number and Owner Name.");
+        return;
+      }
 
-      if (error) alert("Error: " + error.message);
-      else {
-        alert("✅ Record for Flat " + flat_no + " saved!");
+      btn.innerText = "Saving...";
+      btn.disabled = true;
+
+      try {
+        const { error } = await supabase.from('resident_directory').upsert([{
+          flat_no, owner_name, occupancy_status, owner_phone, tenant_name, parking_slot
+        }], { onConflict: 'flat_no' });
+
+        if (error) throw error;
+
+        alert("🎉 Record for Flat " + flat_no + " saved successfully!");
         document.getElementById('r-flat').value = '';
         document.getElementById('r-owner').value = '';
+      } catch (err) {
+        alert("Error: " + err.message);
+      } finally {
+        btn.innerText = "Save Flat Record";
+        btn.disabled = false;
       }
-      return false;
     }
 
-    async function handleSaveWork(e) {
-      e.preventDefault();
+    // 4. Direct Save Work
+    async function saveWork() {
+      const btn = document.getElementById('w-btn');
       const title = document.getElementById('w-title').value.trim();
       const status = document.getElementById('w-status').value;
-      const progress_percentage = parseInt(document.getElementById('w-progress').value);
+      const progress_percentage = parseInt(document.getElementById('w-progress').value) || 0;
       const target_date = document.getElementById('w-date').value || null;
       const description = document.getElementById('w-desc').value.trim();
 
-      const { error } = await supabase.from('works_tracker').insert([{
-        title, status, progress_percentage, target_date, description
-      }]);
+      if (!title) {
+        alert("Please enter Project/Work title.");
+        return;
+      }
 
-      if (error) alert("Error: " + error.message);
-      else {
-        alert("✅ Work status recorded!");
+      btn.innerText = "Saving...";
+      btn.disabled = true;
+
+      try {
+        const { error } = await supabase.from('works_tracker').insert([{
+          title, status, progress_percentage, target_date, description
+        }]);
+
+        if (error) throw error;
+
+        alert("🎉 Work status saved successfully!");
         document.getElementById('w-title').value = '';
         document.getElementById('w-desc').value = '';
+      } catch (err) {
+        alert("Error: " + err.message);
+      } finally {
+        btn.innerText = "Save Work Item";
+        btn.disabled = false;
       }
-      return false;
     }
   </script>
 </body>
