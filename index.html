@@ -83,7 +83,7 @@
           </div>
         </div>
         <div class="p-6 pt-2">
-          <button type="button" onclick="document.getElementById('pool-modal').style.display='flex';" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition">
+          <button type="button" onclick="document.getElementById('pool-modal').style.display='flex';" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition cursor-pointer">
             <i class="fa-solid fa-calendar-check"></i>
             <span>View Guidelines & Book Slot</span>
           </button>
@@ -124,7 +124,7 @@
           </div>
         </div>
         <div class="p-6 pt-2">
-          <button type="button" onclick="document.getElementById('clubhouse-modal').style.display='flex';" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition">
+          <button type="button" onclick="document.getElementById('clubhouse-modal').style.display='flex';" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition cursor-pointer">
             <i class="fa-solid fa-calendar-plus text-amber-400"></i>
             <span>View Tariff & Book Hall</span>
           </button>
@@ -730,13 +730,9 @@
     </div>
   </div>
 
-  <!-- ============================================================= -->
-  <!-- 🤖 3. VENUS AI RESIDENT ASSISTANT FLOATING CHAT WIDGET -->
-  <!-- ============================================================= -->
-  
-  <!-- Floating Button -->
-  <div id="ai-launcher" onclick="toggleAIChat()" class="fixed bottom-6 right-6 z-[99999] cursor-pointer group flex items-center space-x-2">
-    <div class="bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg border border-amber-400/40 hidden sm:flex items-center space-x-1.5 group-hover:bg-slate-800 transition">
+  <!-- 3. VENUS AI RESIDENT ASSISTANT FLOATING BUTTON (Direct Trigger) -->
+  <div id="ai-launcher" onclick="var w=document.getElementById('ai-chat-window'); w.style.display = (w.style.display === 'none' || w.style.display === '') ? 'flex' : 'none';" style="position: fixed; bottom: 24px; right: 24px; z-index: 999999; cursor: pointer;" class="flex items-center space-x-2 group">
+    <div class="bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-2xl border border-amber-400/40 hidden sm:flex items-center space-x-1.5 group-hover:bg-slate-800 transition">
       <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
       <span>Ask Venus AI</span>
     </div>
@@ -745,11 +741,11 @@
     </div>
   </div>
 
-  <!-- Chat Drawer Window -->
-  <div id="ai-chat-window" style="display: none;" class="fixed bottom-24 right-4 sm:right-6 w-[92vw] sm:w-96 h-[520px] max-h-[82vh] bg-white rounded-2xl shadow-2xl border border-slate-200 z-[999999] flex flex-col overflow-hidden animate-fade-in">
+  <!-- 4. VENUS AI CHAT DRAWER WINDOW -->
+  <div id="ai-chat-window" style="display: none; position: fixed; bottom: 90px; right: 24px; width: 380px; max-width: 92vw; height: 520px; max-height: 80vh; z-index: 9999999; flex-direction: column;" class="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
     
     <!-- Chat Header -->
-    <div class="bg-slate-900 text-white p-4 flex justify-between items-center shadow">
+    <div class="bg-slate-900 text-white p-4 flex justify-between items-center shadow flex-shrink-0">
       <div class="flex items-center space-x-2.5">
         <div class="w-9 h-9 bg-amber-400 text-slate-900 rounded-full flex items-center justify-center text-lg font-bold">
           <i class="fa-solid fa-robot"></i>
@@ -763,7 +759,7 @@
           </p>
         </div>
       </div>
-      <button type="button" onclick="toggleAIChat()" class="text-slate-400 hover:text-white text-2xl font-bold leading-none cursor-pointer">&times;</button>
+      <button type="button" onclick="document.getElementById('ai-chat-window').style.display='none';" class="text-slate-400 hover:text-white text-2xl font-bold leading-none cursor-pointer">&times;</button>
     </div>
 
     <!-- Message Stream -->
@@ -782,16 +778,16 @@
 
       <!-- Quick Suggestion Pills -->
       <div class="pt-1 flex flex-wrap gap-1.5" id="ai-chips">
-        <button onclick="askSuggestion('What are the swimming pool timings & rules?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition">🏊 Pool Timings & Rules</button>
-        <button onclick="askSuggestion('How much is the clubhouse booking tariff?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition">🏛️ Clubhouse Rates</button>
-        <button onclick="askSuggestion('Who are the Executive Committee members?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition">👥 EC Members & Flats</button>
-        <button onclick="askSuggestion('What are the current works in progress?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition">🛠️ Current Works</button>
+        <button onclick="askSuggestion('What are the swimming pool timings & rules?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">🏊 Pool Timings & Rules</button>
+        <button onclick="askSuggestion('How much is the clubhouse booking tariff?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">🏛️ Clubhouse Rates</button>
+        <button onclick="askSuggestion('Who are the Executive Committee members?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">👥 EC Members & Flats</button>
+        <button onclick="askSuggestion('What are the current works in progress?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">🛠️ Current Works</button>
       </div>
 
     </div>
 
     <!-- Input Bar -->
-    <form id="ai-input-form" onsubmit="sendAIMessage(event)" class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2">
+    <form id="ai-input-form" onsubmit="sendAIMessage(event)" class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2 flex-shrink-0">
       <input type="text" id="ai-query" placeholder="Ask anything about Vascon Venus..." required class="flex-1 bg-slate-100 border border-slate-200 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500 text-slate-800">
       <button type="submit" id="ai-send-btn" class="bg-slate-900 hover:bg-slate-800 text-amber-400 w-9 h-9 rounded-xl flex items-center justify-center text-sm transition cursor-pointer flex-shrink-0">
         <i class="fa-solid fa-paper-plane"></i>
@@ -814,8 +810,6 @@
     // -------------------------------------------------------------
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
-    
-    // (Optional) Paste your free Gemini API Key here from aistudio.google.com:
     const GEMINI_API_KEY = ""; 
 
     let supabase = null;
@@ -868,22 +862,14 @@
     document.getElementById('clubhouse-modal').addEventListener('click', function(e) { if (e.target === this) this.style.display = 'none'; });
 
     // -------------------------------------------------------------
-    // 🤖 VENUS AI CHATBOT SYSTEM & KNOWLEDGE ENGINE
+    // 🤖 VENUS AI CHATBOT SYSTEM
     // -------------------------------------------------------------
-    function toggleAIChat() {
-      const win = document.getElementById('ai-chat-window');
-      win.style.display = (win.style.display === 'none' || win.style.display === '') ? 'flex' : 'none';
-      if (win.style.display === 'flex') {
-        document.getElementById('ai-query').focus();
-      }
-    }
-
-    function askSuggestion(text) {
+    window.askSuggestion = function(text) {
       document.getElementById('ai-query').value = text;
       sendAIMessage(new Event('submit'));
-    }
+    };
 
-    async function sendAIMessage(e) {
+    window.sendAIMessage = async function(e) {
       if (e) e.preventDefault();
       const input = document.getElementById('ai-query');
       const query = input.value.trim();
@@ -893,7 +879,7 @@
       const chips = document.getElementById('ai-chips');
       if (chips) chips.style.display = 'none';
 
-      // 1. Append User Message
+      // Append User Message
       container.innerHTML += `
         <div class="flex items-end justify-end space-x-2">
           <div class="bg-slate-900 text-white p-3 rounded-2xl rounded-br-none max-w-[85%] shadow-sm leading-relaxed">
@@ -904,7 +890,7 @@
       input.value = '';
       container.scrollTop = container.scrollHeight;
 
-      // 2. Append Loading Placeholder
+      // Append Loading
       const loadingId = 'ai-loading-' + Date.now();
       container.innerHTML += `
         <div id="${loadingId}" class="flex items-start space-x-2">
@@ -918,10 +904,10 @@
       `;
       container.scrollTop = container.scrollHeight;
 
-      // 3. Generate Answer (Using Gemini API or Built-In Knowledge Engine)
+      // Get Answer
       const answer = await getAIResponse(query);
 
-      // 4. Replace Loading with Answer
+      // Render Answer
       const loader = document.getElementById(loadingId);
       if (loader) {
         loader.outerHTML = `
@@ -936,13 +922,13 @@
         `;
       }
       container.scrollTop = container.scrollHeight;
-    }
+    };
 
     async function getAIResponse(userPrompt) {
       const lower = userPrompt.toLowerCase();
 
-      // IF Gemini Key is present, call Gemini 1.5 Flash
-      if (GEMINI_API_KEY && GEMINI_API_KEY.startsWith("AIzaSy")) {
+      // IF Gemini Key is present, call Gemini API
+      if (typeof GEMINI_API_KEY !== 'undefined' && GEMINI_API_KEY && GEMINI_API_KEY.startsWith("AIzaSy")) {
         try {
           const sysContext = `You are Venus AI, the friendly official assistant for Vascon Venus Co-operative Housing Society.
 Society Details:
@@ -957,9 +943,7 @@ Always answer politely, concisely, and format cleanly.`;
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              contents: [
-                { role: 'user', parts: [{ text: `${sysContext}\n\nResident Question: ${userPrompt}` }] }
-              ]
+              contents: [{ role: 'user', parts: [{ text: `${sysContext}\n\nResident Question: ${userPrompt}` }] }]
             })
           });
           const data = await response.json();
@@ -967,11 +951,11 @@ Always answer politely, concisely, and format cleanly.`;
             return data.candidates[0].content.parts[0].text;
           }
         } catch (err) {
-          console.warn("Gemini API call failed, falling back to society engine:", err);
+          console.warn("Gemini API call failed, using built-in engine:", err);
         }
       }
 
-      // BUILT-IN SMART SOCIETY ENGINE (Immediate Zero-Delay Fallback):
+      // BUILT-IN SMART SOCIETY ENGINE (Zero Delay):
       if (lower.includes("pool") || lower.includes("swim") || lower.includes("dress")) {
         return `🏊 **Swimming Pool Details:**\n• **Timings:** Morning (6:00 AM – 10:30 AM) & Evening (4:00 PM – 9:00 PM).\n• **Dress Code:** Proper nylon or spandex swimwear is mandatory. Cotton clothes are strictly prohibited.\n• **Maintenance:** Closed Tuesdays 10:00 AM – 4:00 PM.\n• You can book a 1-hour slot directly on the website under Amenities!`;
       }
