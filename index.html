@@ -730,7 +730,7 @@
     </div>
   </div>
 
-  <!-- 3. VENUS AI RESIDENT ASSISTANT FLOATING BUTTON (Direct Trigger) -->
+  <!-- 3. VENUS AI RESIDENT ASSISTANT FLOATING BUTTON -->
   <div id="ai-launcher" onclick="var w=document.getElementById('ai-chat-window'); w.style.display = (w.style.display === 'none' || w.style.display === '') ? 'flex' : 'none';" style="position: fixed; bottom: 24px; right: 24px; z-index: 999999; cursor: pointer;" class="flex items-center space-x-2 group">
     <div class="bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-2xl border border-amber-400/40 hidden sm:flex items-center space-x-1.5 group-hover:bg-slate-800 transition">
       <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
@@ -787,7 +787,7 @@
     </div>
 
     <!-- Input Bar -->
-    <form id="ai-input-form" onsubmit="sendAIMessage(event)" class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2 flex-shrink-0">
+    <form id="ai-input-form" onsubmit="return sendAIMessage(event)" class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2 flex-shrink-0">
       <input type="text" id="ai-query" placeholder="Ask anything about Vascon Venus..." required class="flex-1 bg-slate-100 border border-slate-200 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500 text-slate-800">
       <button type="submit" id="ai-send-btn" class="bg-slate-900 hover:bg-slate-800 text-amber-400 w-9 h-9 rounded-xl flex items-center justify-center text-sm transition cursor-pointer flex-shrink-0">
         <i class="fa-solid fa-paper-plane"></i>
@@ -862,82 +862,81 @@
     document.getElementById('clubhouse-modal').addEventListener('click', function(e) { if (e.target === this) this.style.display = 'none'; });
 
     // -------------------------------------------------------------
-    // 🤖 VENUS AI CHATBOT SYSTEM
+    // 🤖 VENUS AI CHATBOT SYSTEM (INSTANT & GUARANTEED ANSWERS)
     // -------------------------------------------------------------
     window.askSuggestion = function(text) {
-      document.getElementById('ai-query').value = text;
-      sendAIMessage(new Event('submit'));
+      processAIMessage(text);
     };
 
-    window.sendAIMessage = async function(e) {
+    window.sendAIMessage = function(e) {
       if (e) e.preventDefault();
       const input = document.getElementById('ai-query');
       const query = input.value.trim();
-      if (!query) return;
+      if (!query) return false;
+      input.value = '';
+      processAIMessage(query);
+      return false;
+    };
 
+    function processAIMessage(userText) {
       const container = document.getElementById('ai-messages');
       const chips = document.getElementById('ai-chips');
       if (chips) chips.style.display = 'none';
 
-      // Append User Message
-      container.innerHTML += `
-        <div class="flex items-end justify-end space-x-2">
-          <div class="bg-slate-900 text-white p-3 rounded-2xl rounded-br-none max-w-[85%] shadow-sm leading-relaxed">
-            ${query}
-          </div>
+      // 1. Render User Bubble
+      const userBubble = document.createElement('div');
+      userBubble.className = "flex items-end justify-end space-x-2";
+      userBubble.innerHTML = `
+        <div class="bg-slate-900 text-white p-3 rounded-2xl rounded-br-none max-w-[85%] shadow-sm leading-relaxed text-xs">
+          ${userText}
         </div>
       `;
-      input.value = '';
+      container.appendChild(userBubble);
       container.scrollTop = container.scrollHeight;
 
-      // Append Loading
-      const loadingId = 'ai-loading-' + Date.now();
-      container.innerHTML += `
-        <div id="${loadingId}" class="flex items-start space-x-2">
+      // 2. Render Typing Indicator
+      const typingBubble = document.createElement('div');
+      typingBubble.className = "flex items-start space-x-2";
+      typingBubble.innerHTML = `
+        <div class="w-7 h-7 bg-amber-400 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-500 italic text-xs">
+          <i class="fa-solid fa-spinner fa-spin mr-1 text-amber-500"></i> Venus AI is typing...
+        </div>
+      `;
+      container.appendChild(typingBubble);
+      container.scrollTop = container.scrollHeight;
+
+      // 3. Generate Answer (350ms delay for realistic feel)
+      setTimeout(async () => {
+        const answer = await getAIResponse(userText);
+        
+        typingBubble.innerHTML = `
           <div class="w-7 h-7 bg-amber-400 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
             <i class="fa-solid fa-robot"></i>
           </div>
-          <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-500 italic">
-            <i class="fa-solid fa-spinner fa-spin mr-1 text-amber-500"></i> Thinking...
-          </div>
-        </div>
-      `;
-      container.scrollTop = container.scrollHeight;
-
-      // Get Answer
-      const answer = await getAIResponse(query);
-
-      // Render Answer
-      const loader = document.getElementById(loadingId);
-      if (loader) {
-        loader.outerHTML = `
-          <div class="flex items-start space-x-2">
-            <div class="w-7 h-7 bg-amber-400 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
-              <i class="fa-solid fa-robot"></i>
-            </div>
-            <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed whitespace-pre-line">
-              ${answer}
-            </div>
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs whitespace-pre-line">
+            ${answer}
           </div>
         `;
-      }
-      container.scrollTop = container.scrollHeight;
-    };
+        container.scrollTop = container.scrollHeight;
+      }, 350);
+    }
 
     async function getAIResponse(userPrompt) {
       const lower = userPrompt.toLowerCase();
 
-      // IF Gemini Key is present, call Gemini API
+      // If Gemini Key is configured, call Gemini API
       if (typeof GEMINI_API_KEY !== 'undefined' && GEMINI_API_KEY && GEMINI_API_KEY.startsWith("AIzaSy")) {
         try {
-          const sysContext = `You are Venus AI, the friendly official assistant for Vascon Venus Co-operative Housing Society.
-Society Details:
-- Executive Committee (2026-2027): Edwin Paul (President, Flat A-207), Pradeep Shetty (Secretary, Flat A-104), Sunil Kumar (Vice President, Flat B-211), Abdul Rehman (Treasurer, Flat B-311).
-- Swimming Pool: Open 6:00 AM - 10:30 AM & 4:00 PM - 9:00 PM. Closed Tuesdays 10am-4pm for filtration. Nylon/Spandex swimwear mandatory, no cotton, pre-shower compulsory.
-- Clubhouse Booking: Half Day = ₹2,500 (Morning 9am-3pm OR Evening 4pm-10pm). Full Day = ₹5,000 (9am-10:30pm). Refundable deposit = ₹2,000. Music must stop by 10 PM.
-- Current Works: CCTV Upgrades (75%), Lift Modernization Wing A (90%), Solar Panel Grid (45%), Rainwater Harvesting (100% completed).
-- Helplines: Security Main Gate Ext 101, Lift Rescue OTIS 1800.
-Always answer politely, concisely, and format cleanly.`;
+          const sysContext = `You are Venus AI, the official assistant for Vascon Venus Co-operative Housing Society.
+- Executive Committee (2026-2027): Edwin Paul (President, A-207), Pradeep Shetty (Secretary, A-104), Sunil Kumar (VP, B-211), Abdul Rehman (Treasurer, B-311).
+- Pool: Open 6:00 AM - 10:30 AM & 4:00 PM - 9:00 PM. Closed Tuesdays 10am-4pm. Nylon/spandex swimwear mandatory.
+- Clubhouse: Half Day = ₹2,500 (Morning 9am-3pm or Evening 4pm-10pm). Full Day = ₹5,000 (9am-10:30pm). Refundable deposit = ₹2,000. Music cutoff at 10 PM.
+- Current Works: CCTV (75%), Lift Wing A (90%), Solar Panel Grid (45%), Rainwater Harvesting (100%).
+- Helplines: Security Ext 101, Lift Rescue 1800-OTIS.
+Answer politely and format with emojis & bullet points.`;
 
           const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
             method: 'POST',
@@ -951,31 +950,31 @@ Always answer politely, concisely, and format cleanly.`;
             return data.candidates[0].content.parts[0].text;
           }
         } catch (err) {
-          console.warn("Gemini API call failed, using built-in engine:", err);
+          console.warn("Gemini fallback:", err);
         }
       }
 
-      // BUILT-IN SMART SOCIETY ENGINE (Zero Delay):
+      // BUILT-IN SOCIETY KNOWLEDGE BASE:
       if (lower.includes("pool") || lower.includes("swim") || lower.includes("dress")) {
-        return `🏊 **Swimming Pool Details:**\n• **Timings:** Morning (6:00 AM – 10:30 AM) & Evening (4:00 PM – 9:00 PM).\n• **Dress Code:** Proper nylon or spandex swimwear is mandatory. Cotton clothes are strictly prohibited.\n• **Maintenance:** Closed Tuesdays 10:00 AM – 4:00 PM.\n• You can book a 1-hour slot directly on the website under Amenities!`;
+        return `🏊 **Swimming Pool Guidelines:**\n• **Morning Session:** 6:00 AM – 10:30 AM\n• **Evening Session:** 4:00 PM – 9:00 PM\n• **Dress Code:** Proper nylon or spandex swimming costumes are mandatory (No cotton).\n• **Maintenance:** Closed Tuesdays from 10:00 AM – 4:00 PM.\n• You can reserve a 1-hour slot on the website under Amenities!`;
       }
-      if (lower.includes("club") || lower.includes("hall") || lower.includes("party") || lower.includes("tariff") || lower.includes("charge") || lower.includes("rate")) {
-        return `🏛️ **Clubhouse Tariff & Booking:**\n• **Half Day:** ₹2,500 (Morning 9 AM - 3 PM or Evening 4 PM - 10 PM)\n• **Full Day:** ₹5,000 (9:00 AM – 10:30 PM)\n• **Security Deposit:** ₹2,000 (Refundable post-event)\n• Loud music must stop by 10:00 PM.\n• You can submit a hall booking request right from the Clubhouse card!`;
+      if (lower.includes("club") || lower.includes("hall") || lower.includes("party") || lower.includes("tariff") || lower.includes("charge") || lower.includes("rate") || lower.includes("rent") || lower.includes("book")) {
+        return `🏛️ **Clubhouse Tariff & Booking:**\n• **Half Day:** ₹2,500 (Morning 9 AM - 3 PM OR Evening 4 PM - 10 PM)\n• **Full Day:** ₹5,000 (9:00 AM – 10:30 PM)\n• **Security Deposit:** ₹2,000 (Refundable post-event)\n• Loud music must stop by 10:00 PM.\n• You can submit a hall reservation request directly from the Clubhouse card!`;
       }
-      if (lower.includes("ec") || lower.includes("president") || lower.includes("secretary") || lower.includes("treasurer") || lower.includes("committee")) {
+      if (lower.includes("ec") || lower.includes("president") || lower.includes("secretary") || lower.includes("treasurer") || lower.includes("committee") || lower.includes("member")) {
         return `👥 **Executive Committee (2026 - 2027):**\n• **President:** Edwin Paul (Flat A-207)\n• **Secretary:** Pradeep Shetty (Flat A-104)\n• **Vice President:** Sunil Kumar (Flat B-211)\n• **Treasurer:** Abdul Rehman (Flat B-311)`;
       }
-      if (lower.includes("work") || lower.includes("cctv") || lower.includes("lift") || lower.includes("solar") || lower.includes("maintenance")) {
+      if (lower.includes("work") || lower.includes("cctv") || lower.includes("lift") || lower.includes("solar") || lower.includes("maintenance") || lower.includes("project")) {
         return `🛠️ **Current Works Progress:**\n• **CCTV Network Upgrades:** 75% (Target: Nov 20)\n• **Lift Modernization (Wing A):** 90% (Testing Phase)\n• **Solar Panel Grid (50kW):** 45% (Mounting Done)\n• **Rainwater Harvesting:** 100% (Completed & Verified)`;
       }
       if (lower.includes("water") || lower.includes("notice") || lower.includes("agm") || lower.includes("shutdown")) {
-        return `📢 **Latest Notices:**\n• **Water Supply Shutdown:** Friday 10:00 AM – 2:00 PM for tank cleaning.\n• **Annual General Meeting (AGM):** Sunday the 28th at 6:00 PM in the Clubhouse.`;
+        return `📢 **Latest Announcements:**\n• **Water Supply Shutdown:** Friday 10:00 AM – 2:00 PM for tank cleaning.\n• **Annual General Meeting (AGM):** Sunday the 28th at 6:00 PM in the Clubhouse.`;
       }
-      if (lower.includes("contact") || lower.includes("emergency") || lower.includes("gate") || lower.includes("number") || lower.includes("phone")) {
-        return `📞 **Emergency Helplines:**\n• **Main Gate Security:** Intercom Ext 101\n• **Lift Emergency Rescue:** 1800-OTIS\n• **Committee Email:** You can also use the EC Login or contact form!`;
+      if (lower.includes("contact") || lower.includes("emergency") || lower.includes("gate") || lower.includes("number") || lower.includes("phone") || lower.includes("security")) {
+        return `📞 **Emergency Helplines:**\n• **Main Gate Security:** Intercom Ext 101\n• **Lift Emergency Rescue:** 1800-OTIS\n• **Society Office:** You can also use the EC Login on the top navigation bar!`;
       }
 
-      return `Thank you for your question! As Venus AI, I can help you with:\n1. 🏊 Swimming pool timings, dress code & slot booking\n2. 🏛️ Clubhouse booking tariffs (₹2,500 / ₹5,000) & rules\n3. 👥 EC member details & flat numbers\n4. 🛠️ Ongoing society work updates\n5. 📢 Society circulars & notices`;
+      return `Hello! As your **Venus AI Assistant**, I can answer:\n1. 🏊 Swimming pool timings, dress code & slot booking\n2. 🏛️ Clubhouse booking tariffs (₹2,500 / ₹5,000) & rules\n3. 👥 EC member names & flat numbers\n4. 🛠️ Ongoing society maintenance & work updates\n5. 📢 Society circulars & notices\n\nWhat would you like to know?`;
     }
 
     // -------------------------------------------------------------
