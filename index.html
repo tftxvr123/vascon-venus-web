@@ -1156,6 +1156,55 @@ Answer politely and format with emojis & bullet points.`;
       syncSupabaseWorks();
       syncSupabaseMinutes();
     });
+
+// -------------------------------------------------------------
+    // INSTANT LIVE DATA LOADER
+    // -------------------------------------------------------------
+    async function loadLiveNotices() {
+      if (!supabase) return;
+      try {
+        const { data, error } = await supabase
+          .from('notices')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) {
+          console.error("Notice fetch error:", error);
+          return;
+        }
+
+        if (data && data.length > 0) {
+          const container = document.getElementById('notices-container');
+          if (container) {
+            container.innerHTML = data.map(n => `
+              <div class="bg-white border-l-4 ${n.is_urgent ? 'border-red-500' : 'border-blue-500'} p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold ${n.is_urgent ? 'text-red-600 bg-red-50' : 'text-blue-600 bg-blue-50'} uppercase tracking-wide px-2.5 py-0.5 rounded">
+                    ${n.is_urgent ? 'High Priority' : (n.category || 'General')}
+                  </span>
+                  <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> ${new Date(n.created_at).toLocaleDateString()}</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mt-3">${n.title}</h3>
+                <p class="text-sm text-gray-600 mt-2 leading-relaxed whitespace-pre-line">${n.description}</p>
+                <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+                  <span><i class="fa-solid fa-user-shield mr-1"></i> Vascon Venus EC</span>
+                  <span class="text-slate-700 font-medium">${n.category || 'Notice'}</span>
+                </div>
+              </div>
+            `).join('');
+          }
+        }
+      } catch (err) {
+        console.error("Live fetch error:", err);
+      }
+    }
+
+    // Call immediately on page load
+    loadLiveNotices();
+    syncSupabaseDirectory();
+    syncSupabaseWorks();
+    syncSupabaseMinutes();
+    
   </script>
 </body>
 </html>
