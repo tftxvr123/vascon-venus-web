@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EC Admin Portal - Vascon Venus</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -20,16 +19,15 @@
           <i class="fa-solid fa-shield-halved"></i>
         </div>
         <h1 class="text-2xl font-extrabold text-slate-900">Vascon Venus Admin</h1>
-        <p class="text-xs text-slate-500 mt-1">Sign in to manage the apartment portal</p>
+        <p class="text-xs text-slate-500 mt-1">Sign in with your committee credentials</p>
       </div>
 
-      <!-- Alert Box -->
-      <div id="error-box" class="hidden mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg font-medium"></div>
-      <div id="success-box" class="hidden mb-4 p-3 bg-green-50 border border-green-200 text-green-700 text-xs rounded-lg font-medium"></div>
+      <!-- Live Error/Success Box -->
+      <div id="alert-box" class="hidden mb-4 p-3 rounded-xl text-xs font-semibold leading-relaxed"></div>
 
-      <form id="login-form" class="space-y-4">
+      <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
         <div>
-          <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Email</label>
+          <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Admin Email</label>
           <input type="email" id="email" required placeholder="admin@vasconvenus.com" class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-sm">
         </div>
 
@@ -38,14 +36,14 @@
           <input type="password" id="password" required placeholder="••••••••" class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-sm">
         </div>
 
-        <button type="submit" id="login-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg text-sm transition">
+        <button type="submit" id="login-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg text-sm transition cursor-pointer">
           Log In to Dashboard
         </button>
       </form>
     </div>
   </div>
 
-  <!-- DASHBOARD SECTION (Shows after Login) -->
+  <!-- DASHBOARD SECTION -->
   <div id="dashboard-section" class="hidden min-h-screen bg-slate-50">
     
     <!-- Top Nav -->
@@ -55,14 +53,15 @@
         <span class="font-bold tracking-wide">VASCON VENUS ADMIN</span>
       </div>
       <div class="flex items-center space-x-4">
+        <span id="user-display" class="text-xs text-slate-300 hidden sm:inline-block font-mono"></span>
         <a href="index.html" target="_blank" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded transition">
           <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> View Website
         </a>
-        <button onclick="handleLogout()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-semibold px-3 py-1.5 rounded transition">Logout</button>
+        <button onclick="handleLogout()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-semibold px-3 py-1.5 rounded transition cursor-pointer">Logout</button>
       </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Main Content Grid -->
     <div class="max-w-5xl mx-auto p-6 space-y-8">
 
       <!-- 1. Post Notice -->
@@ -95,7 +94,7 @@
             <input type="checkbox" id="n-urgent" class="w-4 h-4 text-red-600">
             <label for="n-urgent" class="text-sm text-red-600 font-medium">Mark as High Priority Alert (Red)</label>
           </div>
-          <button type="submit" id="notice-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg">Post Notice</button>
+          <button type="submit" id="notice-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer">Post Notice</button>
         </form>
       </div>
 
@@ -128,7 +127,7 @@
             <label class="block text-xs font-semibold text-slate-600 mb-1">Select Minutes PDF *</label>
             <input type="file" id="m-file" accept="application/pdf" required class="w-full border p-2 rounded-lg text-sm">
           </div>
-          <button type="submit" id="minutes-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg">Publish Minutes</button>
+          <button type="submit" id="minutes-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer">Publish Minutes</button>
         </form>
       </div>
 
@@ -171,7 +170,7 @@
               <input type="text" id="r-parking" placeholder="e.g. P-22" class="w-full border px-3 py-2 rounded-lg text-sm">
             </div>
           </div>
-          <button type="submit" id="resident-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg">Save Flat Record</button>
+          <button type="submit" id="resident-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer">Save Flat Record</button>
         </form>
       </div>
 
@@ -211,7 +210,7 @@
             <label class="block text-xs font-semibold text-slate-600 mb-1">Description</label>
             <input type="text" id="w-desc" placeholder="Details about vendor, scope, etc." class="w-full border px-3 py-2 rounded-lg text-sm">
           </div>
-          <button type="submit" id="work-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg">Save Work Item</button>
+          <button type="submit" id="work-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer">Save Work Item</button>
         </form>
       </div>
 
@@ -220,53 +219,72 @@
 
   <!-- SCRIPT LOGIC -->
   <script>
-    // -------------------------------------------------------------
-    // PASTE YOUR ACTUAL SUPABASE KEYS HERE:
-    // -------------------------------------------------------------
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
 
-    let supabase;
-    const errorBox = document.getElementById('error-box');
-    const successBox = document.getElementById('success-box');
-
+    let supabase = null;
     try {
       supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     } catch (e) {
-      console.error(e);
+      console.error("Supabase config error:", e);
     }
 
-    // Check login session
+    function showAlert(msg, isError = true) {
+      const box = document.getElementById('alert-box');
+      box.className = isError 
+        ? "mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs font-semibold"
+        : "mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-xl text-xs font-semibold";
+      box.innerHTML = (isError ? '⚠️ ' : '✅ ') + msg;
+      box.classList.remove('hidden');
+    }
+
+    // Check existing session on load
     async function checkSession() {
       if (!supabase) return;
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
         document.getElementById('login-section').classList.add('hidden');
         document.getElementById('dashboard-section').classList.remove('hidden');
+        document.getElementById('user-display').innerText = session.user.email;
       }
     }
 
-    // Login Handler
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
+    // Direct Login Function
+    async function handleLogin(e) {
       e.preventDefault();
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value.trim();
       const btn = document.getElementById('login-btn');
 
-      btn.innerText = "Signing in...";
+      if (!supabase) {
+        showAlert("Database client not ready. Please check connection.");
+        return;
+      }
+
+      btn.innerText = "Verifying...";
       btn.disabled = true;
 
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        errorBox.innerText = error.message;
-        errorBox.classList.remove('hidden');
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        
+        if (error) {
+          showAlert(error.message, true);
+          btn.innerText = "Log In to Dashboard";
+          btn.disabled = false;
+        } else {
+          showAlert("Login Successful! Opening dashboard...", false);
+          setTimeout(() => {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.remove('hidden');
+            document.getElementById('user-display').innerText = data.user.email;
+          }, 500);
+        }
+      } catch (err) {
+        showAlert("Network error: " + err.message, true);
         btn.innerText = "Log In to Dashboard";
         btn.disabled = false;
-      } else {
-        document.getElementById('login-section').classList.add('hidden');
-        document.getElementById('dashboard-section').classList.remove('hidden');
       }
-    });
+    }
 
     async function handleLogout() {
       if (supabase) await supabase.auth.signOut();
