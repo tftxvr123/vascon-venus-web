@@ -64,7 +64,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
-      <!-- Amenity 1: Swimming Pool (Direct Guaranteed Trigger) -->
+      <!-- Amenity 1: Swimming Pool (Clickable) -->
       <div onclick="document.getElementById('pool-modal').style.display='flex';" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:border-amber-400 transition duration-300 cursor-pointer group flex flex-col justify-between">
         <div>
           <div class="h-48 overflow-hidden relative">
@@ -105,18 +105,29 @@
         </div>
       </div>
 
-      <!-- Amenity 3: Clubhouse -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
-        <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&auto=format&fit=crop&q=80" alt="Clubhouse" class="w-full h-full object-cover">
-          <span class="absolute top-3 right-3 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full font-medium">Resident Booking</span>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center space-x-2 text-amber-500 mb-2">
-            <i class="fa-solid fa-users text-lg"></i>
-            <h3 class="font-bold text-slate-900 text-lg">Community Clubhouse</h3>
+      <!-- Amenity 3: Clubhouse (Clickable Booking) -->
+      <div onclick="document.getElementById('clubhouse-modal').style.display='flex';" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:border-amber-400 transition duration-300 cursor-pointer group flex flex-col justify-between">
+        <div>
+          <div class="h-48 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&auto=format&fit=crop&q=80" alt="Clubhouse" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs px-2.5 py-1 rounded-full font-bold">From ₹2,500</span>
+            <span class="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium">
+              <i class="fa-solid fa-champagne-glasses mr-1 text-amber-400"></i> Events & Parties
+            </span>
           </div>
-          <p class="text-sm text-gray-600">Spacious hall for society meetings, private resident functions, and celebrations.</p>
+          <div class="p-6 pb-2">
+            <div class="flex items-center space-x-2 text-amber-500 mb-2">
+              <i class="fa-solid fa-users text-lg"></i>
+              <h3 class="font-bold text-slate-900 text-lg group-hover:text-amber-600 transition">Community Clubhouse</h3>
+            </div>
+            <p class="text-sm text-gray-600">Spacious banquet hall for private family parties, birthdays, and celebrations. View tariff and reserve.</p>
+          </div>
+        </div>
+        <div class="p-6 pt-2">
+          <button type="button" onclick="document.getElementById('clubhouse-modal').style.display='flex';" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition">
+            <i class="fa-solid fa-calendar-plus text-amber-400"></i>
+            <span>View Tariff & Book Hall</span>
+          </button>
         </div>
       </div>
 
@@ -527,11 +538,11 @@
     </div>
   </section>
 
-  <!-- SWIMMING POOL MODAL (With Absolute High Priority Display) -->
+  <!-- 1. SWIMMING POOL MODAL -->
   <div id="pool-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100vh; background-color: rgba(15, 23, 42, 0.85); z-index: 999999; align-items: center; justify-content: center; padding: 1rem;">
     <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 relative" onclick="event.stopPropagation();">
       
-      <!-- Modal Header -->
+      <!-- Header -->
       <div class="bg-slate-900 text-white p-6 flex justify-between items-center sticky top-0 z-10">
         <div class="flex items-center space-x-3">
           <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center text-xl">
@@ -546,8 +557,7 @@
       </div>
 
       <div class="p-6 space-y-6 text-sm text-slate-700">
-
-        <!-- 1. Timings & Batches -->
+        <!-- Timings -->
         <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
           <h4 class="font-bold text-slate-900 text-sm flex items-center mb-2">
             <i class="fa-regular fa-clock text-amber-500 mr-2"></i> Operational Timings & Batches
@@ -565,7 +575,7 @@
           <p class="text-[11px] text-amber-700 mt-2 font-medium">⚠️ Closed on Tuesdays from 10:00 AM to 4:00 PM for deep filtration and chlorination.</p>
         </div>
 
-        <!-- 2. Dress Code & Pool Rules -->
+        <!-- Rules -->
         <div class="space-y-2">
           <h4 class="font-bold text-slate-900 text-sm flex items-center">
             <i class="fa-solid fa-shirt text-blue-500 mr-2"></i> Dress Code & Mandatory Rules
@@ -578,7 +588,7 @@
           </ul>
         </div>
 
-        <!-- 3. Slot Booking Form -->
+        <!-- Form -->
         <div class="bg-amber-50/70 p-5 rounded-2xl border border-amber-200">
           <h4 class="font-bold text-slate-900 text-sm flex items-center mb-1">
             <i class="fa-solid fa-calendar-check text-amber-600 mr-2"></i> Reserve Pool Slot (Residents Only)
@@ -626,6 +636,115 @@
     </div>
   </div>
 
+  <!-- 2. CLUBHOUSE BOOKING MODAL -->
+  <div id="clubhouse-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100vh; background-color: rgba(15, 23, 42, 0.85); z-index: 999999; align-items: center; justify-content: center; padding: 1rem;">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 relative" onclick="event.stopPropagation();">
+      
+      <!-- Header -->
+      <div class="bg-slate-900 text-white p-6 flex justify-between items-center sticky top-0 z-10">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center text-xl">
+            <i class="fa-solid fa-champagne-glasses"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold">Community Clubhouse Reservation</h3>
+            <p class="text-xs text-slate-400">Vascon Venus Hall Booking & Tariff Structure</p>
+          </div>
+        </div>
+        <button type="button" onclick="document.getElementById('clubhouse-modal').style.display='none';" class="text-slate-400 hover:text-white text-3xl font-bold leading-none cursor-pointer">&times;</button>
+      </div>
+
+      <div class="p-6 space-y-6 text-sm text-slate-700">
+
+        <!-- Tariff Cards -->
+        <div>
+          <h4 class="font-bold text-slate-900 text-sm flex items-center mb-3">
+            <i class="fa-solid fa-tag text-amber-500 mr-2"></i> Official Booking Tariff
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Half Day Card -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+              <span class="bg-amber-100 text-amber-800 text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full">Half Day</span>
+              <p class="text-2xl font-black text-slate-900 mt-2">₹2,500</p>
+              <p class="text-xs text-slate-500 mt-1">Morning (9 AM - 3 PM) OR Evening (4 PM - 10 PM)</p>
+            </div>
+            <!-- Full Day Card -->
+            <div class="bg-slate-50 p-4 rounded-xl border-2 border-amber-500 text-center relative shadow-sm">
+              <span class="bg-amber-500 text-slate-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full">Full Day Access</span>
+              <p class="text-2xl font-black text-slate-900 mt-2">₹5,000</p>
+              <p class="text-xs text-slate-500 mt-1">Full Day (9:00 AM to 10:30 PM)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rules & Guidelines -->
+        <div class="space-y-2 bg-blue-50/60 p-4 rounded-xl border border-blue-200 text-xs">
+          <h4 class="font-bold text-slate-900 text-xs flex items-center">
+            <i class="fa-solid fa-circle-info text-blue-600 mr-1.5"></i> Important Hall Guidelines:
+          </h4>
+          <ul class="list-disc pl-4 space-y-1 text-slate-600 leading-relaxed">
+            <li><strong>Refundable Security Deposit:</strong> ₹2,000 extra (refundable post-event inspection).</li>
+            <li><strong>Music / Sound Restriction:</strong> Loud music/speakers strictly prohibited after 10:00 PM as per society bylaws.</li>
+            <li><strong>Cleaning & Catering:</strong> Resident is responsible for post-event hall cleaning and waste disposal.</li>
+          </ul>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="bg-amber-50/70 p-5 rounded-2xl border border-amber-200">
+          <h4 class="font-bold text-slate-900 text-sm flex items-center mb-1">
+            <i class="fa-solid fa-calendar-plus text-amber-600 mr-2"></i> Book Clubhouse Hall
+          </h4>
+          <p class="text-xs text-slate-500 mb-4">Select your event date and slot. EC will confirm receipt and key handover.</p>
+
+          <form id="clubhouse-book-form" onsubmit="handleClubhouseBooking(event)" class="space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Event Date</label>
+                <input type="date" id="ch-date" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Booking Slot & Tariff</label>
+                <select id="ch-slot" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500 font-semibold text-slate-800">
+                  <option value="Half Day - Morning (9:00 AM - 3:00 PM) - ₹2,500">Half Day: Morning (9 AM - 3 PM) — ₹2,500</option>
+                  <option value="Half Day - Evening (4:00 PM - 10:00 PM) - ₹2,500">Half Day: Evening (4 PM - 10 PM) — ₹2,500</option>
+                  <option value="Full Day (9:00 AM - 10:30 PM) - ₹5,000">Full Day (9 AM - 10:30 PM) — ₹5,000</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Event Purpose / Occasion</label>
+                <input type="text" id="ch-purpose" required placeholder="e.g. Birthday Party, Anniversary" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Expected Number of Guests</label>
+                <input type="number" id="ch-guests" min="5" max="150" placeholder="e.g. 40" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Flat Number</label>
+                <input type="text" id="ch-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Contact Phone Number</label>
+                <input type="tel" id="ch-phone" required placeholder="+91 98765 00000" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+              </div>
+            </div>
+
+            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg text-xs transition mt-3 cursor-pointer flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-receipt text-amber-400"></i>
+              <span>Submit Clubhouse Booking Request</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="bg-slate-900 text-slate-400 py-10 text-sm">
     <div class="max-w-7xl mx-auto px-4 text-center">
@@ -651,13 +770,16 @@
       console.error("Supabase init error:", e);
     }
 
-    // Set today's date for pool booking
+    // Set default dates on load
     window.addEventListener('DOMContentLoaded', () => {
       const today = new Date().toISOString().split('T')[0];
-      const dateInput = document.getElementById('pool-date');
-      if (dateInput) dateInput.value = today;
+      const poolDate = document.getElementById('pool-date');
+      const chDate = document.getElementById('ch-date');
+      if (poolDate) poolDate.value = today;
+      if (chDate) chDate.value = today;
     });
 
+    // 1. Pool Booking Handler
     window.handlePoolBooking = function(e) {
       e.preventDefault();
       const date = document.getElementById('pool-date').value;
@@ -670,11 +792,26 @@
       document.getElementById('pool-book-form').reset();
     };
 
-    // Close modal when clicking outside background
+    // 2. Clubhouse Booking Handler
+    window.handleClubhouseBooking = function(e) {
+      e.preventDefault();
+      const date = document.getElementById('ch-date').value;
+      const slot = document.getElementById('ch-slot').value;
+      const purpose = document.getElementById('ch-purpose').value;
+      const flat = document.getElementById('ch-flat').value.toUpperCase();
+      const phone = document.getElementById('ch-phone').value;
+
+      alert(`🎉 Clubhouse Booking Request Received!\n\nFlat: ${flat}\nDate: ${date}\nOccasion: ${purpose}\nSelected Slot: ${slot}\nContact: ${phone}\n\nPayment & Key Handover: Please contact the Treasurer/Secretary to transfer the booking amount and ₹2,000 security deposit.`);
+      document.getElementById('clubhouse-modal').style.display = 'none';
+      document.getElementById('clubhouse-book-form').reset();
+    };
+
+    // Close modals when clicking background
     document.getElementById('pool-modal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.style.display = 'none';
-      }
+      if (e.target === this) this.style.display = 'none';
+    });
+    document.getElementById('clubhouse-modal').addEventListener('click', function(e) {
+      if (e.target === this) this.style.display = 'none';
     });
 
     // -------------------------------------------------------------
