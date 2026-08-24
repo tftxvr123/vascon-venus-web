@@ -6,8 +6,6 @@
   <title>Vascon Venus Apartment - Official Portal</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Supabase JS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans relative">
@@ -64,7 +62,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
-      <!-- Amenity 1: Swimming Pool (Clickable) -->
+      <!-- Amenity 1: Swimming Pool -->
       <div onclick="document.getElementById('pool-modal').style.display='flex';" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:border-amber-400 transition duration-300 cursor-pointer group flex flex-col justify-between">
         <div>
           <div class="h-48 overflow-hidden relative">
@@ -105,7 +103,7 @@
         </div>
       </div>
 
-      <!-- Amenity 3: Clubhouse (Clickable Booking) -->
+      <!-- Amenity 3: Clubhouse -->
       <div onclick="document.getElementById('clubhouse-modal').style.display='flex';" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:border-amber-400 transition duration-300 cursor-pointer group flex flex-col justify-between">
         <div>
           <div class="h-48 overflow-hidden relative">
@@ -179,7 +177,7 @@
     </div>
   </section>
 
-  <!-- Announcements & Notices Section -->
+  <!-- Announcements & Notices Section (Live Synced) -->
   <section id="notices" class="max-w-7xl mx-auto px-4 py-16">
     <div class="flex items-center justify-between mb-8">
       <div>
@@ -194,50 +192,7 @@
     </div>
 
     <div id="notices-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-white border-l-4 border-red-500 p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold text-red-600 uppercase tracking-wide bg-red-50 px-2.5 py-0.5 rounded">High Priority</span>
-          <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> Today</span>
-        </div>
-        <h3 class="text-lg font-bold text-slate-900 mt-3">Water Supply Shutdown</h3>
-        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          Overhead and underground tank cleaning scheduled for Friday from 10:00 AM to 2:00 PM. Please store sufficient water in advance.
-        </p>
-        <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-          <span><i class="fa-solid fa-user-shield mr-1"></i> Vascon Venus EC</span>
-          <span class="text-red-500 font-medium">All Wings</span>
-        </div>
-      </div>
-
-      <div class="bg-white border-l-4 border-blue-500 p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold text-blue-600 uppercase tracking-wide bg-blue-50 px-2.5 py-0.5 rounded">General Body</span>
-          <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> Yesterday</span>
-        </div>
-        <h3 class="text-lg font-bold text-slate-900 mt-3">Annual General Meeting (AGM)</h3>
-        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          The 2025 AGM will be held in the Community Clubhouse on Sunday the 28th of this month at 6:00 PM. All flat owners are requested to attend.
-        </p>
-        <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-          <span><i class="fa-solid fa-user-shield mr-1"></i> Secretary</span>
-          <span class="text-blue-500 font-medium">Clubhouse</span>
-        </div>
-      </div>
-
-      <div class="bg-white border-l-4 border-green-500 p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold text-green-600 uppercase tracking-wide bg-green-50 px-2.5 py-0.5 rounded">Social & Event</span>
-          <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 3 days ago</span>
-        </div>
-        <h3 class="text-lg font-bold text-slate-900 mt-3">Diwali Celebration & Dinner</h3>
-        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          Join us for community cultural programs, music, and buffet dinner next Saturday starting at 6:30 PM in the central amphitheater.
-        </p>
-        <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-          <span><i class="fa-solid fa-heart text-red-400 mr-1"></i> Cultural Comm.</span>
-          <span class="text-green-600 font-medium">All Residents</span>
-        </div>
-      </div>
+      <div class="col-span-3 text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading live notices...</div>
     </div>
   </section>
 
@@ -256,101 +211,7 @@
       </div>
 
       <div id="tracker-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
-          <div class="flex justify-between items-start mb-3">
-            <div>
-              <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Security & Surveillance</span>
-              <h4 class="font-bold text-slate-900 text-lg mt-0.5">CCTV Network Upgrades</h4>
-            </div>
-            <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full font-semibold">In Progress</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-4">Installing 16 new night-vision HD cameras in parking basement, perimeter walls, and main lobby.</p>
-          <div class="space-y-1.5">
-            <div class="flex justify-between text-xs font-bold text-slate-700">
-              <span>Work Progress</span>
-              <span>75%</span>
-            </div>
-            <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
-              <div class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: 75%"></div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-            <span><i class="fa-regular fa-calendar mr-1"></i> Target: Nov 20, 2025</span>
-            <span class="font-medium text-slate-700">Vendor: SecureVision Tech</span>
-          </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
-          <div class="flex justify-between items-start mb-3">
-            <div>
-              <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">Vertical Transport</span>
-              <h4 class="font-bold text-slate-900 text-lg mt-0.5">Lift Modernization (Wing A)</h4>
-            </div>
-            <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-semibold">Testing Phase</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-4">Motor replacement, cabin refurbishment, and safety sensor recalibration by OTIS engineers.</p>
-          <div class="space-y-1.5">
-            <div class="flex justify-between text-xs font-bold text-slate-700">
-              <span>Work Progress</span>
-              <span>90%</span>
-            </div>
-            <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
-              <div class="bg-amber-500 h-3 rounded-full transition-all duration-500" style="width: 90%"></div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-            <span><i class="fa-regular fa-calendar mr-1"></i> Target: Nov 15, 2025</span>
-            <span class="font-medium text-slate-700">Vendor: OTIS Elevators</span>
-          </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
-          <div class="flex justify-between items-start mb-3">
-            <div>
-              <span class="text-xs font-semibold text-purple-600 uppercase tracking-wider">Green Energy</span>
-              <h4 class="font-bold text-slate-900 text-lg mt-0.5">Common Area Solar Grid (50kW)</h4>
-            </div>
-            <span class="bg-purple-100 text-purple-800 text-xs px-2.5 py-1 rounded-full font-semibold">Structure Done</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-4">Rooftop mounting structure complete on Wing B & C. Inverter and panel wiring underway.</p>
-          <div class="space-y-1.5">
-            <div class="flex justify-between text-xs font-bold text-slate-700">
-              <span>Work Progress</span>
-              <span>45%</span>
-            </div>
-            <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
-              <div class="bg-purple-600 h-3 rounded-full transition-all duration-500" style="width: 45%"></div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-            <span><i class="fa-regular fa-calendar mr-1"></i> Target: Dec 10, 2025</span>
-            <span class="font-medium text-slate-700">Vendor: Tata Solar</span>
-          </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
-          <div class="flex justify-between items-start mb-3">
-            <div>
-              <span class="text-xs font-semibold text-green-600 uppercase tracking-wider">Water Management</span>
-              <h4 class="font-bold text-slate-900 text-lg mt-0.5">Rainwater Harvesting Desilting</h4>
-            </div>
-            <span class="bg-green-100 text-green-800 text-xs px-2.5 py-1 rounded-full font-semibold">Completed</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-4">Filter pit cleaning, sand replacement, and recharge bore desilting completed before winter.</p>
-          <div class="space-y-1.5">
-            <div class="flex justify-between text-xs font-bold text-slate-700">
-              <span>Work Progress</span>
-              <span>100%</span>
-            </div>
-            <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
-              <div class="bg-green-600 h-3 rounded-full transition-all duration-500" style="width: 100%"></div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-            <span><i class="fa-regular fa-calendar mr-1"></i> Completed: Oct 30, 2025</span>
-            <span class="font-medium text-green-600"><i class="fa-solid fa-circle-check mr-1"></i> Verified</span>
-          </div>
-        </div>
+        <div class="col-span-2 text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading projects...</div>
       </div>
     </div>
   </section>
@@ -381,48 +242,7 @@
               </tr>
             </thead>
             <tbody id="minutes-container" class="divide-y divide-gray-100 text-sm">
-              <tr class="hover:bg-slate-50 transition">
-                <td class="py-4 px-4 font-bold text-slate-900">Oct 12, 2025</td>
-                <td class="py-4 px-4">
-                  <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">Monthly EC</span>
-                </td>
-                <td class="py-4 px-4 text-gray-600">
-                  Solar panel vendor finalized for Wing A & B. Diwali bonus approved for maintenance and security staff.
-                </td>
-                <td class="py-4 px-4 text-right">
-                  <a href="#" onclick="alert('Sample PDF preview. Real uploaded PDFs from Admin portal will open directly.'); return false;" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
-                  </a>
-                </td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition">
-                <td class="py-4 px-4 font-bold text-slate-900">Sep 15, 2025</td>
-                <td class="py-4 px-4">
-                  <span class="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full text-xs font-semibold">AGM 2025</span>
-                </td>
-                <td class="py-4 px-4 text-gray-600">
-                  Annual financial audit report approval, election of 2024-2026 EC members, sinking fund review.
-                </td>
-                <td class="py-4 px-4 text-right">
-                  <a href="#" onclick="alert('Sample PDF preview. Real uploaded PDFs from Admin portal will open directly.'); return false;" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
-                  </a>
-                </td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition">
-                <td class="py-4 px-4 font-bold text-slate-900">Aug 20, 2025</td>
-                <td class="py-4 px-4">
-                  <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">Monthly EC</span>
-                </td>
-                <td class="py-4 px-4 text-gray-600">
-                  CCTV upgrade vendor quotations review, swimming pool filtration servicing timeline finalized.
-                </td>
-                <td class="py-4 px-4 text-right">
-                  <a href="#" onclick="alert('Sample PDF preview. Real uploaded PDFs from Admin portal will open directly.'); return false;" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
-                  </a>
-                </td>
-              </tr>
+              <tr><td colspan="4" class="text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading minutes...</td></tr>
             </tbody>
           </table>
         </div>
@@ -455,7 +275,6 @@
       </div>
     </div>
 
-    <!-- Directory Table with Immediate Display -->
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
@@ -469,34 +288,7 @@
             </tr>
           </thead>
           <tbody id="directory-container" class="divide-y divide-gray-100 text-sm">
-            <tr class="hover:bg-slate-50 transition border-b border-gray-100">
-              <td class="py-3.5 px-4 font-bold text-slate-900">A-207</td>
-              <td class="py-3.5 px-4 font-medium text-slate-800">Edwin Paul</td>
-              <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Owner Occupied</span></td>
-              <td class="py-3.5 px-4 text-slate-400">N/A</td>
-              <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">P-01</td>
-            </tr>
-            <tr class="hover:bg-slate-50 transition border-b border-gray-100">
-              <td class="py-3.5 px-4 font-bold text-slate-900">B-211</td>
-              <td class="py-3.5 px-4 font-medium text-slate-800">Sunil Kumar</td>
-              <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Owner Occupied</span></td>
-              <td class="py-3.5 px-4 text-slate-400">N/A</td>
-              <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">P-02</td>
-            </tr>
-            <tr class="hover:bg-slate-50 transition border-b border-gray-100">
-              <td class="py-3.5 px-4 font-bold text-slate-900">B-311</td>
-              <td class="py-3.5 px-4 font-medium text-slate-800">Abdul Rehman</td>
-              <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Owner Occupied</span></td>
-              <td class="py-3.5 px-4 text-slate-400">N/A</td>
-              <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">P-14</td>
-            </tr>
-            <tr class="hover:bg-slate-50 transition border-b border-gray-100">
-              <td class="py-3.5 px-4 font-bold text-slate-900">A-001</td>
-              <td class="py-3.5 px-4 font-medium text-slate-800">Niju Jose</td>
-              <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Owner Occupied</span></td>
-              <td class="py-3.5 px-4 text-slate-400">N/A</td>
-              <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">P-15</td>
-            </tr>
+            <tr><td colspan="5" class="text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading directory...</td></tr>
           </tbody>
         </table>
       </div>
@@ -730,7 +522,7 @@
     </div>
   </div>
 
-  <!-- 3. VENUS AI RESIDENT ASSISTANT FLOATING BUTTON -->
+  <!-- 3. VENUS AI FLOATING BUTTON -->
   <div id="ai-launcher" onclick="var w=document.getElementById('ai-chat-window'); w.style.display = (w.style.display === 'none' || w.style.display === '') ? 'flex' : 'none';" style="position: fixed; bottom: 24px; right: 24px; z-index: 999999; cursor: pointer;" class="flex items-center space-x-2 group">
     <div class="bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-2xl border border-amber-400/40 hidden sm:flex items-center space-x-1.5 group-hover:bg-slate-800 transition">
       <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
@@ -741,10 +533,8 @@
     </div>
   </div>
 
-  <!-- 4. VENUS AI CHAT DRAWER WINDOW -->
+  <!-- 4. VENUS AI CHAT WINDOW -->
   <div id="ai-chat-window" style="display: none; position: fixed; bottom: 90px; right: 24px; width: 380px; max-width: 92vw; height: 520px; max-height: 80vh; z-index: 9999999; flex-direction: column;" class="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
-    
-    <!-- Chat Header -->
     <div class="bg-slate-900 text-white p-4 flex justify-between items-center shadow flex-shrink-0">
       <div class="flex items-center space-x-2.5">
         <div class="w-9 h-9 bg-amber-400 text-slate-900 rounded-full flex items-center justify-center text-lg font-bold">
@@ -762,10 +552,7 @@
       <button type="button" onclick="document.getElementById('ai-chat-window').style.display='none';" class="text-slate-400 hover:text-white text-2xl font-bold leading-none cursor-pointer">&times;</button>
     </div>
 
-    <!-- Message Stream -->
     <div id="ai-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50 text-xs">
-      
-      <!-- Welcome Message from Bot -->
       <div class="flex items-start space-x-2">
         <div class="w-7 h-7 bg-amber-400 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
           <i class="fa-solid fa-robot"></i>
@@ -776,17 +563,14 @@
         </div>
       </div>
 
-      <!-- Quick Suggestion Pills -->
       <div class="pt-1 flex flex-wrap gap-1.5" id="ai-chips">
         <button onclick="askSuggestion('What are the swimming pool timings & rules?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">🏊 Pool Timings & Rules</button>
         <button onclick="askSuggestion('How much is the clubhouse booking tariff?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">🏛️ Clubhouse Rates</button>
         <button onclick="askSuggestion('Who are the Executive Committee members?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">👥 EC Members & Flats</button>
         <button onclick="askSuggestion('What are the current works in progress?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">🛠️ Current Works</button>
       </div>
-
     </div>
 
-    <!-- Input Bar -->
     <form id="ai-input-form" onsubmit="return sendAIMessage(event)" class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2 flex-shrink-0">
       <input type="text" id="ai-query" placeholder="Ask anything about Vascon Venus..." required class="flex-1 bg-slate-100 border border-slate-200 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500 text-slate-800">
       <button type="submit" id="ai-send-btn" class="bg-slate-900 hover:bg-slate-800 text-amber-400 w-9 h-9 rounded-xl flex items-center justify-center text-sm transition cursor-pointer flex-shrink-0">
@@ -803,25 +587,12 @@
     </div>
   </footer>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- NATIVE LIVE REST API SYNC SCRIPT -->
   <script>
-    // -------------------------------------------------------------
-    // CONFIGURATION
-    // -------------------------------------------------------------
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
-    const GEMINI_API_KEY = ""; 
 
-    let supabase = null;
-    try {
-      if (SUPABASE_URL.startsWith("http") && !SUPABASE_URL.includes("YOUR_SUPABASE")) {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      }
-    } catch (e) {
-      console.error("Supabase init error:", e);
-    }
-
-    // Set default dates on load
+    // Set default dates
     window.addEventListener('DOMContentLoaded', () => {
       const today = new Date().toISOString().split('T')[0];
       const poolDate = document.getElementById('pool-date');
@@ -830,44 +601,198 @@
       if (chDate) chDate.value = today;
     });
 
-    // 1. Pool Booking Handler
+    // 1. Direct Native Fetch: Live Notices
+    async function loadLiveNotices() {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/notices?select=*&order=created_at.desc`, {
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          const container = document.getElementById('notices-container');
+          container.innerHTML = data.map(n => `
+            <div class="bg-white border-l-4 ${n.is_urgent ? 'border-red-500' : 'border-blue-500'} p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold ${n.is_urgent ? 'text-red-600 bg-red-50' : 'text-blue-600 bg-blue-50'} uppercase tracking-wide px-2.5 py-0.5 rounded">
+                  ${n.is_urgent ? 'High Priority' : (n.category || 'General')}
+                </span>
+                <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> ${new Date(n.created_at).toLocaleDateString()}</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mt-3">${n.title}</h3>
+              <p class="text-sm text-gray-600 mt-2 leading-relaxed whitespace-pre-line">${n.description}</p>
+              <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+                <span><i class="fa-solid fa-user-shield mr-1"></i> Vascon Venus EC</span>
+                <span class="text-slate-700 font-medium">${n.category || 'Notice'}</span>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (e) {
+        console.error("Notice load error:", e);
+      }
+    }
+
+    // 2. Direct Native Fetch: Work Tracker
+    async function loadLiveWorks() {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/works_tracker?select=*&order=created_at.desc`, {
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          const container = document.getElementById('tracker-container');
+          container.innerHTML = data.map(w => `
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Project Update</span>
+                  <h4 class="font-bold text-slate-900 text-lg mt-0.5">${w.title}</h4>
+                </div>
+                <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full font-semibold">${w.status}</span>
+              </div>
+              <p class="text-sm text-gray-600 mb-4">${w.description || ''}</p>
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs font-bold text-slate-700">
+                  <span>Work Progress</span>
+                  <span>${w.progress_percentage}%</span>
+                </div>
+                <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+                  <div class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: ${w.progress_percentage}%"></div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+                <span><i class="fa-regular fa-calendar mr-1"></i> Target: ${w.target_date ? new Date(w.target_date).toLocaleDateString() : 'Ongoing'}</span>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (e) {
+        console.error("Works load error:", e);
+      }
+    }
+
+    // 3. Direct Native Fetch: Meeting Minutes
+    async function loadLiveMinutes() {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/meeting_minutes?select=*&order=meeting_date.desc`, {
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          const tbody = document.getElementById("minutes-container");
+          tbody.innerHTML = data.map(m => `
+            <tr class="hover:bg-slate-50 transition border-b border-gray-100">
+              <td class="py-4 px-4 font-bold text-slate-900">${new Date(m.meeting_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+              <td class="py-4 px-4">
+                <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">${m.meeting_type}</span>
+              </td>
+              <td class="py-4 px-4 text-gray-600">${m.agenda_summary}</td>
+              <td class="py-4 px-4 text-right">
+                <a href="${m.pdf_url}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
+                  <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
+                </a>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.error("Minutes load error:", e);
+      }
+    }
+
+    // 4. Direct Native Fetch: Resident Directory
+    async function loadLiveDirectory() {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/resident_directory?select=*&order=flat_no.asc`, {
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          const tbody = document.getElementById("directory-container");
+          tbody.innerHTML = data.map(r => `
+            <tr class="hover:bg-slate-50 transition border-b border-gray-100">
+              <td class="py-3.5 px-4 font-bold text-slate-900">${r.flat_no}</td>
+              <td class="py-3.5 px-4 font-medium text-slate-800">${r.owner_name}</td>
+              <td class="py-3.5 px-4">
+                <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${
+                  r.occupancy_status === 'Owner Occupied' ? 'bg-green-100 text-green-800' :
+                  r.occupancy_status === 'Tenant Occupied' ? 'bg-blue-100 text-blue-800' :
+                  'bg-gray-100 text-gray-700'
+                }">
+                  ${r.occupancy_status || 'Owner Occupied'}
+                </span>
+              </td>
+              <td class="py-3.5 px-4 text-slate-600">${r.tenant_name || '<span class="text-gray-400">N/A</span>'}</td>
+              <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">${r.parking_slot || 'N/A'}</td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.error("Directory load error:", e);
+      }
+    }
+
+    // Call all loaders immediately
+    loadLiveNotices();
+    loadLiveWorks();
+    loadLiveMinutes();
+    loadLiveDirectory();
+
+    // Directory Filtering
+    let selectedWing = '';
+    window.filterByWing = function(wing, btnElement) {
+      selectedWing = wing.toUpperCase().trim();
+      const buttons = document.querySelectorAll('.wing-btn');
+      buttons.forEach(b => b.className = "wing-btn hover:bg-slate-200 text-slate-700 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition");
+      if (btnElement) btnElement.className = "wing-btn bg-slate-900 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition";
+      applyCombinedFilter();
+    };
+
+    window.applyCombinedFilter = function() {
+      const searchInput = document.getElementById("dir-search");
+      const searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : "";
+      const tbody = document.getElementById("directory-container");
+      if (!tbody) return;
+      const rows = tbody.getElementsByTagName("tr");
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const cells = row.getElementsByTagName("td");
+        if (cells.length === 0) continue;
+        const flatNumber = (cells[0].textContent || cells[0].innerText || "").toUpperCase().trim();
+        const fullRowText = (row.textContent || row.innerText || "").toLowerCase();
+        const matchesWing = (selectedWing === "") || flatNumber.startsWith(selectedWing + "-") || flatNumber.startsWith(selectedWing);
+        const matchesSearch = (searchQuery === "") || fullRowText.includes(searchQuery);
+        row.style.display = (matchesWing && matchesSearch) ? "" : "none";
+      }
+    };
+
+    // Modal Bookings
     window.handlePoolBooking = function(e) {
       e.preventDefault();
-      const date = document.getElementById('pool-date').value;
-      const slot = document.getElementById('pool-slot').value;
-      const flat = document.getElementById('pool-flat').value.toUpperCase();
-      const count = document.getElementById('pool-count').value;
-
-      alert(`✅ Pool Slot Confirmed!\n\nFlat: ${flat}\nDate: ${date}\nTime: ${slot}\nSwimmers: ${count}\n\nPlease carry your resident ID card to the pool deck.`);
+      alert(`✅ Pool Slot Confirmed!\n\nPlease carry your resident ID card to the pool deck.`);
       document.getElementById('pool-modal').style.display = 'none';
-      document.getElementById('pool-book-form').reset();
     };
 
-    // 2. Clubhouse Booking Handler
     window.handleClubhouseBooking = function(e) {
       e.preventDefault();
-      const date = document.getElementById('ch-date').value;
-      const slot = document.getElementById('ch-slot').value;
-      const purpose = document.getElementById('ch-purpose').value;
-      const flat = document.getElementById('ch-flat').value.toUpperCase();
-      const phone = document.getElementById('ch-phone').value;
-
-      alert(`🎉 Clubhouse Booking Request Received!\n\nFlat: ${flat}\nDate: ${date}\nOccasion: ${purpose}\nSelected Slot: ${slot}\nContact: ${phone}\n\nPayment & Key Handover: Please contact the Treasurer/Secretary to transfer the booking amount and ₹2,000 security deposit.`);
+      alert(`🎉 Clubhouse Booking Request Received!\n\nPlease contact Treasurer/Secretary for security deposit and key handover.`);
       document.getElementById('clubhouse-modal').style.display = 'none';
-      document.getElementById('clubhouse-book-form').reset();
     };
 
-    // Close modals on outside click
-    document.getElementById('pool-modal').addEventListener('click', function(e) { if (e.target === this) this.style.display = 'none'; });
-    document.getElementById('clubhouse-modal').addEventListener('click', function(e) { if (e.target === this) this.style.display = 'none'; });
-
-    // -------------------------------------------------------------
-    // 🤖 VENUS AI CHATBOT SYSTEM (INSTANT & GUARANTEED ANSWERS)
-    // -------------------------------------------------------------
-    window.askSuggestion = function(text) {
-      processAIMessage(text);
-    };
-
+    // Venus AI Engine
+    window.askSuggestion = function(text) { processAIMessage(text); };
     window.sendAIMessage = function(e) {
       if (e) e.preventDefault();
       const input = document.getElementById('ai-query');
@@ -883,328 +808,26 @@
       const chips = document.getElementById('ai-chips');
       if (chips) chips.style.display = 'none';
 
-      // 1. Render User Bubble
-      const userBubble = document.createElement('div');
-      userBubble.className = "flex items-end justify-end space-x-2";
-      userBubble.innerHTML = `
-        <div class="bg-slate-900 text-white p-3 rounded-2xl rounded-br-none max-w-[85%] shadow-sm leading-relaxed text-xs">
-          ${userText}
-        </div>
-      `;
-      container.appendChild(userBubble);
+      container.innerHTML += `<div class="flex items-end justify-end space-x-2"><div class="bg-slate-900 text-white p-3 rounded-2xl rounded-br-none max-w-[85%] shadow-sm leading-relaxed text-xs">${userText}</div></div>`;
       container.scrollTop = container.scrollHeight;
 
-      // 2. Render Typing Indicator
       const typingBubble = document.createElement('div');
       typingBubble.className = "flex items-start space-x-2";
-      typingBubble.innerHTML = `
-        <div class="w-7 h-7 bg-amber-400 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
-          <i class="fa-solid fa-robot"></i>
-        </div>
-        <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-500 italic text-xs">
-          <i class="fa-solid fa-spinner fa-spin mr-1 text-amber-500"></i> Venus AI is typing...
-        </div>
-      `;
+      typingBubble.innerHTML = `<div class="w-7 h-7 bg-amber-400 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-500 italic text-xs"><i class="fa-solid fa-spinner fa-spin mr-1 text-amber-500"></i> Venus AI is typing...</div>`;
       container.appendChild(typingBubble);
       container.scrollTop = container.scrollHeight;
 
-      // 3. Generate Answer (350ms delay for realistic feel)
-      setTimeout(async () => {
-        const answer = await getAIResponse(userText);
-        
-        typingBubble.innerHTML = `
-          <div class="w-7 h-7 bg-amber-400 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
-            <i class="fa-solid fa-robot"></i>
-          </div>
-          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs whitespace-pre-line">
-            ${answer}
-          </div>
-        `;
+      setTimeout(() => {
+        const lower = userText.toLowerCase();
+        let answer = `Hello! As your **Venus AI Assistant**, I can help you with:\n1. 🏊 Pool rules, timings & slot bookings\n2. 🏛️ Clubhouse booking rates (₹2,500 / ₹5,000)\n3. 👥 EC member details & flat numbers\n4. 🛠️ Current works & project updates\n5. 📢 Society notices & circulars`;
+        if (lower.includes("pool") || lower.includes("swim")) answer = `🏊 **Swimming Pool Guidelines:**\n• **Morning:** 6:00 AM – 10:30 AM | **Evening:** 4:00 PM – 9:00 PM\n• **Dress Code:** Nylon/spandex swimwear is compulsory.\n• **Maintenance:** Closed Tuesdays 10 AM – 4 PM.`;
+        else if (lower.includes("club") || lower.includes("tariff") || lower.includes("rate") || lower.includes("charge")) answer = `🏛️ **Clubhouse Tariff:**\n• **Half Day:** ₹2,500 (Morning 9am-3pm or Evening 4pm-10pm)\n• **Full Day:** ₹5,000 (9am-10:30pm)\n• **Security Deposit:** ₹2,000 (Refundable)`;
+        else if (lower.includes("ec") || lower.includes("president") || lower.includes("secretary")) answer = `👥 **EC Committee (2026-2027):**\n• **President:** Edwin Paul (A-207)\n• **Secretary:** Pradeep Shetty (A-104)\n• **VP:** Sunil Kumar (B-211)\n• **Treasurer:** Abdul Rehman (B-311)`;
+
+        typingBubble.innerHTML = `<div class="w-7 h-7 bg-amber-400 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs whitespace-pre-line">${answer}</div>`;
         container.scrollTop = container.scrollHeight;
       }, 350);
     }
-
-    async function getAIResponse(userPrompt) {
-      const lower = userPrompt.toLowerCase();
-
-      // If Gemini Key is configured, call Gemini API
-      if (typeof GEMINI_API_KEY !== 'undefined' && GEMINI_API_KEY && GEMINI_API_KEY.startsWith("AIzaSy")) {
-        try {
-          const sysContext = `You are Venus AI, the official assistant for Vascon Venus Co-operative Housing Society.
-- Executive Committee (2026-2027): Edwin Paul (President, A-207), Pradeep Shetty (Secretary, A-104), Sunil Kumar (VP, B-211), Abdul Rehman (Treasurer, B-311).
-- Pool: Open 6:00 AM - 10:30 AM & 4:00 PM - 9:00 PM. Closed Tuesdays 10am-4pm. Nylon/spandex swimwear mandatory.
-- Clubhouse: Half Day = ₹2,500 (Morning 9am-3pm or Evening 4pm-10pm). Full Day = ₹5,000 (9am-10:30pm). Refundable deposit = ₹2,000. Music cutoff at 10 PM.
-- Current Works: CCTV (75%), Lift Wing A (90%), Solar Panel Grid (45%), Rainwater Harvesting (100%).
-- Helplines: Security Ext 101, Lift Rescue 1800-OTIS.
-Answer politely and format with emojis & bullet points.`;
-
-          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contents: [{ role: 'user', parts: [{ text: `${sysContext}\n\nResident Question: ${userPrompt}` }] }]
-            })
-          });
-          const data = await response.json();
-          if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
-            return data.candidates[0].content.parts[0].text;
-          }
-        } catch (err) {
-          console.warn("Gemini fallback:", err);
-        }
-      }
-
-      // BUILT-IN SOCIETY KNOWLEDGE BASE:
-      if (lower.includes("pool") || lower.includes("swim") || lower.includes("dress")) {
-        return `🏊 **Swimming Pool Guidelines:**\n• **Morning Session:** 6:00 AM – 10:30 AM\n• **Evening Session:** 4:00 PM – 9:00 PM\n• **Dress Code:** Proper nylon or spandex swimming costumes are mandatory (No cotton).\n• **Maintenance:** Closed Tuesdays from 10:00 AM – 4:00 PM.\n• You can reserve a 1-hour slot on the website under Amenities!`;
-      }
-      if (lower.includes("club") || lower.includes("hall") || lower.includes("party") || lower.includes("tariff") || lower.includes("charge") || lower.includes("rate") || lower.includes("rent") || lower.includes("book")) {
-        return `🏛️ **Clubhouse Tariff & Booking:**\n• **Half Day:** ₹2,500 (Morning 9 AM - 3 PM OR Evening 4 PM - 10 PM)\n• **Full Day:** ₹5,000 (9:00 AM – 10:30 PM)\n• **Security Deposit:** ₹2,000 (Refundable post-event)\n• Loud music must stop by 10:00 PM.\n• You can submit a hall reservation request directly from the Clubhouse card!`;
-      }
-      if (lower.includes("ec") || lower.includes("president") || lower.includes("secretary") || lower.includes("treasurer") || lower.includes("committee") || lower.includes("member")) {
-        return `👥 **Executive Committee (2026 - 2027):**\n• **President:** Edwin Paul (Flat A-207)\n• **Secretary:** Pradeep Shetty (Flat A-104)\n• **Vice President:** Sunil Kumar (Flat B-211)\n• **Treasurer:** Abdul Rehman (Flat B-311)`;
-      }
-      if (lower.includes("work") || lower.includes("cctv") || lower.includes("lift") || lower.includes("solar") || lower.includes("maintenance") || lower.includes("project")) {
-        return `🛠️ **Current Works Progress:**\n• **CCTV Network Upgrades:** 75% (Target: Nov 20)\n• **Lift Modernization (Wing A):** 90% (Testing Phase)\n• **Solar Panel Grid (50kW):** 45% (Mounting Done)\n• **Rainwater Harvesting:** 100% (Completed & Verified)`;
-      }
-      if (lower.includes("water") || lower.includes("notice") || lower.includes("agm") || lower.includes("shutdown")) {
-        return `📢 **Latest Announcements:**\n• **Water Supply Shutdown:** Friday 10:00 AM – 2:00 PM for tank cleaning.\n• **Annual General Meeting (AGM):** Sunday the 28th at 6:00 PM in the Clubhouse.`;
-      }
-      if (lower.includes("contact") || lower.includes("emergency") || lower.includes("gate") || lower.includes("number") || lower.includes("phone") || lower.includes("security")) {
-        return `📞 **Emergency Helplines:**\n• **Main Gate Security:** Intercom Ext 101\n• **Lift Emergency Rescue:** 1800-OTIS\n• **Society Office:** You can also use the EC Login on the top navigation bar!`;
-      }
-
-      return `Hello! As your **Venus AI Assistant**, I can answer:\n1. 🏊 Swimming pool timings, dress code & slot booking\n2. 🏛️ Clubhouse booking tariffs (₹2,500 / ₹5,000) & rules\n3. 👥 EC member names & flat numbers\n4. 🛠️ Ongoing society maintenance & work updates\n5. 📢 Society circulars & notices\n\nWhat would you like to know?`;
-    }
-
-    // -------------------------------------------------------------
-    // DIRECTORY FILTER & WING LOGIC
-    // -------------------------------------------------------------
-    let selectedWing = '';
-
-    window.filterByWing = function(wing, btnElement) {
-      selectedWing = wing.toUpperCase().trim();
-
-      const buttons = document.querySelectorAll('.wing-btn');
-      buttons.forEach(b => {
-        b.className = "wing-btn hover:bg-slate-200 text-slate-700 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition";
-      });
-      if (btnElement) {
-        btnElement.className = "wing-btn bg-slate-900 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition";
-      }
-
-      applyCombinedFilter();
-    };
-
-    window.applyCombinedFilter = function() {
-      const searchInput = document.getElementById("dir-search");
-      const searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : "";
-      const tbody = document.getElementById("directory-container");
-      if (!tbody) return;
-
-      const rows = tbody.getElementsByTagName("tr");
-
-      for (let i = 0; i < rows.length; i++) {
-        const row = rows[i];
-        const cells = row.getElementsByTagName("td");
-        if (cells.length === 0) continue;
-
-        const flatNumber = (cells[0].textContent || cells[0].innerText || "").toUpperCase().trim();
-        const fullRowText = (row.textContent || row.innerText || "").toLowerCase();
-
-        const matchesWing = (selectedWing === "") || flatNumber.startsWith(selectedWing + "-") || flatNumber.startsWith(selectedWing);
-        const matchesSearch = (searchQuery === "") || fullRowText.includes(searchQuery);
-
-        if (matchesWing && matchesSearch) {
-          row.style.display = "";
-        } else {
-          row.style.display = "none";
-        }
-      }
-    };
-
-    // -------------------------------------------------------------
-    // SUPABASE LIVE SYNC LOADERS
-    // -------------------------------------------------------------
-    async function syncSupabaseDirectory() {
-      try {
-        if (supabase) {
-          const { data, error } = await supabase.from('resident_directory').select('*').order('flat_no', { ascending: true });
-          if (!error && data && data.length > 0) {
-            const tbody = document.getElementById("directory-container");
-            tbody.innerHTML = data.map(r => `
-              <tr class="hover:bg-slate-50 transition border-b border-gray-100">
-                <td class="py-3.5 px-4 font-bold text-slate-900">${r.flat_no}</td>
-                <td class="py-3.5 px-4 font-medium text-slate-800">${r.owner_name}</td>
-                <td class="py-3.5 px-4">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${
-                    r.occupancy_status === 'Owner Occupied' ? 'bg-green-100 text-green-800' :
-                    r.occupancy_status === 'Tenant Occupied' ? 'bg-blue-100 text-blue-800' :
-                    'bg-gray-100 text-gray-700'
-                  }">
-                    ${r.occupancy_status || 'Owner Occupied'}
-                  </span>
-                </td>
-                <td class="py-3.5 px-4 text-slate-600">${r.tenant_name || '<span class="text-gray-400">N/A</span>'}</td>
-                <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">${r.parking_slot || 'N/A'}</td>
-              </tr>
-            `).join('');
-          }
-        }
-      } catch (e) {
-        console.log("Using pre-rendered directory.");
-      }
-    }
-
-    async function syncSupabaseNotices() {
-      try {
-        if (supabase) {
-          const { data, error } = await supabase.from('notices').select('*').order('created_at', { ascending: false });
-          if (!error && data && data.length > 0) {
-            const container = document.getElementById('notices-container');
-            container.innerHTML = data.map(n => `
-              <div class="bg-white border-l-4 ${n.is_urgent ? 'border-red-500' : 'border-blue-500'} p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-                <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold ${n.is_urgent ? 'text-red-600 bg-red-50' : 'text-blue-600 bg-blue-50'} uppercase tracking-wide px-2.5 py-0.5 rounded">
-                    ${n.is_urgent ? 'High Priority' : (n.category || 'General')}
-                  </span>
-                  <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> ${new Date(n.created_at).toLocaleDateString()}</span>
-                </div>
-                <h3 class="text-lg font-bold text-slate-900 mt-3">${n.title}</h3>
-                <p class="text-sm text-gray-600 mt-2 leading-relaxed whitespace-pre-line">${n.description}</p>
-                <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-                  <span><i class="fa-solid fa-user-shield mr-1"></i> Vascon Venus EC</span>
-                  <span class="text-slate-700 font-medium">${n.category || 'Notice'}</span>
-                </div>
-              </div>
-            `).join('');
-          }
-        }
-      } catch (e) {
-        console.log("Using pre-rendered notices.");
-      }
-    }
-
-    async function syncSupabaseWorks() {
-      try {
-        if (supabase) {
-          const { data, error } = await supabase.from('works_tracker').select('*').order('created_at', { ascending: false });
-          if (!error && data && data.length > 0) {
-            const container = document.getElementById('tracker-container');
-            container.innerHTML = data.map(w => `
-              <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
-                <div class="flex justify-between items-start mb-3">
-                  <div>
-                    <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Project Update</span>
-                    <h4 class="font-bold text-slate-900 text-lg mt-0.5">${w.title}</h4>
-                  </div>
-                  <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full font-semibold">${w.status}</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-4">${w.description || ''}</p>
-                <div class="space-y-1.5">
-                  <div class="flex justify-between text-xs font-bold text-slate-700">
-                    <span>Work Progress</span>
-                    <span>${w.progress_percentage}%</span>
-                  </div>
-                  <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
-                    <div class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: ${w.progress_percentage}%"></div>
-                  </div>
-                </div>
-                <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-                  <span><i class="fa-regular fa-calendar mr-1"></i> Target: ${w.target_date ? new Date(w.target_date).toLocaleDateString() : 'Ongoing'}</span>
-                </div>
-              </div>
-            `).join('');
-          }
-        }
-      } catch (e) {
-        console.log("Using pre-rendered works tracker.");
-      }
-    }
-
-    async function syncSupabaseMinutes() {
-      try {
-        if (supabase) {
-          const { data, error } = await supabase.from('meeting_minutes').select('*').order('meeting_date', { ascending: false });
-          if (!error && data && data.length > 0) {
-            const tbody = document.getElementById("minutes-container");
-            tbody.innerHTML = data.map(m => `
-              <tr class="hover:bg-slate-50 transition border-b border-gray-100">
-                <td class="py-4 px-4 font-bold text-slate-900">${new Date(m.meeting_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-                <td class="py-4 px-4">
-                  <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">${m.meeting_type}</span>
-                </td>
-                <td class="py-4 px-4 text-gray-600">${m.agenda_summary}</td>
-                <td class="py-4 px-4 text-right">
-                  <a href="${m.pdf_url}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
-                  </a>
-                </td>
-              </tr>
-            `).join('');
-          }
-        }
-      } catch (e) {
-        console.log("Using pre-rendered meeting minutes.");
-      }
-    }
-
-    // Run loaders on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      syncSupabaseDirectory();
-      syncSupabaseNotices();
-      syncSupabaseWorks();
-      syncSupabaseMinutes();
-    });
-
-// -------------------------------------------------------------
-    // INSTANT LIVE DATA LOADER
-    // -------------------------------------------------------------
-    async function loadLiveNotices() {
-      if (!supabase) return;
-      try {
-        const { data, error } = await supabase
-          .from('notices')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        if (error) {
-          console.error("Notice fetch error:", error);
-          return;
-        }
-
-        if (data && data.length > 0) {
-          const container = document.getElementById('notices-container');
-          if (container) {
-            container.innerHTML = data.map(n => `
-              <div class="bg-white border-l-4 ${n.is_urgent ? 'border-red-500' : 'border-blue-500'} p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-                <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold ${n.is_urgent ? 'text-red-600 bg-red-50' : 'text-blue-600 bg-blue-50'} uppercase tracking-wide px-2.5 py-0.5 rounded">
-                    ${n.is_urgent ? 'High Priority' : (n.category || 'General')}
-                  </span>
-                  <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> ${new Date(n.created_at).toLocaleDateString()}</span>
-                </div>
-                <h3 class="text-lg font-bold text-slate-900 mt-3">${n.title}</h3>
-                <p class="text-sm text-gray-600 mt-2 leading-relaxed whitespace-pre-line">${n.description}</p>
-                <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-                  <span><i class="fa-solid fa-user-shield mr-1"></i> Vascon Venus EC</span>
-                  <span class="text-slate-700 font-medium">${n.category || 'Notice'}</span>
-                </div>
-              </div>
-            `).join('');
-          }
-        }
-      } catch (err) {
-        console.error("Live fetch error:", err);
-      }
-    }
-
-    // Call immediately on page load
-    loadLiveNotices();
-    syncSupabaseDirectory();
-    syncSupabaseWorks();
-    syncSupabaseMinutes();
-    
   </script>
 </body>
 </html>
