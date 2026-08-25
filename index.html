@@ -3,85 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vascon Venus Apartment - Official Portal</title>
+  <title>Vascon Venus Apartment - Official Digital Portal</title>
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans relative">
 
-  <!-- Navigation Bar -->
-  <nav class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-      <div class="flex items-center space-x-2.5">
-        <i class="fa-solid fa-building text-amber-400 text-2xl"></i>
-        <span class="font-bold text-xl tracking-wide">VASCON VENUS</span>
-        <span class="bg-amber-400 text-slate-900 text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow-sm">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-slate-950 relative">
+
+  <!-- 1. GLASSMORPHIC NAVIGATION BAR -->
+  <nav class="bg-slate-950/90 backdrop-blur-md text-white sticky top-0 z-50 border-b border-slate-800 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 rounded-xl flex items-center justify-center text-xl font-black shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
+          <i class="fa-solid fa-building"></i>
+        </div>
+        <div>
+          <span class="font-extrabold text-xl tracking-tight text-white block leading-none">VASCON VENUS</span>
+          <span class="text-[10px] font-bold text-amber-400 tracking-widest uppercase mt-1 block">Co-op Housing Society</span>
+        </div>
+        <span class="bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider ml-1">
           BETA
         </span>
-      </div>
-      <div class="hidden md:flex space-x-6 text-sm font-medium">
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-300">
         <a href="#amenities" class="hover:text-amber-400 transition">Amenities</a>
         <a href="#notices" class="hover:text-amber-400 transition">Notices</a>
         <a href="#tracker" class="hover:text-amber-400 transition">Work Tracker</a>
         <a href="#minutes" class="hover:text-amber-400 transition">Meeting Minutes</a>
-        <a href="directory.html" class="hover:text-amber-400 transition font-medium">Directory</a>
+        <a href="directory.html" class="hover:text-amber-400 transition flex items-center">
+          <i class="fa-solid fa-address-book mr-1.5 text-amber-400 text-xs"></i> Directory
+        </a>
         <a href="#ec-team" class="hover:text-amber-400 transition">EC Team</a>
       </div>
-      <!-- EC Login Link -->
-      <a href="admin.html" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg text-sm transition">
-        EC Login
-      </a>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center space-x-3">
+        <a href="admin.html" class="bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 flex items-center space-x-1.5">
+          <i class="fa-solid fa-lock text-[11px]"></i>
+          <span>EC Login</span>
+        </a>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="relative bg-slate-800 text-white py-24 px-6 text-center">
-    <div class="max-w-4xl mx-auto">
-      <span class="text-amber-400 uppercase tracking-widest text-xs font-bold">Welcome to our Community</span>
-      <h1 class="text-4xl md:text-6xl font-extrabold mt-2 mb-4">Vascon Venus Apartment</h1>
-      <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto">
-        A vibrant, peaceful, and well-managed residential community. Stay connected with society updates, works, and committee records.
-      </p>
-      <div class="mt-8 flex justify-center gap-4">
-        <a href="#notices" class="bg-amber-500 text-slate-900 px-6 py-3 rounded-lg font-bold hover:bg-amber-400 transition">View Notices</a>
-        <a href="#directory" class="bg-slate-700 border border-slate-600 px-6 py-3 rounded-lg font-bold hover:bg-slate-600 transition">Resident Directory</a>
+  <!-- 2. LUXURY HERO BANNER WITH ARCHITECTURAL BACKGROUND -->
+  <header class="relative bg-slate-950 text-white overflow-hidden border-b border-slate-800">
+    <!-- Architectural Photo Background with Dark Gradient -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&auto=format&fit=crop&q=80" alt="Vascon Venus" class="w-full h-full object-cover opacity-20 filter brightness-90 scale-105 animate-pulse duration-[10000ms]">
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-slate-950"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
+      
+      <!-- Welcome Pill -->
+      <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 shadow-inner">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+        <span>Welcome to our Community</span>
       </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-6 leading-tight">
+        Vascon Venus <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-400">
+          Official Digital Portal
+        </span>
+      </h1>
+
+      <p class="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+        A vibrant, peaceful, and well-managed residential community. Stay connected with real-time society circulars, maintenance trackers, and verified minutes.
+      </p>
+
+      <!-- Primary Action Buttons -->
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#notices" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-7 py-4 rounded-2xl shadow-xl shadow-amber-500/25 transition transform hover:-translate-y-0.5 flex items-center space-x-2 text-sm">
+          <i class="fa-solid fa-bullhorn"></i>
+          <span>View Notices</span>
+        </a>
+        <a href="directory.html" class="bg-slate-900/90 hover:bg-slate-800 text-white font-bold px-7 py-4 rounded-2xl border border-slate-700 transition transform hover:-translate-y-0.5 flex items-center space-x-2 text-sm">
+          <i class="fa-solid fa-address-book text-amber-400"></i>
+          <span>Resident Directory (120+ Flats)</span>
+        </a>
+      </div>
+
+      <!-- Quick Society Stats Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-20 pt-10 border-t border-slate-800/80">
+        <div class="p-3 bg-slate-900/50 backdrop-blur-sm rounded-2xl border border-slate-800">
+          <p class="text-2xl sm:text-3xl font-black text-amber-400">3</p>
+          <p class="text-[11px] text-slate-400 uppercase font-bold tracking-wider mt-1">Wings (A, B, C)</p>
+        </div>
+        <div class="p-3 bg-slate-900/50 backdrop-blur-sm rounded-2xl border border-slate-800">
+          <p class="text-2xl sm:text-3xl font-black text-amber-400">120+</p>
+          <p class="text-[11px] text-slate-400 uppercase font-bold tracking-wider mt-1">Residential Flats</p>
+        </div>
+        <div class="p-3 bg-slate-900/50 backdrop-blur-sm rounded-2xl border border-slate-800">
+          <p class="text-2xl sm:text-3xl font-black text-amber-400">6+</p>
+          <p class="text-[11px] text-slate-400 uppercase font-bold tracking-wider mt-1">Modern Amenities</p>
+        </div>
+        <div class="p-3 bg-slate-900/50 backdrop-blur-sm rounded-2xl border border-slate-800">
+          <p class="text-2xl sm:text-3xl font-black text-amber-400">24/7</p>
+          <p class="text-[11px] text-slate-400 uppercase font-bold tracking-wider mt-1">CCTV & Security</p>
+        </div>
+      </div>
+
     </div>
   </header>
 
-  <!-- Amenities Showcase Section -->
-  <section id="amenities" class="max-w-7xl mx-auto px-4 py-16">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <span class="text-amber-600 font-bold uppercase text-xs tracking-wider">Lifestyle & Living</span>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-1">Apartment Amenities</h2>
-      <p class="text-gray-500 mt-2 text-sm md:text-base">
-        Explore the facilities and amenities available for all residents and families at Vascon Venus.
+  <!-- 3. AMENITIES SHOWCASE SECTION -->
+  <section id="amenities" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-amber-600 font-extrabold uppercase text-xs tracking-widest bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">Lifestyle & Facilities</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">Apartment Amenities</h2>
+      <p class="text-slate-500 mt-2 text-sm sm:text-base">
+        Explore premium lifestyle amenities available for all residents and families at Vascon Venus.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
-      <!-- Amenity 1: Swimming Pool -->
-      <div onclick="document.getElementById('pool-modal').style.display='flex';" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:border-amber-400 transition duration-300 cursor-pointer group flex flex-col justify-between">
+      <!-- Amenity 1: Swimming Pool (Clickable Modal) -->
+      <div onclick="document.getElementById('pool-modal').style.display='flex';" class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-amber-400 transition duration-300 cursor-pointer group flex flex-col justify-between transform hover:-translate-y-1">
         <div>
-          <div class="h-48 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80" alt="Swimming Pool" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 right-3 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full font-medium">6:00 AM - 9:00 PM</span>
-            <span class="absolute bottom-3 left-3 bg-amber-500 text-slate-950 text-xs px-2.5 py-1 rounded-full font-bold shadow-md">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80" alt="Swimming Pool" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <span class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-bold">6:00 AM - 9:00 PM</span>
+            <span class="absolute bottom-3 left-3 bg-amber-500 text-slate-950 text-xs px-3 py-1 rounded-full font-black shadow-lg">
               <i class="fa-solid fa-calendar-check mr-1"></i> Book Slot & Rules
             </span>
           </div>
           <div class="p-6 pb-2">
             <div class="flex items-center space-x-2 text-amber-500 mb-2">
-              <i class="fa-solid fa-person-swimming text-lg"></i>
+              <i class="fa-solid fa-person-swimming text-xl"></i>
               <h3 class="font-bold text-slate-900 text-lg group-hover:text-amber-600 transition">Swimming Pool & Kids Pool</h3>
             </div>
-            <p class="text-sm text-gray-600">Crystal-clear pool with dedicated kids zone. Click to view operational timings, dress code, and reserve slots.</p>
+            <p class="text-sm text-slate-600 leading-relaxed">Crystal-clear adult pool with dedicated safe splash area for children. Click to view pool guidelines and reserve slots.</p>
           </div>
         </div>
-        <div class="p-6 pt-2">
-          <button type="button" onclick="document.getElementById('pool-modal').style.display='flex';" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition cursor-pointer">
+        <div class="p-6 pt-3">
+          <button type="button" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-md transition">
             <i class="fa-solid fa-calendar-check"></i>
             <span>View Guidelines & Book Slot</span>
           </button>
@@ -89,40 +163,45 @@
       </div>
 
       <!-- Amenity 2: Gym -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
-        <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&auto=format&fit=crop&q=80" alt="Gymnasium" class="w-full h-full object-cover">
-          <span class="absolute top-3 right-3 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full font-medium">5:30 AM - 10:30 PM</span>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center space-x-2 text-amber-500 mb-2">
-            <i class="fa-solid fa-dumbbell text-lg"></i>
-            <h3 class="font-bold text-slate-900 text-lg">Modern Fitness Center</h3>
+      <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-300 transition duration-300 group flex flex-col justify-between transform hover:-translate-y-1">
+        <div>
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&auto=format&fit=crop&q=80" alt="Gymnasium" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <span class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-bold">5:30 AM - 10:30 PM</span>
           </div>
-          <p class="text-sm text-gray-600">Air-conditioned gym equipped with cardio machines, weights, and stretching zones.</p>
+          <div class="p-6">
+            <div class="flex items-center space-x-2 text-amber-500 mb-2">
+              <i class="fa-solid fa-dumbbell text-xl"></i>
+              <h3 class="font-bold text-slate-900 text-lg">Modern Fitness Center</h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">Fully air-conditioned gym equipped with cardio treadmills, cross-trainers, free weights, and dedicated stretching zone.</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full"><i class="fa-solid fa-circle-check mr-1"></i> Open All Residents</span>
         </div>
       </div>
 
-      <!-- Amenity 3: Clubhouse -->
-      <div onclick="document.getElementById('clubhouse-modal').style.display='flex';" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:border-amber-400 transition duration-300 cursor-pointer group flex flex-col justify-between">
+      <!-- Amenity 3: Clubhouse (Clickable Modal) -->
+      <div onclick="document.getElementById('clubhouse-modal').style.display='flex';" class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-amber-400 transition duration-300 cursor-pointer group flex flex-col justify-between transform hover:-translate-y-1">
         <div>
-          <div class="h-48 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&auto=format&fit=crop&q=80" alt="Clubhouse" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs px-2.5 py-1 rounded-full font-bold">From ₹2,500</span>
-            <span class="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&auto=format&fit=crop&q=80" alt="Clubhouse" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs px-3 py-1 rounded-full font-black">From ₹2,500</span>
+            <span class="absolute bottom-3 left-3 bg-slate-950/80 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium">
               <i class="fa-solid fa-champagne-glasses mr-1 text-amber-400"></i> Events & Parties
             </span>
           </div>
           <div class="p-6 pb-2">
             <div class="flex items-center space-x-2 text-amber-500 mb-2">
-              <i class="fa-solid fa-users text-lg"></i>
-              <h3 class="font-bold text-slate-900 text-lg group-hover:text-amber-600 transition">Community Clubhouse</h3>
+              <i class="fa-solid fa-users text-xl"></i>
+              <h3 class="font-bold text-slate-900 text-lg group-hover:text-amber-600 transition">Community Banquet Clubhouse</h3>
             </div>
-            <p class="text-sm text-gray-600">Spacious banquet hall for private family parties, birthdays, and celebrations. View tariff and reserve.</p>
+            <p class="text-sm text-slate-600 leading-relaxed">Spacious banquet hall for private family parties, birthdays, and celebrations. View tariff and reserve.</p>
           </div>
         </div>
-        <div class="p-6 pt-2">
-          <button type="button" onclick="document.getElementById('clubhouse-modal').style.display='flex';" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition cursor-pointer">
+        <div class="p-6 pt-3">
+          <button type="button" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-md transition">
             <i class="fa-solid fa-calendar-plus text-amber-400"></i>
             <span>View Tariff & Book Hall</span>
           </button>
@@ -130,119 +209,184 @@
       </div>
 
       <!-- Amenity 4: Play Area -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
-        <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=600&auto=format&fit=crop&q=80" alt="Play Area" class="w-full h-full object-cover">
-          <span class="absolute top-3 right-3 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full font-medium">Open All Day</span>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center space-x-2 text-amber-500 mb-2">
-            <i class="fa-solid fa-shapes text-lg"></i>
-            <h3 class="font-bold text-slate-900 text-lg">Children's Play Park</h3>
+      <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition duration-300 group flex flex-col justify-between transform hover:-translate-y-1">
+        <div>
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=600&auto=format&fit=crop&q=80" alt="Play Area" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <span class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-bold">Open All Day</span>
           </div>
-          <p class="text-sm text-gray-600">Safe, soft-turfed playground with swings, slides, and fun activities for kids.</p>
+          <div class="p-6">
+            <div class="flex items-center space-x-2 text-amber-500 mb-2">
+              <i class="fa-solid fa-shapes text-xl"></i>
+              <h3 class="font-bold text-slate-900 text-lg">Children's Play Park</h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">Safe, soft-turfed outdoor playground with swings, slides, and fun obstacle activities for kids of all age groups.</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full"><i class="fa-solid fa-shield-check mr-1"></i> Child Safe Ground</span>
         </div>
       </div>
 
       <!-- Amenity 5: EV Charging -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
-        <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&auto=format&fit=crop&q=80" alt="EV Charging" class="w-full h-full object-cover">
-          <span class="absolute top-3 right-3 bg-green-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">24/7 Access</span>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center space-x-2 text-amber-500 mb-2">
-            <i class="fa-solid fa-charging-station text-lg"></i>
-            <h3 class="font-bold text-slate-900 text-lg">EV Charging Points</h3>
+      <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition duration-300 group flex flex-col justify-between transform hover:-translate-y-1">
+        <div>
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&auto=format&fit=crop&q=80" alt="EV Charging" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <span class="absolute top-3 right-3 bg-emerald-600 text-white text-xs px-3 py-1 rounded-full font-bold">24/7 Access</span>
           </div>
-          <p class="text-sm text-gray-600">Dedicated electric vehicle charging points for residents and visitors.</p>
+          <div class="p-6">
+            <div class="flex items-center space-x-2 text-amber-500 mb-2">
+              <i class="fa-solid fa-charging-station text-xl"></i>
+              <h3 class="font-bold text-slate-900 text-lg">EV Charging Stations</h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">Dedicated fast electric vehicle charging points installed across visitor and designated parking zones.</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full"><i class="fa-solid fa-bolt mr-1"></i> Fast Chargers Active</span>
         </div>
       </div>
 
       <!-- Amenity 6: Security -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition">
-        <div class="h-48 overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&auto=format&fit=crop&q=80" alt="Security" class="w-full h-full object-cover">
-          <span class="absolute top-3 right-3 bg-blue-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">24x7 Support</span>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center space-x-2 text-amber-500 mb-2">
-            <i class="fa-solid fa-shield-halved text-lg"></i>
-            <h3 class="font-bold text-slate-900 text-lg">24/7 Security & CCTV</h3>
+      <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition duration-300 group flex flex-col justify-between transform hover:-translate-y-1">
+        <div>
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&auto=format&fit=crop&q=80" alt="Security" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <span class="absolute top-3 right-3 bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-bold">24x7 Security</span>
           </div>
-          <p class="text-sm text-gray-600">Guarded entry gates with boom barriers, 24/7 CCTV, and power backup.</p>
+          <div class="p-6">
+            <div class="flex items-center space-x-2 text-amber-500 mb-2">
+              <i class="fa-solid fa-shield-halved text-xl"></i>
+              <h3 class="font-bold text-slate-900 text-lg">24/7 Security & CCTV</h3>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">Guarded entry gates with boom barriers, 24/7 high-definition CCTV coverage, and complete common power backup.</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full"><i class="fa-solid fa-circle-check mr-1"></i> Guarded Entry</span>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Announcements & Notices Section (Live Synced) -->
-  <section id="notices" class="max-w-7xl mx-auto px-4 py-16">
-    <div class="flex items-center justify-between mb-8">
+  <!-- 4. ANNOUNCEMENTS & NOTICES SECTION -->
+  <section id="notices" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
       <div>
-        <span class="text-amber-600 font-bold uppercase text-xs tracking-wider">Official Circulars</span>
-        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Announcements & Notices</h2>
-        <p class="text-gray-500 text-sm">Official circulars and alerts from the Executive Committee</p>
+        <span class="text-amber-600 font-extrabold uppercase text-xs tracking-widest bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">Official Notice Board</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 tracking-tight">Announcements & Circulars</h2>
+        <p class="text-slate-500 text-sm">Official circulars and notices from the Executive Committee</p>
       </div>
-      <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1.5 rounded-full flex items-center">
-        <span class="w-2 h-2 rounded-full bg-amber-500 mr-2 animate-pulse"></span>
-        Live Notice Board
+      <span class="bg-amber-100 text-amber-800 text-xs font-bold px-4 py-2 rounded-full self-start md:self-auto flex items-center shadow-sm">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 mr-2 animate-pulse"></span>
+        Live Notice Feed
       </span>
     </div>
 
+    <!-- Live Notices Container -->
     <div id="notices-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="col-span-3 text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading live notices...</div>
+      <div class="col-span-3 text-center py-12 text-slate-400">
+        <i class="fa-solid fa-spinner fa-spin text-2xl mb-2 text-amber-500"></i>
+        <p class="text-xs font-semibold">Connecting to society notice board...</p>
+      </div>
     </div>
   </section>
 
-  <!-- Live Work Tracker Section -->
-  <section id="tracker" class="bg-slate-100 py-16">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+  <!-- 5. LIVE WORK TRACKER SECTION -->
+  <section id="tracker" class="bg-slate-100 py-20 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
         <div>
-          <span class="text-blue-600 font-bold uppercase text-xs tracking-wider">Infrastructure & Maintenance</span>
-          <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Current Works Status</h2>
-          <p class="text-gray-500 text-sm">Real-time status of ongoing repairs, upgrades, and maintenance across all wings</p>
+          <span class="text-blue-600 font-extrabold uppercase text-xs tracking-widest bg-blue-50 border border-blue-200 px-3 py-1 rounded-full">Infrastructure & Repairs</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 tracking-tight">Current Works Status</h2>
+          <p class="text-slate-500 text-sm">Real-time status of ongoing repairs, upgrades, and maintenance across all wings</p>
         </div>
-        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1.5 rounded-full self-start md:self-auto flex items-center">
-          <i class="fa-solid fa-screwdriver-wrench mr-1.5"></i> Active Projects
+        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-4 py-2 rounded-full self-start md:self-auto flex items-center shadow-sm">
+          <i class="fa-solid fa-screwdriver-wrench mr-2 text-blue-600"></i> Active Projects
         </span>
       </div>
 
+      <!-- Live Works Container -->
       <div id="tracker-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="col-span-2 text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading projects...</div>
+        <div class="col-span-2 text-center py-12 text-slate-400">
+          <i class="fa-solid fa-spinner fa-spin text-2xl mb-2 text-blue-500"></i>
+          <p class="text-xs font-semibold">Loading active works status...</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Meeting Minutes Archive Section -->
-  <section id="minutes" class="bg-white py-16 border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+  <!-- 6. MEETING MINUTES ARCHIVE SECTION -->
+  <section id="minutes" class="bg-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
         <div>
-          <span class="text-amber-600 font-bold uppercase text-xs tracking-wider">Official Records</span>
-          <h2 class="text-3xl font-extrabold text-slate-900 mt-1">EC Meeting Minutes Archive</h2>
-          <p class="text-gray-500 text-sm">Official records, resolutions, and approved meeting minutes available for all flat owners</p>
+          <span class="text-amber-600 font-extrabold uppercase text-xs tracking-widest bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">Official Records</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 tracking-tight">EC Meeting Minutes Archive</h2>
+          <p class="text-slate-500 text-sm">Official records, resolutions, and approved meeting minutes available for all flat owners</p>
         </div>
-        <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1.5 rounded-full self-start md:self-auto flex items-center">
-          <i class="fa-solid fa-file-shield mr-1.5"></i> Verified Documents
+        <span class="bg-amber-100 text-amber-800 text-xs font-bold px-4 py-2 rounded-full self-start md:self-auto flex items-center shadow-sm">
+          <i class="fa-solid fa-file-shield mr-2 text-amber-600"></i> Verified PDF Documents
         </span>
       </div>
 
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+      <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
-                <th class="py-3.5 px-4 font-semibold">Meeting Date</th>
-                <th class="py-3.5 px-4 font-semibold">Meeting Type</th>
-                <th class="py-3.5 px-4 font-semibold">Key Topics & Resolutions Passed</th>
-                <th class="py-3.5 px-4 font-semibold text-right">Action</th>
+                <th class="py-4 px-6 font-semibold">Meeting Date</th>
+                <th class="py-4 px-6 font-semibold">Meeting Type</th>
+                <th class="py-4 px-6 font-semibold">Key Topics & Resolutions Passed</th>
+                <th class="py-4 px-6 font-semibold text-right">Action</th>
               </tr>
             </thead>
-            <tbody id="minutes-container" class="divide-y divide-gray-100 text-sm">
-              <tr><td colspan="4" class="text-center py-8 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading minutes...</td></tr>
+            <tbody id="minutes-container" class="divide-y divide-gray-100 text-sm bg-white">
+              
+              <!-- Record 1 -->
+              <tr class="hover:bg-slate-50 transition border-b border-gray-100">
+                <td class="py-4 px-6 font-bold text-slate-900">Feb 15, 2026</td>
+                <td class="py-4 px-6">
+                  <span class="bg-slate-100 text-slate-800 px-3 py-1 rounded-full text-xs font-bold">Monthly EC</span>
+                </td>
+                <td class="py-4 px-6 text-slate-600 font-medium">1. Finalized 50kW Rooftop Solar installation with Tata Solar. 2. Approved annual lift AMC renewal with OTIS Engineers for all wings.</td>
+                <td class="py-4 px-6 text-right">
+                  <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-bold text-xs bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3.5 py-1.5 rounded-xl transition">
+                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
+                  </a>
+                </td>
+              </tr>
+
+              <!-- Record 2 -->
+              <tr class="hover:bg-slate-50 transition border-b border-gray-100">
+                <td class="py-4 px-6 font-bold text-slate-900">Jan 10, 2026</td>
+                <td class="py-4 px-6">
+                  <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-bold">EGM</span>
+                </td>
+                <td class="py-4 px-6 text-slate-600 font-medium">1. Discussion and resident voting on EV charging infrastructure in basement parking. 2. Reviewed CCTV night-vision camera installation quotations.</td>
+                <td class="py-4 px-6 text-right">
+                  <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-bold text-xs bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3.5 py-1.5 rounded-xl transition">
+                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
+                  </a>
+                </td>
+              </tr>
+
+              <!-- Record 3 -->
+              <tr class="hover:bg-slate-50 transition border-b border-gray-100">
+                <td class="py-4 px-6 font-bold text-slate-900">Sep 28, 2025</td>
+                <td class="py-4 px-6">
+                  <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold">AGM</span>
+                </td>
+                <td class="py-4 px-6 text-slate-600 font-medium">1. Passed audited balance sheet for FY 2024-2025. 2. Elected Executive Committee members for tenure 2026–2027. 3. Sinking fund allocation for rainwater harvesting desilting.</td>
+                <td class="py-4 px-6 text-right">
+                  <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-bold text-xs bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3.5 py-1.5 rounded-xl transition">
+                    <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
+                  </a>
+                </td>
+              </tr>
+
             </tbody>
           </table>
         </div>
@@ -250,24 +394,27 @@
     </div>
   </section>
 
-  <!-- Searchable Resident Directory Hub Card -->
-  <section id="directory" class="max-w-7xl mx-auto px-4 py-16">
-    <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-8 md:p-12 text-white shadow-xl border border-slate-700 flex flex-col lg:flex-row items-center justify-between gap-8">
+  <!-- 7. RESIDENT DIRECTORY SHOWCASE HUB CARD -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 rounded-3xl p-8 md:p-12 text-white shadow-2xl border border-slate-800 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
       
-      <div class="space-y-3 max-w-xl text-center lg:text-left">
-        <span class="inline-flex items-center space-x-2 bg-amber-500/20 border border-amber-500/40 text-amber-400 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+      <!-- Background Ambient Glow -->
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="space-y-3 max-w-xl text-center lg:text-left z-10">
+        <span class="inline-flex items-center space-x-2 bg-amber-500/20 border border-amber-500/40 text-amber-400 text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full">
           <i class="fa-solid fa-address-book"></i>
           <span>Official Society Database</span>
         </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Resident & Flat Directory</h2>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Resident & Flat Directory</h2>
         <p class="text-slate-300 text-sm leading-relaxed">
           Access the complete building database of flat owners, tenants, and parking allocations across Wing A, Wing B, and Wing C with instant search filters.
         </p>
       </div>
 
       <!-- Action Button -->
-      <div class="flex flex-col sm:flex-row items-center gap-4 flex-shrink-0">
-        <a href="directory.html" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/20 text-sm flex items-center space-x-2 transition transform hover:-translate-y-0.5">
+      <div class="flex flex-col sm:flex-row items-center gap-4 flex-shrink-0 z-10">
+        <a href="directory.html" class="bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/20 text-sm flex items-center space-x-3 transition transform hover:-translate-y-0.5">
           <span>Explore Full Directory (120+ Flats)</span>
           <i class="fa-solid fa-arrow-right"></i>
         </a>
@@ -276,44 +423,84 @@
     </div>
   </section>
 
-  <!-- Executive Committee Members -->
-  <section id="ec-team" class="max-w-7xl mx-auto px-4 py-16 bg-slate-50 border-t">
-    <h2 class="text-3xl font-bold text-slate-900 text-center">Executive Committee (2026 - 2027)</h2>
-    <p class="text-gray-500 text-center mb-12">Reach out to committee members for any queries or society concerns</p>
+  <!-- 8. EXECUTIVE COMMITTEE MEMBERS SECTION -->
+  <section id="ec-team" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-amber-600 font-extrabold uppercase text-xs tracking-widest bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">Society Leadership</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">Executive Committee (2026 - 2027)</h2>
+      <p class="text-slate-500 text-sm mt-2">Reach out to committee members for any society queries or concerns</p>
+    </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
-        <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-3"><i class="fa-solid fa-user"></i></div>
-        <h3 class="font-bold text-slate-900 text-lg">Edwin Paul</h3>
-        <p class="text-amber-600 text-sm font-semibold">President</p>
-        <p class="text-xs text-gray-400 mt-1">Flat: A-207</p>
+      
+      <!-- Member 1: President -->
+      <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 hover:border-amber-400 p-6 text-center transition duration-300 group transform hover:-translate-y-1">
+        <div class="w-24 h-24 mx-auto bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 rounded-full flex items-center justify-center text-3xl font-black mb-4 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
+          <i class="fa-solid fa-user-tie"></i>
+        </div>
+        <h3 class="font-extrabold text-slate-900 text-lg">Edwin Paul</h3>
+        <span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-3 py-0.5 rounded-full mt-1">President</span>
+        <p class="text-xs text-slate-400 font-semibold mt-2">Flat: <strong class="text-slate-700">A-207</strong></p>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex justify-center space-x-3 text-slate-400">
+          <a href="directory.html" class="hover:text-amber-600 transition"><i class="fa-solid fa-envelope"></i></a>
+          <a href="directory.html" class="hover:text-amber-600 transition"><i class="fa-solid fa-phone"></i></a>
+        </div>
       </div>
-      <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
-        <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-3"><i class="fa-solid fa-user"></i></div>
-        <h3 class="font-bold text-slate-900 text-lg">Pradeep Shetty</h3>
-        <p class="text-amber-600 text-sm font-semibold">Secretary</p>
-        <p class="text-xs text-gray-400 mt-1">Flat: A-104</p>
+
+      <!-- Member 2: Secretary -->
+      <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-300 p-6 text-center transition duration-300 group transform hover:-translate-y-1">
+        <div class="w-24 h-24 mx-auto bg-slate-900 text-amber-400 rounded-full flex items-center justify-center text-3xl font-black mb-4 shadow-lg group-hover:scale-105 transition">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <h3 class="font-extrabold text-slate-900 text-lg">Pradeep Shetty</h3>
+        <span class="inline-block bg-slate-100 text-slate-800 text-xs font-bold px-3 py-0.5 rounded-full mt-1">Secretary</span>
+        <p class="text-xs text-slate-400 font-semibold mt-2">Flat: <strong class="text-slate-700">A-104</strong></p>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex justify-center space-x-3 text-slate-400">
+          <a href="directory.html" class="hover:text-amber-600 transition"><i class="fa-solid fa-envelope"></i></a>
+          <a href="directory.html" class="hover:text-amber-600 transition"><i class="fa-solid fa-phone"></i></a>
+        </div>
       </div>
-      <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
-        <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-3"><i class="fa-solid fa-user"></i></div>
-        <h3 class="font-bold text-slate-900 text-lg">Sunil Kumar</h3>
-        <p class="text-amber-600 text-sm font-semibold">Vice President</p>
-        <p class="text-xs text-gray-400 mt-1">Flat: B-211</p>
+
+      <!-- Member 3: Vice President -->
+      <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-300 p-6 text-center transition duration-300 group transform hover:-translate-y-1">
+        <div class="w-24 h-24 mx-auto bg-slate-900 text-amber-400 rounded-full flex items-center justify-center text-3xl font-black mb-4 shadow-lg group-hover:scale-105 transition">
+          <i class="fa-solid fa-user-check"></i>
+        </div>
+        <h3 class="font-extrabold text-slate-900 text-lg">Sunil Kumar</h3>
+        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-0.5 rounded-full mt-1">Vice President</span>
+        <p class="text-xs text-slate-400 font-semibold mt-2">Flat: <strong class="text-slate-700">B-211</strong></p>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex justify-center space-x-3 text-slate-400">
+          <a href="directory.html" class="hover:text-amber-600 transition"><i class="fa-solid fa-envelope"></i></a>
+          <a href="directory.html" class="hover:text-amber-600 transition"><i class="fa-solid fa-phone"></i></a>
+        </div>
       </div>
-      <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
-        <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-3xl mb-3"><i class="fa-solid fa-user"></i></div>
-        <h3 class="font-bold text-slate-900 text-lg">Abdul Rehman</h3>
-        <p class="text-amber-600 text-sm font-semibold">Treasurer</p>
-        <p class="text-xs text-gray-400 mt-1">Flat: B-311</p>
+
+      <!-- Member 4: Treasurer -->
+      <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-300 p-6 text-center transition duration-300 group transform hover:-translate-y-1">
+        <div class="w-24 h-24 mx-auto bg-slate-900 text-amber-400 rounded-full flex items-center justify-center text-3xl font-black mb-4 shadow-lg group-hover:scale-105 transition">
+          <i class="fa-solid fa-wallet"></i>
+        </div>
+        <h3 class="font-extrabold text-slate-900 text-lg">Abdul Rehman</h3>
+        <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-0.5 rounded-full mt-1">Treasurer</span>
+        <p class="text-xs text-slate-400 font-semibold mt-2">Flat: <strong class="text-slate-700">B-311</strong></p>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex justify-center space-x-3 text-slate-400">
+          <a href="directory.html" class="hover:text-amber-600 transition"><i class="fa-solid fa-envelope"></i></a>
+          <a href="directory.html" class="hover:text-amber-600 transition"><i class="fa-solid fa-phone"></i></a>
+        </div>
       </div>
+
     </div>
   </section>
 
+  <!-- ============================================================= -->
+  <!-- MODALS & POPUPS -->
+  <!-- ============================================================= -->
+
   <!-- 1. SWIMMING POOL MODAL -->
   <div id="pool-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100vh; background-color: rgba(15, 23, 42, 0.85); z-index: 999999; align-items: center; justify-content: center; padding: 1rem;">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 relative" onclick="event.stopPropagation();">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 relative" onclick="event.stopPropagation();">
       
-      <div class="bg-slate-900 text-white p-6 flex justify-between items-center sticky top-0 z-10">
+      <div class="bg-slate-950 text-white p-6 flex justify-between items-center sticky top-0 z-10 border-b border-slate-800">
         <div class="flex items-center space-x-3">
           <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center text-xl">
             <i class="fa-solid fa-person-swimming"></i>
@@ -327,16 +514,16 @@
       </div>
 
       <div class="p-6 space-y-6 text-sm text-slate-700">
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
           <h4 class="font-bold text-slate-900 text-sm flex items-center mb-2">
             <i class="fa-regular fa-clock text-amber-500 mr-2"></i> Operational Timings & Batches
           </h4>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="bg-white p-3 rounded-lg border border-slate-100">
+            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
               <span class="font-bold text-slate-800 block mb-1">Morning Session:</span>
               <p class="text-slate-600">6:00 AM – 10:30 AM (All Residents)</p>
             </div>
-            <div class="bg-white p-3 rounded-lg border border-slate-100">
+            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
               <span class="font-bold text-slate-800 block mb-1">Evening Session:</span>
               <p class="text-slate-600">4:00 PM – 9:00 PM (All Residents)</p>
             </div>
@@ -366,11 +553,11 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Select Date</label>
-                <input type="date" id="pool-date" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+                <input type="date" id="pool-date" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none focus:border-amber-500">
               </div>
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Select Time Slot</label>
-                <select id="pool-slot" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+                <select id="pool-slot" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none focus:border-amber-500">
                   <option value="6:00 AM - 7:00 AM">6:00 AM – 7:00 AM (Morning)</option>
                   <option value="7:00 AM - 8:00 AM">7:00 AM – 8:00 AM (Morning)</option>
                   <option value="8:00 AM - 9:00 AM">8:00 AM – 9:00 AM (Morning)</option>
@@ -385,15 +572,15 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Flat Number</label>
-                <input type="text" id="pool-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+                <input type="text" id="pool-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none focus:border-amber-500">
               </div>
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Number of Swimmers</label>
-                <input type="number" id="pool-count" min="1" max="4" value="1" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+                <input type="number" id="pool-count" min="1" max="4" value="1" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none focus:border-amber-500">
               </div>
             </div>
 
-            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-lg text-xs transition mt-2 cursor-pointer">
+            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-xs transition mt-2 cursor-pointer shadow-md">
               Confirm Pool Slot Reservation
             </button>
           </form>
@@ -404,9 +591,9 @@
 
   <!-- 2. CLUBHOUSE BOOKING MODAL -->
   <div id="clubhouse-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100vh; background-color: rgba(15, 23, 42, 0.85); z-index: 999999; align-items: center; justify-content: center; padding: 1rem;">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 relative" onclick="event.stopPropagation();">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 relative" onclick="event.stopPropagation();">
       
-      <div class="bg-slate-900 text-white p-6 flex justify-between items-center sticky top-0 z-10">
+      <div class="bg-slate-950 text-white p-6 flex justify-between items-center sticky top-0 z-10 border-b border-slate-800">
         <div class="flex items-center space-x-3">
           <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center text-xl">
             <i class="fa-solid fa-champagne-glasses"></i>
@@ -425,20 +612,20 @@
             <i class="fa-solid fa-tag text-amber-500 mr-2"></i> Official Booking Tariff
           </h4>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
-              <span class="bg-amber-100 text-amber-800 text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full">Half Day</span>
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center">
+              <span class="bg-amber-100 text-amber-800 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full">Half Day</span>
               <p class="text-2xl font-black text-slate-900 mt-2">₹2,500</p>
-              <p class="text-xs text-slate-500 mt-1">Morning (9 AM - 3 PM) OR Evening (4 PM - 10 PM)</p>
+              <p class="text-xs text-slate-500 mt-1 font-medium">Morning (9 AM - 3 PM) OR Evening (4 PM - 10 PM)</p>
             </div>
-            <div class="bg-slate-50 p-4 rounded-xl border-2 border-amber-500 text-center relative shadow-sm">
+            <div class="bg-slate-50 p-4 rounded-2xl border-2 border-amber-500 text-center relative shadow-sm">
               <span class="bg-amber-500 text-slate-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full">Full Day Access</span>
               <p class="text-2xl font-black text-slate-900 mt-2">₹5,000</p>
-              <p class="text-xs text-slate-500 mt-1">Full Day (9:00 AM to 10:30 PM)</p>
+              <p class="text-xs text-slate-500 mt-1 font-medium">Full Day (9:00 AM to 10:30 PM)</p>
             </div>
           </div>
         </div>
 
-        <div class="space-y-2 bg-blue-50/60 p-4 rounded-xl border border-blue-200 text-xs">
+        <div class="space-y-2 bg-blue-50/60 p-4 rounded-2xl border border-blue-200 text-xs">
           <h4 class="font-bold text-slate-900 text-xs flex items-center">
             <i class="fa-solid fa-circle-info text-blue-600 mr-1.5"></i> Important Hall Guidelines:
           </h4>
@@ -459,11 +646,11 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Event Date</label>
-                <input type="date" id="ch-date" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+                <input type="date" id="ch-date" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none focus:border-amber-500">
               </div>
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Booking Slot & Tariff</label>
-                <select id="ch-slot" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500 font-semibold text-slate-800">
+                <select id="ch-slot" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none focus:border-amber-500 font-semibold text-slate-800">
                   <option value="Half Day - Morning (9:00 AM - 3:00 PM) - ₹2,500">Half Day: Morning (9 AM - 3 PM) — ₹2,500</option>
                   <option value="Half Day - Evening (4:00 PM - 10:00 PM) - ₹2,500">Half Day: Evening (4 PM - 10 PM) — ₹2,500</option>
                   <option value="Full Day (9:00 AM - 10:30 PM) - ₹5,000">Full Day (9 AM - 10:30 PM) — ₹5,000</option>
@@ -474,26 +661,26 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Event Purpose / Occasion</label>
-                <input type="text" id="ch-purpose" required placeholder="e.g. Birthday Party, Anniversary" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+                <input type="text" id="ch-purpose" required placeholder="e.g. Birthday Party, Anniversary" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none focus:border-amber-500">
               </div>
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Expected Number of Guests</label>
-                <input type="number" id="ch-guests" min="5" max="150" placeholder="e.g. 40" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+                <input type="number" id="ch-guests" min="5" max="150" placeholder="e.g. 40" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none focus:border-amber-500">
               </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Flat Number</label>
-                <input type="text" id="ch-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+                <input type="text" id="ch-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none focus:border-amber-500">
               </div>
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Contact Phone Number</label>
-                <input type="tel" id="ch-phone" required placeholder="+91 98765 00000" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-lg text-xs outline-none focus:border-amber-500">
+                <input type="tel" id="ch-phone" required placeholder="+91 98765 00000" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none focus:border-amber-500">
               </div>
             </div>
 
-            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg text-xs transition mt-3 cursor-pointer flex items-center justify-center space-x-2">
+            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-xs transition mt-3 cursor-pointer flex items-center justify-center space-x-2 shadow-md">
               <i class="fa-solid fa-receipt text-amber-400"></i>
               <span>Submit Clubhouse Booking Request</span>
             </button>
@@ -503,9 +690,9 @@
     </div>
   </div>
 
-  <!-- 3. VENUS AI FLOATING BUTTON -->
+  <!-- 3. VENUS AI RESIDENT ASSISTANT FLOATING BUTTON -->
   <div id="ai-launcher" onclick="var w=document.getElementById('ai-chat-window'); w.style.display = (w.style.display === 'none' || w.style.display === '') ? 'flex' : 'none';" style="position: fixed; bottom: 24px; right: 24px; z-index: 999999; cursor: pointer;" class="flex items-center space-x-2 group">
-    <div class="bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-2xl border border-amber-400/40 hidden sm:flex items-center space-x-1.5 group-hover:bg-slate-800 transition">
+    <div class="bg-slate-900/90 backdrop-blur-md text-white text-xs font-bold px-3.5 py-2 rounded-full shadow-2xl border border-amber-400/40 hidden sm:flex items-center space-x-2 group-hover:bg-slate-800 transition">
       <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
       <span>Ask Venus AI</span>
     </div>
@@ -514,11 +701,12 @@
     </div>
   </div>
 
-  <!-- 4. VENUS AI CHAT WINDOW -->
-  <div id="ai-chat-window" style="display: none; position: fixed; bottom: 90px; right: 24px; width: 380px; max-width: 92vw; height: 520px; max-height: 80vh; z-index: 9999999; flex-direction: column;" class="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
-    <div class="bg-slate-900 text-white p-4 flex justify-between items-center shadow flex-shrink-0">
+  <!-- 4. VENUS AI CHAT DRAWER WINDOW -->
+  <div id="ai-chat-window" style="display: none; position: fixed; bottom: 90px; right: 24px; width: 380px; max-width: 92vw; height: 520px; max-height: 80vh; z-index: 9999999; flex-direction: column;" class="bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden">
+    
+    <div class="bg-slate-950 text-white p-4 flex justify-between items-center shadow flex-shrink-0 border-b border-slate-800">
       <div class="flex items-center space-x-2.5">
-        <div class="w-9 h-9 bg-amber-400 text-slate-900 rounded-full flex items-center justify-center text-lg font-bold">
+        <div class="w-9 h-9 bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 rounded-full flex items-center justify-center text-lg font-bold">
           <i class="fa-solid fa-robot"></i>
         </div>
         <div>
@@ -538,17 +726,17 @@
         <div class="w-7 h-7 bg-amber-400 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
           <i class="fa-solid fa-robot"></i>
         </div>
-        <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed">
+        <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed">
           Hello! I am <strong>Venus AI</strong>, your Vascon Venus community assistant. 
           <br><br>How can I help you today?
         </div>
       </div>
 
       <div class="pt-1 flex flex-wrap gap-1.5" id="ai-chips">
-        <button onclick="askSuggestion('What are the swimming pool timings & rules?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">🏊 Pool Timings & Rules</button>
-        <button onclick="askSuggestion('How much is the clubhouse booking tariff?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">🏛️ Clubhouse Rates</button>
-        <button onclick="askSuggestion('Who are the Executive Committee members?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">👥 EC Members & Flats</button>
-        <button onclick="askSuggestion('What are the current works in progress?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-full text-[11px] transition cursor-pointer">🛠️ Current Works</button>
+        <button onclick="askSuggestion('What are the swimming pool timings & rules?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">🏊 Pool Timings & Rules</button>
+        <button onclick="askSuggestion('How much is the clubhouse booking tariff?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">🏛️ Clubhouse Rates</button>
+        <button onclick="askSuggestion('Who are the Executive Committee members?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">👥 EC Members & Flats</button>
+        <button onclick="askSuggestion('What are the current works in progress?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">🛠️ Current Works</button>
       </div>
     </div>
 
@@ -560,15 +748,19 @@
     </form>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-slate-900 text-slate-400 py-10 text-sm">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-      <p class="font-bold text-white text-base mb-1">Vascon Venus Co-operative Housing Society</p>
-      <p>&copy; 2025 Vascon Venus Apartment. All rights reserved.</p>
+  <!-- 9. FOOTER -->
+  <footer class="bg-slate-950 text-slate-400 py-12 text-sm border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+      <div class="flex items-center justify-center space-x-2">
+        <i class="fa-solid fa-building text-amber-400"></i>
+        <span class="font-extrabold text-white text-base">Vascon Venus Co-operative Housing Society</span>
+      </div>
+      <p class="text-xs text-slate-500">Vascon Venus Complex, Society Main Road, Pune</p>
+      <p class="text-xs text-slate-600 pt-2">&copy; 2026 Vascon Venus Apartment. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- NATIVE LIVE REST API SYNC SCRIPT -->
+  <!-- NATIVE REST SYNC & DATA FETCH SCRIPT -->
   <script>
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
@@ -582,31 +774,30 @@
       if (chDate) chDate.value = today;
     });
 
-    // 1. Direct Native Fetch: Live Notices
+    // 1. Fetch Live Notices
     async function loadLiveNotices() {
       try {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/notices?select=*&order=created_at.desc`, {
-          headers: {
-            "apikey": SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
-          }
+          headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": `Bearer ${SUPABASE_ANON_KEY}` }
         });
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
           const container = document.getElementById('notices-container');
           container.innerHTML = data.map(n => `
-            <div class="bg-white border-l-4 ${n.is_urgent ? 'border-red-500' : 'border-blue-500'} p-6 rounded-r-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold ${n.is_urgent ? 'text-red-600 bg-red-50' : 'text-blue-600 bg-blue-50'} uppercase tracking-wide px-2.5 py-0.5 rounded">
-                  ${n.is_urgent ? 'High Priority' : (n.category || 'General')}
-                </span>
-                <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> ${new Date(n.created_at).toLocaleDateString()}</span>
+            <div class="bg-white border-l-4 ${n.is_urgent ? 'border-red-500 shadow-red-500/5' : 'border-blue-500 shadow-blue-500/5'} p-6 rounded-3xl shadow-sm hover:shadow-md border border-slate-100 transition flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[10px] font-black ${n.is_urgent ? 'text-red-700 bg-red-50 border border-red-200' : 'text-blue-700 bg-blue-50 border border-blue-200'} uppercase tracking-wider px-2.5 py-0.5 rounded-full">
+                    ${n.is_urgent ? 'High Priority' : (n.category || 'General')}
+                  </span>
+                  <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock mr-1"></i> ${new Date(n.created_at).toLocaleDateString()}</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">${n.title}</h3>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed whitespace-pre-line">${n.description}</p>
               </div>
-              <h3 class="text-lg font-bold text-slate-900 mt-3">${n.title}</h3>
-              <p class="text-sm text-gray-600 mt-2 leading-relaxed whitespace-pre-line">${n.description}</p>
-              <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-                <span><i class="fa-solid fa-user-shield mr-1"></i> Vascon Venus EC</span>
-                <span class="text-slate-700 font-medium">${n.category || 'Notice'}</span>
+              <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400 font-medium">
+                <span><i class="fa-solid fa-user-shield text-amber-500 mr-1"></i> Vascon Venus EC</span>
+                <span class="text-slate-600 font-semibold">${n.category || 'Notice'}</span>
               </div>
             </div>
           `).join('');
@@ -616,39 +807,36 @@
       }
     }
 
-    // 2. Direct Native Fetch: Work Tracker
+    // 2. Fetch Live Works
     async function loadLiveWorks() {
       try {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/works_tracker?select=*&order=created_at.desc`, {
-          headers: {
-            "apikey": SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
-          }
+          headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": `Bearer ${SUPABASE_ANON_KEY}` }
         });
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
           const container = document.getElementById('tracker-container');
           container.innerHTML = data.map(w => `
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition">
+            <div class="bg-white p-6 rounded-3xl shadow-sm hover:shadow-md border border-slate-200 transition">
               <div class="flex justify-between items-start mb-3">
                 <div>
-                  <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Project Update</span>
-                  <h4 class="font-bold text-slate-900 text-lg mt-0.5">${w.title}</h4>
+                  <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-2.5 py-0.5 rounded-full">Project Update</span>
+                  <h4 class="font-extrabold text-slate-900 text-lg mt-1">${w.title}</h4>
                 </div>
-                <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full font-semibold">${w.status}</span>
+                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold">${w.status}</span>
               </div>
-              <p class="text-sm text-gray-600 mb-4">${w.description || ''}</p>
+              <p class="text-sm text-slate-600 mb-4 leading-relaxed">${w.description || ''}</p>
               <div class="space-y-1.5">
                 <div class="flex justify-between text-xs font-bold text-slate-700">
                   <span>Work Progress</span>
                   <span>${w.progress_percentage}%</span>
                 </div>
-                <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
-                  <div class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: ${w.progress_percentage}%"></div>
+                <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+                  <div class="bg-gradient-to-r from-blue-600 to-indigo-600 h-3 rounded-full transition-all duration-500" style="width: ${w.progress_percentage}%"></div>
                 </div>
               </div>
-              <div class="mt-4 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
-                <span><i class="fa-regular fa-calendar mr-1"></i> Target: ${w.target_date ? new Date(w.target_date).toLocaleDateString() : 'Ongoing'}</span>
+              <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400 font-medium">
+                <span><i class="fa-regular fa-calendar mr-1 text-slate-400"></i> Target: <strong class="text-slate-700">${w.target_date ? new Date(w.target_date).toLocaleDateString() : 'Ongoing'}</strong></span>
               </div>
             </div>
           `).join('');
@@ -658,27 +846,24 @@
       }
     }
 
-    // 3. Direct Native Fetch: Meeting Minutes
+    // 3. Fetch Live Meeting Minutes
     async function loadLiveMinutes() {
       try {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/meeting_minutes?select=*&order=meeting_date.desc`, {
-          headers: {
-            "apikey": SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
-          }
+          headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": `Bearer ${SUPABASE_ANON_KEY}` }
         });
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
           const tbody = document.getElementById("minutes-container");
           tbody.innerHTML = data.map(m => `
             <tr class="hover:bg-slate-50 transition border-b border-gray-100">
-              <td class="py-4 px-4 font-bold text-slate-900">${new Date(m.meeting_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-              <td class="py-4 px-4">
-                <span class="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-full text-xs font-semibold">${m.meeting_type}</span>
+              <td class="py-4 px-6 font-bold text-slate-900">${new Date(m.meeting_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+              <td class="py-4 px-6">
+                <span class="bg-slate-100 text-slate-800 px-3 py-1 rounded-full text-xs font-bold">${m.meeting_type}</span>
               </td>
-              <td class="py-4 px-4 text-gray-600">${m.agenda_summary}</td>
-              <td class="py-4 px-4 text-right">
-                <a href="${m.pdf_url}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
+              <td class="py-4 px-6 text-slate-600 font-medium">${m.agenda_summary}</td>
+              <td class="py-4 px-6 text-right">
+                <a href="${m.pdf_url}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-bold text-xs bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3.5 py-1.5 rounded-xl transition">
                   <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
                 </a>
               </td>
@@ -690,74 +875,10 @@
       }
     }
 
-    // 4. Direct Native Fetch: Resident Directory
-    async function loadLiveDirectory() {
-      try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/resident_directory?select=*&order=flat_no.asc`, {
-          headers: {
-            "apikey": SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
-          }
-        });
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) {
-          const tbody = document.getElementById("directory-container");
-          tbody.innerHTML = data.map(r => `
-            <tr class="hover:bg-slate-50 transition border-b border-gray-100">
-              <td class="py-3.5 px-4 font-bold text-slate-900">${r.flat_no}</td>
-              <td class="py-3.5 px-4 font-medium text-slate-800">${r.owner_name}</td>
-              <td class="py-3.5 px-4">
-                <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${
-                  r.occupancy_status === 'Owner Occupied' ? 'bg-green-100 text-green-800' :
-                  r.occupancy_status === 'Tenant Occupied' ? 'bg-blue-100 text-blue-800' :
-                  'bg-gray-100 text-gray-700'
-                }">
-                  ${r.occupancy_status || 'Owner Occupied'}
-                </span>
-              </td>
-              <td class="py-3.5 px-4 text-slate-600">${r.tenant_name || '<span class="text-gray-400">N/A</span>'}</td>
-              <td class="py-3.5 px-4 text-slate-600 font-mono text-xs">${r.parking_slot || 'N/A'}</td>
-            </tr>
-          `).join('');
-        }
-      } catch (e) {
-        console.error("Directory load error:", e);
-      }
-    }
-
-    // Call all loaders immediately
+    // Initialize all data loaders
     loadLiveNotices();
     loadLiveWorks();
     loadLiveMinutes();
-    loadLiveDirectory();
-
-    // Directory Filtering
-    let selectedWing = '';
-    window.filterByWing = function(wing, btnElement) {
-      selectedWing = wing.toUpperCase().trim();
-      const buttons = document.querySelectorAll('.wing-btn');
-      buttons.forEach(b => b.className = "wing-btn hover:bg-slate-200 text-slate-700 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition");
-      if (btnElement) btnElement.className = "wing-btn bg-slate-900 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition";
-      applyCombinedFilter();
-    };
-
-    window.applyCombinedFilter = function() {
-      const searchInput = document.getElementById("dir-search");
-      const searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : "";
-      const tbody = document.getElementById("directory-container");
-      if (!tbody) return;
-      const rows = tbody.getElementsByTagName("tr");
-      for (let i = 0; i < rows.length; i++) {
-        const row = rows[i];
-        const cells = row.getElementsByTagName("td");
-        if (cells.length === 0) continue;
-        const flatNumber = (cells[0].textContent || cells[0].innerText || "").toUpperCase().trim();
-        const fullRowText = (row.textContent || row.innerText || "").toLowerCase();
-        const matchesWing = (selectedWing === "") || flatNumber.startsWith(selectedWing + "-") || flatNumber.startsWith(selectedWing);
-        const matchesSearch = (searchQuery === "") || fullRowText.includes(searchQuery);
-        row.style.display = (matchesWing && matchesSearch) ? "" : "none";
-      }
-    };
 
     // Modal Bookings
     window.handlePoolBooking = function(e) {
@@ -789,7 +910,7 @@
       const chips = document.getElementById('ai-chips');
       if (chips) chips.style.display = 'none';
 
-      container.innerHTML += `<div class="flex items-end justify-end space-x-2"><div class="bg-slate-900 text-white p-3 rounded-2xl rounded-br-none max-w-[85%] shadow-sm leading-relaxed text-xs">${userText}</div></div>`;
+      container.innerHTML += `<div class="flex items-end justify-end space-x-2"><div class="bg-slate-900 text-white p-3.5 rounded-2xl rounded-br-none max-w-[85%] shadow-sm leading-relaxed text-xs">${userText}</div></div>`;
       container.scrollTop = container.scrollHeight;
 
       const typingBubble = document.createElement('div');
