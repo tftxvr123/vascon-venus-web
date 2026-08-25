@@ -201,44 +201,75 @@
         </div>
       </div>
 
-      <!-- 4. Update Ongoing Works -->
+      <!-- 4. UPGRADED: Roadmap & Project Tracker Management -->
       <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <div class="flex items-center space-x-2 mb-4">
           <i class="fa-solid fa-list-check text-green-500 text-xl"></i>
-          <h2 class="text-xl font-bold text-slate-900">Add Ongoing Work / Maintenance</h2>
+          <h2 class="text-xl font-bold text-slate-900">Update Society Roadmap & Projects</h2>
         </div>
+
         <div class="space-y-4">
+          <!-- 1-Click Roadmap Selector -->
+          <div class="bg-amber-50 p-4 rounded-xl border border-amber-200">
+            <label class="block text-xs font-bold text-amber-900 mb-1">✨ Quick Select from Official Society Roadmap:</label>
+            <select id="roadmap-selector" onchange="autoFillRoadmap()" class="w-full bg-white border border-amber-300 px-3 py-2 rounded-lg text-xs font-semibold text-slate-800 outline-none">
+              <option value="">-- Choose a Roadmap Item to Auto-fill --</option>
+              <optgroup label="📹 Safety & Utilities">
+                <option value="cctv">📹 Security Camera Upgrade (Faulty CCTV Replacement & Modernization)</option>
+                <option value="png">🔥 PNG (Piped Natural Gas) Feasibility & Resident Interest</option>
+              </optgroup>
+              <optgroup label="🏗️ Infrastructure">
+                <option value="wall">🏗️ A Block Boundary Wall Construction / Repair</option>
+                <option value="board">🏷️ Install Apartment Name Boards</option>
+                <option value="lift">🛗 Lift Painting & Common Area Refurbishment</option>
+              </optgroup>
+              <optgroup label="💧 Water Management">
+                <option value="water">💧 Increase Water Storage Capacity (Reduce Tanker Dependency)</option>
+              </optgroup>
+              <optgroup label="⚽ Amenities & Recreation">
+                <option value="turf">⚽ Install Playground Turf (Safer Children Area)</option>
+                <option value="gym">🏋️ Gym Facility Repairs & Equipment Upgrades</option>
+                <option value="pool">🏊 Swimming Pool Damaged Tile Replacement</option>
+              </optgroup>
+            </select>
+          </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Work Title *</label>
-              <input type="text" id="w-title" placeholder="e.g. CCTV Upgrades" class="w-full border px-3 py-2 rounded-lg text-sm">
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Project / Work Title *</label>
+              <input type="text" id="w-title" placeholder="Select above or type custom title..." class="w-full border px-3 py-2 rounded-lg text-sm">
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Status</label>
-              <select id="w-status" class="w-full border px-3 py-2 rounded-lg text-sm">
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Status Tag</label>
+              <select id="w-status" class="w-full border px-3 py-2 rounded-lg text-sm font-semibold">
+                <option value="Vendor Research / Feasibility">Vendor Research / Feasibility</option>
                 <option value="Planning">Planning</option>
+                <option value="Quotation Review">Quotation Review</option>
+                <option value="Approved by EC">Approved by EC</option>
                 <option value="In Progress">In Progress</option>
-                <option value="Testing">Testing</option>
                 <option value="Completed">Completed</option>
               </select>
             </div>
           </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-600 mb-1">Progress Percentage (0 - 100%) *</label>
-              <input type="number" id="w-progress" min="0" max="100" placeholder="75" class="w-full border px-3 py-2 rounded-lg text-sm">
+              <input type="number" id="w-progress" min="0" max="100" value="15" placeholder="15" class="w-full border px-3 py-2 rounded-lg text-sm">
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Target Completion Date</label>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Target Completion Date (Optional)</label>
               <input type="date" id="w-date" class="w-full border px-3 py-2 rounded-lg text-sm">
             </div>
           </div>
+
           <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Description</label>
-            <input type="text" id="w-desc" placeholder="Details about vendor, scope, etc." class="w-full border px-3 py-2 rounded-lg text-sm">
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Project Scope / Details</label>
+            <textarea id="w-desc" rows="3" placeholder="Describe the roadmap objective and current stage..." class="w-full border px-3 py-2 rounded-lg text-sm"></textarea>
           </div>
+
           <button type="button" onclick="saveWorkDirect()" id="w-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg cursor-pointer transition">
-            Save Work Item
+            Save Project to Roadmap Live
           </button>
         </div>
       </div>
@@ -246,12 +277,68 @@
     </div>
   </div>
 
-  <!-- NATIVE REST API SCRIPT (Zero Dependencies) -->
+  <!-- NATIVE REST API SCRIPT -->
   <script>
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
 
-    // 1. Direct Native Publish Notice
+    // Auto-fill Roadmap details on dropdown selection
+    function autoFillRoadmap() {
+      const choice = document.getElementById('roadmap-selector').value;
+      const titleInput = document.getElementById('w-title');
+      const descInput = document.getElementById('w-desc');
+      const statusSelect = document.getElementById('w-status');
+      const progressInput = document.getElementById('w-progress');
+
+      if (choice === 'cctv') {
+        titleInput.value = "Security Camera Upgrade";
+        descInput.value = "Strengthen and replace the existing old CCTV system, which is currently faulty and not recording consistently, with a modern and reliable surveillance solution.";
+        statusSelect.value = "Vendor Research / Feasibility";
+        progressInput.value = "15";
+      } else if (choice === 'wall') {
+        titleInput.value = "A Block Boundary Wall Construction/Repair";
+        descInput.value = "Construction and repair work on A Block boundary wall to enhance safety, security, and aesthetics.";
+        statusSelect.value = "Planning";
+        progressInput.value = "0";
+      } else if (choice === 'board') {
+        titleInput.value = "Install Apartment Name Boards";
+        descInput.value = "Install new clear name boards to improve society visibility, identity, and overall appearance.";
+        statusSelect.value = "Planning";
+        progressInput.value = "0";
+      } else if (choice === 'lift') {
+        titleInput.value = "Lift Painting & Refurbishment";
+        descInput.value = "Refurbishment and painting of common area lifts to enhance aesthetics and passenger experience.";
+        statusSelect.value = "Planning";
+        progressInput.value = "0";
+      } else if (choice === 'water') {
+        titleInput.value = "Increase Water Storage Capacity";
+        descInput.value = "Enhance underground/overhead storage capacity to reduce tanker dependency and improve availability during peak hours.";
+        statusSelect.value = "Planning";
+        progressInput.value = "0";
+      } else if (choice === 'turf') {
+        titleInput.value = "Install Turf in Children's Playground";
+        descInput.value = "Install soft turf ground to create a safer, clean, and better recreational space for children.";
+        statusSelect.value = "Planning";
+        progressInput.value = "0";
+      } else if (choice === 'gym') {
+        titleInput.value = "Gym Repairs & Equipment Upgrades";
+        descInput.value = "Facility repairs and servicing of gym equipment to improve usability and workout safety.";
+        statusSelect.value = "Planning";
+        progressInput.value = "0";
+      } else if (choice === 'pool') {
+        titleInput.value = "Swimming Pool Tile Replacement";
+        descInput.value = "Replace damaged and worn-out pool tiles to ensure swimmer safety and aesthetic appeal.";
+        statusSelect.value = "Planning";
+        progressInput.value = "0";
+      } else if (choice === 'png') {
+        titleInput.value = "Piped Natural Gas (PNG) Feasibility";
+        descInput.value = "Evaluate PNG pipeline feasibility, installation costs, and resident interest across all flats.";
+        statusSelect.value = "Planning";
+        progressInput.value = "0";
+      }
+    }
+
+    // 1. Direct Publish Notice
     async function publishNoticeDirect() {
       const title = document.getElementById('n-title').value.trim();
       const category = document.getElementById('n-category').value;
@@ -264,7 +351,7 @@
         return;
       }
 
-      btn.innerText = "Connecting & Saving...";
+      btn.innerText = "Saving...";
       btn.disabled = true;
 
       try {
@@ -280,7 +367,7 @@
         });
 
         if (response.ok) {
-          alert("🎉 SUCCESS! Notice published live to Supabase and Website!");
+          alert("🎉 SUCCESS! Notice published live!");
           document.getElementById('n-title').value = '';
           document.getElementById('n-desc').value = '';
         } else {
@@ -295,7 +382,7 @@
       }
     }
 
-    // 2. Direct Native Save Resident
+    // 2. Direct Save Resident
     async function saveResidentDirect() {
       const flat_no = document.getElementById('r-flat').value.trim();
       const owner_name = document.getElementById('r-owner').value.trim();
@@ -341,7 +428,7 @@
       }
     }
 
-    // 3. Direct Native Save Work
+    // 3. Direct Save Roadmap & Work Item
     async function saveWorkDirect() {
       const title = document.getElementById('w-title').value.trim();
       const status = document.getElementById('w-status').value;
@@ -351,11 +438,11 @@
       const btn = document.getElementById('w-btn');
 
       if (!title) {
-        alert("⚠️ Please enter Work Title.");
+        alert("⚠️ Please enter or select a Project Title.");
         return;
       }
 
-      btn.innerText = "Saving...";
+      btn.innerText = "Saving to Roadmap...";
       btn.disabled = true;
 
       try {
@@ -371,9 +458,10 @@
         });
 
         if (response.ok) {
-          alert("🎉 SUCCESS! Work item saved live!");
+          alert("🎉 SUCCESS! Project status updated on society roadmap!");
           document.getElementById('w-title').value = '';
           document.getElementById('w-desc').value = '';
+          document.getElementById('roadmap-selector').value = '';
         } else {
           const err = await response.json();
           alert("Error: " + (err.message || response.statusText));
@@ -381,7 +469,7 @@
       } catch (e) {
         alert("Network Error: " + e.message);
       } finally {
-        btn.innerText = "Save Work Item";
+        btn.innerText = "Save Project to Roadmap Live";
         btn.disabled = false;
       }
     }
@@ -406,7 +494,6 @@
       btn.disabled = true;
 
       try {
-        // Upload file to Supabase Storage
         const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/society-vault/${fileName}`, {
           method: "POST",
           headers: {
@@ -424,7 +511,6 @@
 
         const publicPdfUrl = `${SUPABASE_URL}/storage/v1/object/public/society-vault/${fileName}`;
 
-        // Save row in meeting_minutes table
         const dbRes = await fetch(`${SUPABASE_URL}/rest/v1/meeting_minutes`, {
           method: "POST",
           headers: {
