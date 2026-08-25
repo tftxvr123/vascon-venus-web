@@ -980,6 +980,23 @@
         container.scrollTop = container.scrollHeight;
       }, 350);
     }
+
+    // Toggle EC Members Expansion
+    function toggleECMembers() {
+      const extraMembers = document.getElementById('extra-ec-members');
+      const toggleText = document.getElementById('ec-toggle-text');
+      const toggleIcon = document.getElementById('ec-toggle-icon');
+
+      if (extraMembers.style.display === 'none' || extraMembers.style.display === '') {
+        extraMembers.style.display = 'grid';
+        toggleText.innerText = "Show Less";
+        toggleIcon.className = "fa-solid fa-chevron-up text-amber-400";
+      } else {
+        extraMembers.style.display = 'none';
+        toggleText.innerText = "View All 9 Committee Members (5 More)";
+        toggleIcon.className = "fa-solid fa-chevron-down text-amber-400";
+      }
+    }
   </script>
 </body>
 </html>
