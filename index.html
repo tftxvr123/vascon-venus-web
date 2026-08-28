@@ -20,49 +20,52 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-slate-950 relative">
 
-  <!-- 1. GLASSMORPHIC NAVIGATION BAR -->
-  <nav class="bg-slate-950/90 backdrop-blur-md text-white sticky top-0 z-50 border-b border-slate-800 shadow-xl">
+<!-- 1. CLEAN LUXURY NAVIGATION BAR -->
+  <nav class="bg-slate-950/95 backdrop-blur-md text-white sticky top-0 z-50 border-b border-slate-800 shadow-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
       
-      <!-- Brand Logo -->
+      <!-- Brand Logo + Integrated BETA Badge -->
       <a href="index.html" class="flex items-center space-x-3 group">
         <div class="w-10 h-10 bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 rounded-xl flex items-center justify-center text-xl font-black shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
           <i class="fa-solid fa-building"></i>
         </div>
         <div>
-          <span class="font-extrabold text-xl tracking-tight text-white block leading-none">VASCON VENUS APARTMENT</span>
-          <span class="text-[10px] font-bold text-amber-400 tracking-widest uppercase mt-1 block">Owners Welfare Association</span>
+          <div class="flex items-center space-x-2">
+            <span class="font-extrabold text-lg sm:text-xl tracking-tight text-white leading-none">VASCON VENUS</span>
+            <span class="bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider">
+              BETA
+            </span>
+          </div>
+          <span class="text-[10px] font-bold text-amber-400 tracking-wider uppercase mt-1 block">Owners Welfare Association</span>
         </div>
-        <span class="bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider ml-1">
-          BETA
-        </span>
       </a>
 
-      <!-- Desktop Nav Links -->
-      <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-300">
+      <!-- Clean Desktop Nav Links (Spaced Out & High Contrast) -->
+      <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-300">
         <a href="#amenities" class="hover:text-amber-400 transition">Amenities</a>
+        <a href="services.html" class="text-amber-400 hover:text-amber-300 transition font-bold flex items-center bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-xl">
+          <i class="fa-solid fa-sliders mr-1.5 text-xs"></i> Services & Passes
+        </a>
         <a href="#notices" class="hover:text-amber-400 transition">Notices</a>
         <a href="#tracker" class="hover:text-amber-400 transition">Work Tracker</a>
-        <a href="#minutes" class="hover:text-amber-400 transition">Meeting Minutes</a>
-        <a href="directory.html" class="hover:text-amber-400 transition flex items-center">
-          <i class="fa-solid fa-address-book mr-1.5 text-amber-400 text-xs"></i> Directory
-        </a>
+        <a href="#minutes" class="hover:text-amber-400 transition">Minutes</a>
+        <a href="directory.html" class="hover:text-amber-400 transition">Directory</a>
         <a href="#ec-team" class="hover:text-amber-400 transition">EC Team</a>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="flex items-center space-x-3">
-        <a href="admin.html" class="bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 flex items-center space-x-1.5">
+      <!-- Single Primary Action Button -->
+      <div class="flex items-center">
+        <a href="admin.html" class="bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-extrabold px-5 py-2.5 rounded-xl text-xs shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 flex items-center space-x-1.5">
           <i class="fa-solid fa-lock text-[11px]"></i>
           <span>EC Login</span>
         </a>
       </div>
+
     </div>
   </nav>
 
   <!-- 2. LUXURY HERO BANNER WITH ARCHITECTURAL BACKGROUND -->
   <header class="relative bg-slate-950 text-white overflow-hidden border-b border-slate-800">
-    <!-- Architectural Photo Background with Dark Gradient -->
     <div class="absolute inset-0 z-0">
       <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&auto=format&fit=crop&q=80" alt="Vascon Venus" class="w-full h-full object-cover opacity-20 filter brightness-90 scale-105 animate-pulse duration-[10000ms]">
       <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent"></div>
@@ -94,6 +97,10 @@
         <a href="#notices" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-7 py-4 rounded-2xl shadow-xl shadow-amber-500/25 transition transform hover:-translate-y-0.5 flex items-center space-x-2 text-sm">
           <i class="fa-solid fa-bullhorn"></i>
           <span>View Notices</span>
+        </a>
+        <a href="services.html" class="bg-slate-900/90 hover:bg-slate-800 text-white font-bold px-7 py-4 rounded-2xl border border-slate-700 transition transform hover:-translate-y-0.5 flex items-center space-x-2 text-sm">
+          <i class="fa-solid fa-sliders text-amber-400"></i>
+          <span>Resident Services & Passes</span>
         </a>
         <a href="directory.html" class="bg-slate-900/90 hover:bg-slate-800 text-white font-bold px-7 py-4 rounded-2xl border border-slate-700 transition transform hover:-translate-y-0.5 flex items-center space-x-2 text-sm">
           <i class="fa-solid fa-address-book text-amber-400"></i>
@@ -155,7 +162,7 @@
           </div>
         </div>
         <div class="p-6 pt-3">
-          <button type="button" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-md transition">
+          <button type="button" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-md transition cursor-pointer">
             <i class="fa-solid fa-calendar-check"></i>
             <span>View Guidelines & Book Slot</span>
           </button>
@@ -163,7 +170,7 @@
       </div>
 
       <!-- Amenity 2: Gym -->
-      <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-300 transition duration-300 group flex flex-col justify-between transform hover:-translate-y-1">
+      <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition duration-300 group flex flex-col justify-between transform hover:-translate-y-1">
         <div>
           <div class="h-52 overflow-hidden relative">
             <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&auto=format&fit=crop&q=80" alt="Gymnasium" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
@@ -201,7 +208,7 @@
           </div>
         </div>
         <div class="p-6 pt-3">
-          <button type="button" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-md transition">
+          <button type="button" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-md transition cursor-pointer">
             <i class="fa-solid fa-calendar-plus text-amber-400"></i>
             <span>View Tariff & Book Hall</span>
           </button>
@@ -209,63 +216,39 @@
       </div>
 
       <!-- Amenity 4: Play Area -->
-      <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition duration-300 group flex flex-col justify-between transform hover:-translate-y-1">
+      <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 p-6 flex flex-col justify-between">
         <div>
-          <div class="h-52 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=600&auto=format&fit=crop&q=80" alt="Play Area" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-            <span class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-bold">Open All Day</span>
+          <div class="h-44 overflow-hidden rounded-2xl mb-4">
+            <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=600&auto=format&fit=crop&q=80" alt="Play Area" class="w-full h-full object-cover">
           </div>
-          <div class="p-6">
-            <div class="flex items-center space-x-2 text-amber-500 mb-2">
-              <i class="fa-solid fa-shapes text-xl"></i>
-              <h3 class="font-bold text-slate-900 text-lg">Children's Play Park</h3>
-            </div>
-            <p class="text-sm text-slate-600 leading-relaxed">Safe, soft-turfed outdoor playground with swings, slides, and fun obstacle activities for kids of all age groups.</p>
-          </div>
+          <h3 class="font-bold text-slate-900 text-lg mb-1">Children's Play Park</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Safe outdoor playground with swings, slides, and fun obstacle activities for kids.</p>
         </div>
-        <div class="p-6 pt-0">
-          <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full"><i class="fa-solid fa-shield-check mr-1"></i> Child Safe Ground</span>
-        </div>
+        <span class="text-[11px] font-semibold text-emerald-600 mt-4 block">Open All Day</span>
       </div>
 
       <!-- Amenity 5: EV Charging -->
-      <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition duration-300 group flex flex-col justify-between transform hover:-translate-y-1">
+      <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 p-6 flex flex-col justify-between">
         <div>
-          <div class="h-52 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&auto=format&fit=crop&q=80" alt="EV Charging" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-            <span class="absolute top-3 right-3 bg-emerald-600 text-white text-xs px-3 py-1 rounded-full font-bold">24/7 Access</span>
+          <div class="h-44 overflow-hidden rounded-2xl mb-4">
+            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&auto=format&fit=crop&q=80" alt="EV Charging" class="w-full h-full object-cover">
           </div>
-          <div class="p-6">
-            <div class="flex items-center space-x-2 text-amber-500 mb-2">
-              <i class="fa-solid fa-charging-station text-xl"></i>
-              <h3 class="font-bold text-slate-900 text-lg">EV Charging Stations</h3>
-            </div>
-            <p class="text-sm text-slate-600 leading-relaxed">Dedicated fast electric vehicle charging points installed across visitor and designated parking zones.</p>
-          </div>
+          <h3 class="font-bold text-slate-900 text-lg mb-1">EV Charging Stations</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Dedicated fast electric vehicle charging points for residents and visitors.</p>
         </div>
-        <div class="p-6 pt-0">
-          <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full"><i class="fa-solid fa-bolt mr-1"></i> Fast Chargers Active</span>
-        </div>
+        <span class="text-[11px] font-semibold text-blue-600 mt-4 block">24/7 Available</span>
       </div>
 
       <!-- Amenity 6: Security -->
-      <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition duration-300 group flex flex-col justify-between transform hover:-translate-y-1">
+      <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 p-6 flex flex-col justify-between">
         <div>
-          <div class="h-52 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&auto=format&fit=crop&q=80" alt="Security" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-            <span class="absolute top-3 right-3 bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-bold">24x7 Security</span>
+          <div class="h-44 overflow-hidden rounded-2xl mb-4">
+            <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&auto=format&fit=crop&q=80" alt="Security" class="w-full h-full object-cover">
           </div>
-          <div class="p-6">
-            <div class="flex items-center space-x-2 text-amber-500 mb-2">
-              <i class="fa-solid fa-shield-halved text-xl"></i>
-              <h3 class="font-bold text-slate-900 text-lg">24/7 Security & CCTV</h3>
-            </div>
-            <p class="text-sm text-gray-600 leading-relaxed">Guarded entry gates with boom barriers, 24/7 high-definition CCTV coverage, and complete common power backup.</p>
-          </div>
+          <h3 class="font-bold text-slate-900 text-lg mb-1">24/7 Security & CCTV</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Guarded entry gates with boom barriers, 24/7 HD CCTV, and common power backup.</p>
         </div>
-        <div class="p-6 pt-0">
-          <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full"><i class="fa-solid fa-circle-check mr-1"></i> Guarded Entry</span>
-        </div>
+        <span class="text-[11px] font-semibold text-emerald-600 mt-4 block">Guarded Entry</span>
       </div>
 
     </div>
@@ -299,9 +282,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
         <div>
-          <span class="text-blue-600 font-extrabold uppercase text-xs tracking-widest bg-blue-50 border border-blue-200 px-3 py-1 rounded-full">Infrastructure & Repairs</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 tracking-tight">Current Works Status</h2>
-          <p class="text-slate-500 text-sm">Real-time status of ongoing repairs, upgrades, and maintenance across all wings</p>
+          <span class="text-blue-600 font-extrabold uppercase text-xs tracking-widest bg-blue-50 border border-blue-200 px-3 py-1 rounded-full">Infrastructure & Maintenance</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 tracking-tight">Current Works & Project Tracker</h2>
+          <p class="text-slate-500 text-sm">Track real-time progress, assigned vendors, and target completion dates across all 3 wings</p>
         </div>
         <span class="bg-blue-100 text-blue-800 text-xs font-bold px-4 py-2 rounded-full self-start md:self-auto flex items-center shadow-sm">
           <i class="fa-solid fa-screwdriver-wrench mr-2 text-blue-600"></i> Active Projects
@@ -312,7 +295,7 @@
       <div id="tracker-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="col-span-2 text-center py-12 text-slate-400">
           <i class="fa-solid fa-spinner fa-spin text-2xl mb-2 text-blue-500"></i>
-          <p class="text-xs font-semibold">Loading active works status...</p>
+          <p class="text-xs font-semibold">Loading works status...</p>
         </div>
       </div>
     </div>
@@ -351,9 +334,14 @@
                 <td class="py-4 px-6">
                   <span class="bg-slate-100 text-slate-800 px-3 py-1 rounded-full text-xs font-bold">Monthly EC</span>
                 </td>
-                <td class="py-4 px-6 text-slate-600 font-medium">Independence Day Celebration – Key Decisions 1. EC discussed and planned the Independence Day celebrations for residents. 
-                  2. Activities included flag hoisting, decorations, children’s games and refreshments. 3. It was decided to arrange breakfast with idly, vada and tea, considering approximately 75 people, including residents and staff.
-                  4. EC members were requested to support and coordinate the decoration and event arrangements on the day. 5. Decoration work at the main gate was initiated ahead of the event..</td>
+                <td class="py-4 px-6 text-slate-600 font-medium leading-relaxed">
+                  Independence Day Celebration – Key Decisions:<br>
+                  1. EC discussed and planned the Independence Day celebrations for residents.<br>
+                  2. Activities included flag hoisting, decorations, children’s games and refreshments.<br>
+                  3. It was decided to arrange breakfast with idly, vada and tea, considering approximately 75 people, including residents and staff.<br>
+                  4. EC members were requested to support and coordinate the decoration and event arrangements on the day.<br>
+                  5. Decoration work at the main gate was initiated ahead of the event.
+                </td>
                 <td class="py-4 px-6 text-right">
                   <a href="EC MOM Aug 12th 2026.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-bold text-xs bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3.5 py-1.5 rounded-xl transition">
                     <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
@@ -367,7 +355,10 @@
                 <td class="py-4 px-6">
                   <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-bold">EGM</span>
                 </td>
-                <td class="py-4 px-6 text-slate-600 font-medium">1. Discussion on Ganesh chathurthy festival in basement parking. 2. Reviewed the event details and food arrangements.</td>
+                <td class="py-4 px-6 text-slate-600 font-medium leading-relaxed">
+                  1. Discussion on Ganesh Chaturthi festival in basement parking.<br>
+                  2. Reviewed the event details and food arrangements.
+                </td>
                 <td class="py-4 px-6 text-right">
                   <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-bold text-xs bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3.5 py-1.5 rounded-xl transition">
                     <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
@@ -386,9 +377,6 @@
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 rounded-3xl p-8 md:p-12 text-white shadow-2xl border border-slate-800 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
       
-      <!-- Background Ambient Glow -->
-      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
       <div class="space-y-3 max-w-xl text-center lg:text-left z-10">
         <span class="inline-flex items-center space-x-2 bg-amber-500/20 border border-amber-500/40 text-amber-400 text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full">
           <i class="fa-solid fa-address-book"></i>
@@ -400,7 +388,6 @@
         </p>
       </div>
 
-      <!-- Action Button -->
       <div class="flex flex-col sm:flex-row items-center gap-4 flex-shrink-0 z-10">
         <a href="directory.html" class="bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/20 text-sm flex items-center space-x-3 transition transform hover:-translate-y-0.5">
           <span>Explore Full Directory (79 Flats)</span>
@@ -411,7 +398,7 @@
     </div>
   </section>
 
-<!-- 8. EXECUTIVE COMMITTEE MEMBERS SECTION (WITH EXPAND/COLLAPSE) -->
+  <!-- 8. EXECUTIVE COMMITTEE LEADERSHIP -->
   <section id="ec-team" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200">
     <div class="text-center max-w-2xl mx-auto mb-12">
       <span class="text-amber-600 font-extrabold uppercase text-xs tracking-widest bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">Society Leadership</span>
@@ -419,7 +406,7 @@
       <p class="text-slate-500 text-sm mt-2">Reach out to committee members for society queries, maintenance, or suggestions</p>
     </div>
 
-    <!-- 1. Top 4 Core Office Bearers (Always Visible) -->
+    <!-- Top 4 Core Office Bearers -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       
       <!-- Member 1: President -->
@@ -462,22 +449,20 @@
         <p class="text-xs text-slate-400 font-semibold mt-2">Flat: <strong class="text-slate-700">B-311</strong></p>
       </div>
     </div>
-       
 
-    <!-- 2. Expandable Container (Remaining 4 Members) -->
+    <!-- Expandable 5 Committee Members -->
     <div id="extra-ec-members" style="display: none;" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
       
       <!-- Member 5: Joint Secretary -->
       <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-300 p-6 text-center transition duration-300 group transform hover:-translate-y-1">
-        <div class="w-20 h-20 mx-auto bg-slate-900 text-amber-400 rounded-full flex items-center justify-center text-2xl font-black mb-3 shadow-lg group-hover:scale-105 transition">
-          <i class="fa-solid fa-wallet"></i>
+        <div class="w-16 h-16 mx-auto bg-slate-100 text-slate-700 rounded-full flex items-center justify-center text-xl font-bold mb-2">
+          <i class="fa-solid fa-user-pen"></i>
         </div>
         <h3 class="font-extrabold text-slate-900 text-base">Karunakara T</h3>
         <span class="inline-block bg-emerald-100 text-emerald-800 text-[11px] font-bold px-3 py-0.5 rounded-full mt-1">Joint Secretary</span>
         <p class="text-xs text-slate-400 font-semibold mt-2">Flat: <strong class="text-slate-700">A-104</strong></p>
       </div>
-    
-      
+
       <!-- Member 6 -->
       <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-5 text-center transition hover:shadow-md">
         <div class="w-16 h-16 mx-auto bg-slate-100 text-slate-700 rounded-full flex items-center justify-center text-xl font-bold mb-2">
@@ -515,24 +500,22 @@
         </div>
         <h4 class="font-bold text-slate-900 text-sm">Vipin Madathil</h4>
         <span class="inline-block bg-slate-100 text-slate-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full mt-1">Committee Member</span>
-         <p class="text-xs text-slate-400 mt-1">Flat: <strong class="text-slate-700">B-119</strong></p>
+        <p class="text-xs text-slate-400 mt-1">Flat: <strong class="text-slate-700">B-119</strong></p>
       </div>
 
     </div>
 
-    <!-- 3. Expand / Collapse Toggle Button -->
+    <!-- Expand/Collapse Toggle Button -->
     <div class="mt-8 text-center">
       <button type="button" onclick="toggleECMembers()" id="ec-toggle-btn" class="inline-flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-2xl text-xs shadow-md transition cursor-pointer">
         <span id="ec-toggle-text">View All 9 Committee Members (5 More)</span>
         <i id="ec-toggle-icon" class="fa-solid fa-chevron-down text-amber-400"></i>
       </button>
     </div>
-
   </section>
 
-  
   <!-- ============================================================= -->
-  <!-- MODALS & POPUPS -->
+  <!-- MODALS (Swimming Pool & Clubhouse) -->
   <!-- ============================================================= -->
 
   <!-- 1. SWIMMING POOL MODAL -->
@@ -588,7 +571,7 @@
           </h4>
           <p class="text-xs text-slate-500 mb-4">Book a 1-hour slot for yourself or family members (max 4 per flat per day).</p>
 
-          <form id="pool-book-form" onsubmit="handlePoolBooking(event)" class="space-y-3">
+          <form onsubmit="handlePoolBooking(event)" class="space-y-3">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Select Date</label>
@@ -681,7 +664,7 @@
           </h4>
           <p class="text-xs text-slate-500 mb-4">Select your event date and slot. EC will confirm receipt and key handover.</p>
 
-          <form id="clubhouse-book-form" onsubmit="handleClubhouseBooking(event)" class="space-y-3">
+          <form onsubmit="handleClubhouseBooking(event)" class="space-y-3">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Event Date</label>
@@ -729,7 +712,7 @@
     </div>
   </div>
 
-  <!-- 3. VENUS AI RESIDENT ASSISTANT FLOATING BUTTON -->
+  <!-- 3. VENUS AI FLOATING BUTTON & DRAWER -->
   <div id="ai-launcher" onclick="var w=document.getElementById('ai-chat-window'); w.style.display = (w.style.display === 'none' || w.style.display === '') ? 'flex' : 'none';" style="position: fixed; bottom: 24px; right: 24px; z-index: 999999; cursor: pointer;" class="flex items-center space-x-2 group">
     <div class="bg-slate-900/90 backdrop-blur-md text-white text-xs font-bold px-3.5 py-2 rounded-full shadow-2xl border border-amber-400/40 hidden sm:flex items-center space-x-2 group-hover:bg-slate-800 transition">
       <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
@@ -740,9 +723,7 @@
     </div>
   </div>
 
-  <!-- 4. VENUS AI CHAT DRAWER WINDOW -->
   <div id="ai-chat-window" style="display: none; position: fixed; bottom: 90px; right: 24px; width: 380px; max-width: 92vw; height: 520px; max-height: 80vh; z-index: 9999999; flex-direction: column;" class="bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden">
-    
     <div class="bg-slate-950 text-white p-4 flex justify-between items-center shadow flex-shrink-0 border-b border-slate-800">
       <div class="flex items-center space-x-2.5">
         <div class="w-9 h-9 bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 rounded-full flex items-center justify-center text-lg font-bold">
@@ -772,10 +753,10 @@
       </div>
 
       <div class="pt-1 flex flex-wrap gap-1.5" id="ai-chips">
-        <button onclick="askSuggestion('What are the swimming pool timings & rules?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">🏊 Pool Timings & Rules</button>
+        <button onclick="askSuggestion('How do I create a visitor gate pass?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">🎟️ Visitor Gate Pass</button>
+        <button onclick="askSuggestion('What are the swimming pool timings & rules?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">🏊 Pool Timings</button>
         <button onclick="askSuggestion('How much is the clubhouse booking tariff?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">🏛️ Clubhouse Rates</button>
-        <button onclick="askSuggestion('Who are the Executive Committee members?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">👥 EC Members & Flats</button>
-        <button onclick="askSuggestion('What are the current works in progress?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">🛠️ Current Works</button>
+        <button onclick="askSuggestion('Who are the Executive Committee members?')" class="bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 px-2.5 py-1.5 rounded-full text-[11px] font-medium transition cursor-pointer shadow-sm">👥 EC Members</button>
       </div>
     </div>
 
@@ -787,31 +768,22 @@
     </form>
   </div>
 
-  <!-- 9. FOOTER -->
+  <!-- 10. FOOTER -->
   <footer class="bg-slate-950 text-slate-400 py-12 text-sm border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
       <div class="flex items-center justify-center space-x-2">
         <i class="fa-solid fa-building text-amber-400"></i>
-        <span class="font-extrabold text-white text-base"> Vascon Venus Apartment Owners Welfare Association </span>
+        <span class="font-extrabold text-white text-base">Vascon Venus Apartment Owners Welfare Association</span>
       </div>
       <p class="text-xs text-slate-500">Vascon Venus Apartment, Hosur Rd, Lavakusha Nagar, Bangalore</p>
       <p class="text-xs text-slate-600 pt-2">&copy; 2026 Vascon Venus Apartment. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- NATIVE REST SYNC & DATA FETCH SCRIPT -->
+  <!-- NATIVE LIVE REST API SYNC SCRIPT -->
   <script>
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
-
-    // Set default dates
-    window.addEventListener('DOMContentLoaded', () => {
-      const today = new Date().toISOString().split('T')[0];
-      const poolDate = document.getElementById('pool-date');
-      const chDate = document.getElementById('ch-date');
-      if (poolDate) poolDate.value = today;
-      if (chDate) chDate.value = today;
-    });
 
     // 1. Fetch Live Notices
     async function loadLiveNotices() {
@@ -832,7 +804,7 @@
                   <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock mr-1"></i> ${new Date(n.created_at).toLocaleDateString()}</span>
                 </div>
                 <h3 class="text-lg font-bold text-slate-900">${n.title}</h3>
-                <p class="text-sm text-slate-600 mt-2 leading-relaxed whitespace-pre-line">${n.description}</p>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed whitespace-pre-line">${(n.description || '').replaceAll('\\n', '<br>').replaceAll('\n', '<br>')}</p>
               </div>
               <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400 font-medium">
                 <span><i class="fa-solid fa-user-shield text-amber-500 mr-1"></i> Vascon Venus EC</span>
@@ -864,7 +836,7 @@
                 </div>
                 <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold">${w.status}</span>
               </div>
-              <p class="text-sm text-slate-600 mb-4 leading-relaxed">${w.description || ''}</p>
+              <p class="text-sm text-slate-600 mb-4 leading-relaxed">${(w.description || '').replaceAll('\\n', '<br>').replaceAll('\n', '<br>')}</p>
               <div class="space-y-1.5">
                 <div class="flex justify-between text-xs font-bold text-slate-700">
                   <span>Work Progress</span>
@@ -900,7 +872,7 @@
               <td class="py-4 px-6">
                 <span class="bg-slate-100 text-slate-800 px-3 py-1 rounded-full text-xs font-bold">${m.meeting_type}</span>
               </td>
-              <td class="py-4 px-6 text-slate-600 font-medium">${m.agenda_summary}</td>
+              <td class="py-4 px-6 text-slate-600 font-medium leading-relaxed">${(m.agenda_summary || '').replaceAll('\\n', '<br>').replaceAll('\n', '<br>')}</td>
               <td class="py-4 px-6 text-right">
                 <a href="${m.pdf_url}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-bold text-xs bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3.5 py-1.5 rounded-xl transition">
                   <i class="fa-solid fa-file-pdf text-red-500 mr-1.5 text-sm"></i> View PDF
@@ -918,6 +890,23 @@
     loadLiveNotices();
     loadLiveWorks();
     loadLiveMinutes();
+
+    // Toggle EC Members Expansion
+    function toggleECMembers() {
+      const extraMembers = document.getElementById('extra-ec-members');
+      const toggleText = document.getElementById('ec-toggle-text');
+      const toggleIcon = document.getElementById('ec-toggle-icon');
+
+      if (extraMembers.style.display === 'none' || extraMembers.style.display === '') {
+        extraMembers.style.display = 'grid';
+        toggleText.innerText = "Show Less";
+        toggleIcon.className = "fa-solid fa-chevron-up text-amber-400";
+      } else {
+        extraMembers.style.display = 'none';
+        toggleText.innerText = "View All 9 Committee Members (5 More)";
+        toggleIcon.className = "fa-solid fa-chevron-down text-amber-400";
+      }
+    }
 
     // Modal Bookings
     window.handlePoolBooking = function(e) {
@@ -960,31 +949,15 @@
 
       setTimeout(() => {
         const lower = userText.toLowerCase();
-        let answer = `Hello! As your **Venus AI Assistant**, I can help you with:\n1. 🏊 Pool rules, timings & slot bookings\n2. 🏛️ Clubhouse booking rates (₹2,500 / ₹5,000)\n3. 👥 EC member details & flat numbers\n4. 🛠️ Current works & project updates\n5. 📢 Society notices & circulars`;
-        if (lower.includes("pool") || lower.includes("swim")) answer = `🏊 **Swimming Pool Guidelines:**\n• **Morning:** 6:00 AM – 10:30 AM | **Evening:** 4:00 PM – 9:00 PM\n• **Dress Code:** Nylon/spandex swimwear is compulsory.\n• **Maintenance:** Closed Tuesdays 10 AM – 4 PM.`;
-        else if (lower.includes("club") || lower.includes("tariff") || lower.includes("rate") || lower.includes("charge")) answer = `🏛️ **Clubhouse Tariff:**\n• **Half Day:** ₹2,500 (Morning 9am-3pm or Evening 4pm-10pm)\n• **Full Day:** ₹5,000 (9am-10:30pm)\n• **Security Deposit:** ₹2,000 (Refundable)`;
-        else if (lower.includes("ec") || lower.includes("president") || lower.includes("secretary")) answer = `👥 **EC Committee (2026-2027):**\n• **President:** Edwin Paul (A-207)\n• **Secretary:** Pradeep Shetty (A-104)\n• **VP:** Sunil Kumar (B-211)\n• **Treasurer:** Abdul Rehman (B-311)`;
+        let answer = `Hello! As your **Venus AI Assistant**, I can help you with:\n1. 🎟️ Digital visitor & delivery gate passes\n2. 🏊 Pool rules, timings & slot bookings\n3. 🏛️ Clubhouse booking rates (₹2,500 / ₹5,000)\n4. 👥 EC member details & flat numbers\n5. 🛠️ Current works & project updates`;
+        if (lower.includes("pass") || lower.includes("guest") || lower.includes("delivery") || lower.includes("gate")) answer = `🎟️ **Visitor Gate Passes:**\nYou can generate an instant digital gate pass with WhatsApp sharing right from our **Services & Bookings Hub**!`;
+        else if (lower.includes("pool") || lower.includes("swim")) answer = `🏊 **Swimming Pool Guidelines:**\n• **Morning:** 6:00 AM – 10:30 AM | **Evening:** 4:00 PM – 9:00 PM\n• **Dress Code:** Nylon/spandex swimwear is compulsory.\n• You can reserve 1-hour slots in the **Services Hub**!`;
+        else if (lower.includes("club") || lower.includes("tariff") || lower.includes("rate") || lower.includes("charge")) answer = `🏛️ **Clubhouse Tariff:**\n• **Half Day:** ₹2,500 | **Full Day:** ₹5,000\n• **Security Deposit:** ₹2,000 (Refundable)\n• Submit booking requests in the **Services Hub**!`;
+        else if (lower.includes("ec") || lower.includes("president") || lower.includes("secretary")) answer = `👥 **EC Committee (2026-2027):**\n• **President:** Edwin Paul (A-207)\n• **Secretary:** Pradeep Shetty (A-104)\n• **VP:** Sunil Kumar (B-211)\n• **Treasurer:** Abdul Rehman (B-311)\n• **Joint Secretary:** Karunakara T (A-104)`;
 
         typingBubble.innerHTML = `<div class="w-7 h-7 bg-amber-400 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs whitespace-pre-line">${answer}</div>`;
         container.scrollTop = container.scrollHeight;
       }, 350);
-    }
-
-    // Toggle EC Members Expansion
-    function toggleECMembers() {
-      const extraMembers = document.getElementById('extra-ec-members');
-      const toggleText = document.getElementById('ec-toggle-text');
-      const toggleIcon = document.getElementById('ec-toggle-icon');
-
-      if (extraMembers.style.display === 'none' || extraMembers.style.display === '') {
-        extraMembers.style.display = 'grid';
-        toggleText.innerText = "Show Less";
-        toggleIcon.className = "fa-solid fa-chevron-up text-amber-400";
-      } else {
-        extraMembers.style.display = 'none';
-        toggleText.innerText = "View All 9 Committee Members (5 More)";
-        toggleIcon.className = "fa-solid fa-chevron-down text-amber-400";
-      }
     }
   </script>
 </body>
