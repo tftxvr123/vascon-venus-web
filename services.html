@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resident Services & Bookings - Vascon Venus</title>
+  <title>Resident Services & Gate Pass - Vascon Venus</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -18,7 +18,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-slate-950 min-h-screen flex flex-col justify-between">
 
-  <!-- Navigation Bar -->
+  <!-- 1. NAVIGATION BAR -->
   <nav class="bg-slate-950 text-white sticky top-0 z-50 border-b border-slate-800 shadow-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
       <a href="index.html" class="flex items-center space-x-3">
@@ -27,7 +27,7 @@
         </div>
         <div>
           <span class="font-extrabold text-xl tracking-tight text-white block leading-none">VASCON VENUS</span>
-          <span class="text-[10px] font-bold text-amber-400 tracking-widest uppercase mt-1 block">Co-op Housing Society</span>
+          <span class="text-[10px] font-bold text-amber-400 tracking-widest uppercase mt-1 block">Owners Welfare Association</span>
         </div>
         <span class="bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider ml-1">
           BETA
@@ -37,7 +37,7 @@
       <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-300">
         <a href="index.html" class="hover:text-amber-400 transition"><i class="fa-solid fa-house mr-1 text-xs"></i> Home</a>
         <a href="directory.html" class="hover:text-amber-400 transition">Directory</a>
-        <a href="services.html" class="text-amber-400 font-bold border-b-2 border-amber-400 pb-1">Services & Bookings</a>
+        <a href="services.html" class="text-amber-400 font-bold border-b-2 border-amber-400 pb-1">Services & Passes</a>
         <a href="index.html#notices" class="hover:text-amber-400 transition">Notices</a>
       </div>
 
@@ -47,7 +47,7 @@
     </div>
   </nav>
 
-  <!-- Header Banner -->
+  <!-- 2. HEADER BANNER -->
   <header class="bg-slate-900 text-white py-14 px-4 border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
       <div>
@@ -55,115 +55,177 @@
           <i class="fa-solid fa-sliders"></i>
           <span>Resident Utility Center</span>
         </div>
-        <h1 class="text-3xl md:text-4xl font-extrabold text-white">Resident Services & Bookings</h1>
-        <p class="text-slate-400 text-sm mt-1">Generate digital visitor gate passes, reserve amenity time slots, and pay society maintenance dues</p>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white">Resident Services & Gate Passes</h1>
+        <p class="text-slate-400 text-sm mt-1">Instant gate approvals, pre-approved visitor passes, and amenity bookings</p>
       </div>
 
-      <!-- Quick Shortcuts -->
       <div class="flex flex-wrap gap-2 text-xs font-bold">
-        <a href="#gatepass" class="bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 px-3.5 py-2 rounded-xl transition flex items-center space-x-1.5">
-          <i class="fa-solid fa-ticket"></i>
-          <span>Visitor Pass</span>
+        <a href="#unannounced-gate" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center space-x-1.5">
+          <i class="fa-solid fa-bell"></i>
+          <span>Visitor at Gate?</span>
+        </a>
+        <a href="#preapproved-gate" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-3.5 py-2 rounded-xl transition flex items-center space-x-1.5">
+          <i class="fa-solid fa-ticket text-amber-400"></i>
+          <span>Pre-Approve Pass</span>
         </a>
         <a href="#pool" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-3.5 py-2 rounded-xl transition flex items-center space-x-1.5">
-          <i class="fa-solid fa-person-swimming text-amber-400"></i>
+          <i class="fa-solid fa-person-swimming text-blue-400"></i>
           <span>Pool Slot</span>
         </a>
         <a href="#clubhouse" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-3.5 py-2 rounded-xl transition flex items-center space-x-1.5">
-          <i class="fa-solid fa-champagne-glasses text-amber-400"></i>
-          <span>Clubhouse Hall</span>
+          <i class="fa-solid fa-champagne-glasses text-purple-400"></i>
+          <span>Clubhouse</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- MAIN SERVICES CONTAINER -->
+  <!-- 3. MAIN SERVICES CONTAINER -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 flex-1 w-full">
 
-    <!-- 1. VISITOR GATE PASS GENERATOR -->
-    <section id="gatepass" class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
-      <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4 pb-6 border-b border-slate-100">
+    <!-- A. UNANNOUNCED VISITOR GATE APPROVAL (NEW) -->
+    <section id="unannounced-gate" class="bg-gradient-to-tr from-amber-500/10 via-amber-500/5 to-white rounded-3xl p-8 shadow-md border-2 border-amber-400/60 relative overflow-hidden">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4 pb-6 border-b border-amber-200">
         <div class="flex items-center space-x-3">
-          <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl font-bold">
-            <i class="fa-solid fa-qrcode"></i>
+          <div class="w-12 h-12 bg-amber-500 text-slate-950 rounded-2xl flex items-center justify-center text-2xl font-black shadow-md">
+            <i class="fa-solid fa-bell"></i>
           </div>
           <div>
-            <h2 class="text-2xl font-extrabold text-slate-900">Digital Visitor Gate Pass</h2>
-            <p class="text-xs text-slate-500 mt-0.5">Pre-approved entry pass with 4-digit code & WhatsApp share for Main Gate (Ext 101)</p>
+            <span class="text-[10px] font-black text-amber-800 uppercase tracking-widest bg-amber-200/80 px-2.5 py-0.5 rounded-full">For Security Gate & Unannounced Visitors</span>
+            <h2 class="text-2xl font-extrabold text-slate-900 mt-1">Visitor at Main Gate (Request Entry)</h2>
+            <p class="text-xs text-slate-600 mt-0.5">Visitor has arrived at Security Gate (Ext 101) without a pass? Request instant WhatsApp approval from the flat owner.</p>
           </div>
         </div>
-        <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold px-3 py-1 rounded-full self-start md:self-auto">
-          <i class="fa-solid fa-shield-check mr-1"></i> Instant Verification
+        <span class="bg-slate-900 text-amber-400 text-xs font-bold px-3.5 py-1.5 rounded-full self-start md:self-auto flex items-center shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-amber-400 mr-2 animate-ping"></span> 10-Second Approval
         </span>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Form -->
-        <form onsubmit="handleGeneratePass(event)" class="space-y-4 text-xs text-slate-700">
+        <!-- Request Form -->
+        <form onsubmit="handleRequestGateApproval(event)" class="space-y-4 text-xs text-slate-700 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <div>
-            <label class="block font-bold uppercase text-slate-600 mb-1">Guest / Visitor / Delivery Name *</label>
-            <input type="text" id="gp-name" required placeholder="e.g. Rahul Sharma or Swiggy / Amazon" class="w-full bg-slate-50 border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500 font-semibold text-slate-900">
+            <label class="block font-bold uppercase text-slate-700 mb-1">Visitor / Driver / Delivery Person Name *</label>
+            <input type="text" id="req-visitor-name" required placeholder="e.g. Swiggy Delivery / Suresh Kumar" class="w-full bg-slate-50 border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500 font-semibold text-slate-900">
           </div>
 
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block font-bold uppercase text-slate-600 mb-1">Host Flat Number *</label>
-              <input type="text" id="gp-flat" required placeholder="e.g. A-207" class="w-full bg-slate-50 border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500 font-bold text-slate-900">
+              <label class="block font-bold uppercase text-slate-700 mb-1">Select Destination Flat *</label>
+              <input type="text" id="req-flat" required placeholder="e.g. A-207 or B-211" class="w-full bg-slate-50 border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500 font-black text-slate-900 uppercase">
             </div>
             <div>
-              <label class="block font-bold uppercase text-slate-600 mb-1">Visit Purpose</label>
-              <select id="gp-purpose" class="w-full bg-slate-50 border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500 font-semibold text-slate-800">
-                <option value="Guest / Friend">Guest / Friend</option>
-                <option value="Food / Courier Delivery">Food / Courier Delivery</option>
-                <option value="Cab / Taxi Pickup">Cab / Taxi Pickup</option>
-                <option value="Home Maintenance / Repair">Home Maintenance / Repair</option>
+              <label class="block font-bold uppercase text-slate-700 mb-1">Purpose of Visit</label>
+              <select id="req-purpose" class="w-full bg-slate-50 border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500 font-semibold text-slate-800">
+                <option value="Delivery (Food / Courier)">Delivery (Food / Courier)</option>
+                <option value="Guest / Friend Visit">Guest / Friend Visit</option>
+                <option value="Cab Pickup (Uber / Ola)">Cab Pickup (Uber / Ola)</option>
+                <option value="Maintenance / Home Service">Maintenance / Home Service</option>
               </select>
             </div>
           </div>
 
           <div>
-            <label class="block font-bold uppercase text-slate-600 mb-1">Vehicle Number (Optional)</label>
-            <input type="text" id="gp-vehicle" placeholder="e.g. MH 12 AB 1234" class="w-full bg-slate-50 border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
+            <label class="block font-bold uppercase text-slate-700 mb-1">Vehicle Number (Optional)</label>
+            <input type="text" id="req-vehicle" placeholder="e.g. KA 01 AB 1234" class="w-full bg-slate-50 border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
           </div>
 
-          <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-xs transition cursor-pointer shadow-md flex items-center justify-center space-x-2">
-            <i class="fa-solid fa-ticket text-amber-400"></i>
-            <span>Generate Official Security Pass</span>
+          <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black py-3.5 rounded-xl text-xs transition cursor-pointer shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-2">
+            <i class="fa-brands fa-whatsapp text-lg text-slate-950"></i>
+            <span>Send Instant Approval Request to Flat Owner</span>
           </button>
         </form>
 
-        <!-- Preview Card -->
-        <div id="pass-preview-box" class="bg-slate-900 rounded-3xl p-6 text-white text-center flex flex-col justify-between shadow-xl border border-slate-800">
-          <div>
-            <span class="bg-amber-400 text-slate-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full tracking-widest">
-              OFFICIAL SECURITY PASS
-            </span>
-            <h3 class="text-base font-extrabold text-white mt-2">Vascon Venus Apartment</h3>
-            
-            <!-- Code Box -->
-            <div class="bg-slate-800 border-2 border-dashed border-amber-400/40 p-3 rounded-2xl my-4">
-              <p class="text-[10px] uppercase font-bold text-slate-400">Security Gate Entry Code</p>
-              <p id="pv-code" class="text-2xl font-black text-amber-400 tracking-wider font-mono">#VV-READY</p>
+        <!-- Live Instructions & Status Card -->
+        <div class="bg-slate-900 rounded-2xl p-6 text-white text-center flex flex-col justify-between shadow-xl border border-slate-800">
+          <div class="space-y-3">
+            <div class="w-12 h-12 bg-amber-400/20 text-amber-400 rounded-full flex items-center justify-center mx-auto text-xl">
+              <i class="fa-solid fa-shield-halved"></i>
             </div>
-
-            <!-- Details -->
-            <div class="text-xs text-left bg-slate-800/80 p-3.5 rounded-xl border border-slate-700 space-y-1 text-slate-300 font-medium">
-              <p><strong>Visitor:</strong> <span id="pv-guest" class="text-white font-bold">Fill form on the left</span></p>
-              <p><strong>Visiting Flat:</strong> <span id="pv-flat" class="text-white font-bold">---</span></p>
-              <p><strong>Date:</strong> <span id="pv-date" class="text-amber-300 font-bold">Valid for Today</span></p>
+            <h3 class="text-base font-extrabold text-white">How On-Demand Approval Works:</h3>
+            <div class="text-xs text-left bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2 text-slate-300 leading-relaxed font-medium">
+              <p>1. 📝 <strong>Visitor / Guard fills form</strong> with flat number.</p>
+              <p>2. 📲 <strong>Owner receives WhatsApp notification</strong> with 1-click Approve button.</p>
+              <p>3. 🟢 <strong>Screen turns EMERALD GREEN</strong> with security verification code to enter the gate!</p>
             </div>
           </div>
 
-          <!-- WhatsApp Button -->
-          <a id="pv-wa-btn" href="#" target="_blank" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-xs transition shadow-lg shadow-emerald-600/20 flex items-center justify-center space-x-2">
+          <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400">
+            <i class="fa-solid fa-phone mr-1 text-amber-400"></i> Main Gate Security Cabin: <strong>Intercom Ext 101</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B. PRE-APPROVED VISITOR GATE PASS (FOR RESIDENTS) -->
+    <section id="preapproved-gate" class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4 pb-6 border-b border-slate-100">
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold">
+            <i class="fa-solid fa-ticket"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl font-extrabold text-slate-900">Pre-Approved Visitor Pass (For Residents)</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Create a pass in advance and share with your guest before they arrive</p>
+          </div>
+        </div>
+        <span class="bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold px-3 py-1 rounded-full self-start md:self-auto">
+          Share via WhatsApp
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <form onsubmit="handleGeneratePrePass(event)" class="space-y-4 text-xs text-slate-700 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+          <div>
+            <label class="block font-bold uppercase text-slate-600 mb-1">Guest / Visitor Name *</label>
+            <input type="text" id="pre-name" required placeholder="e.g. Ramesh Patel" class="w-full bg-white border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500 font-semibold text-slate-900">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-bold uppercase text-slate-600 mb-1">Host Flat Number *</label>
+              <input type="text" id="pre-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500 font-bold text-slate-900 uppercase">
+            </div>
+            <div>
+              <label class="block font-bold uppercase text-slate-600 mb-1">Purpose</label>
+              <select id="pre-purpose" class="w-full bg-white border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500 font-semibold text-slate-800">
+                <option value="Guest / Friend">Guest / Friend</option>
+                <option value="Party / Family Function">Party / Family Function</option>
+                <option value="Delivery / Service">Delivery / Service</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-xs transition cursor-pointer shadow-md flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-qrcode text-amber-400"></i>
+            <span>Generate Pre-Approved WhatsApp Pass</span>
+          </button>
+        </form>
+
+        <div id="pre-preview-card" class="bg-slate-950 rounded-2xl p-6 text-white text-center flex flex-col justify-between shadow-xl border border-slate-800">
+          <div>
+            <span class="bg-amber-400 text-slate-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full tracking-widest">
+              PRE-APPROVED GATE PASS
+            </span>
+            <div class="bg-slate-800 border-2 border-dashed border-amber-400/40 p-3 rounded-2xl my-3">
+              <p class="text-[10px] uppercase font-bold text-slate-400">Security Gate Entry Code</p>
+              <p id="pre-code" class="text-2xl font-black text-amber-400 tracking-wider font-mono">#VV-XXXX</p>
+            </div>
+            <div class="text-xs text-left bg-slate-800/80 p-3 rounded-xl border border-slate-700 space-y-1 text-slate-300 font-medium">
+              <p><strong>Visitor:</strong> <span id="pre-guest-val" class="text-white font-bold">---</span></p>
+              <p><strong>Visiting Flat:</strong> <span id="pre-flat-val" class="text-white font-bold">---</span></p>
+            </div>
+          </div>
+          <a id="pre-wa-btn" href="#" target="_blank" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-xs transition shadow-lg shadow-emerald-600/20 flex items-center justify-center space-x-2">
             <i class="fa-brands fa-whatsapp text-lg"></i>
-            <span>Share Pass on WhatsApp</span>
+            <span>Send Pass to Guest on WhatsApp</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- 2. SWIMMING POOL SLOT RESERVATION -->
+    <!-- C. SWIMMING POOL SLOT RESERVATION -->
     <section id="pool" class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4 pb-6 border-b border-slate-100">
         <div class="flex items-center space-x-3">
@@ -176,12 +238,11 @@
           </div>
         </div>
         <span class="bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold px-3 py-1 rounded-full self-start md:self-auto">
-          <i class="fa-regular fa-clock mr-1"></i> 6:00 AM - 9:00 PM
+          6:00 AM - 9:00 PM
         </span>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Guidelines -->
         <div class="space-y-4 text-xs text-slate-600 leading-relaxed">
           <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
             <h4 class="font-bold text-slate-900 text-xs mb-2"><i class="fa-regular fa-clock text-amber-500 mr-1.5"></i> Daily Operational Sessions</h4>
@@ -192,14 +253,11 @@
             <h4 class="font-bold text-slate-900 text-xs mb-1"><i class="fa-solid fa-shirt text-blue-500 mr-1.5"></i> Mandatory Rules:</h4>
             <p>• <strong>Costume:</strong> Nylon or spandex swimwear is compulsory (No cotton).</p>
             <p>• <strong>Shower:</strong> Mandatory shower at poolside stations before entering.</p>
-            <p>• <strong>Children:</strong> Kids under 12 must be accompanied by an adult guardian.</p>
           </div>
         </div>
 
-        <!-- Booking Form -->
         <form onsubmit="handlePoolBooking(event)" class="bg-amber-50/70 p-6 rounded-3xl border border-amber-200 space-y-3 text-xs">
           <h4 class="font-extrabold text-slate-900 text-sm mb-2"><i class="fa-solid fa-calendar-check text-amber-600 mr-1.5"></i> Reserve 1-Hour Slot</h4>
-          
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block font-bold uppercase text-slate-600 mb-1">Date</label>
@@ -214,22 +272,19 @@
                 <option value="4:00 PM - 5:00 PM">4:00 PM – 5:00 PM (Evening)</option>
                 <option value="5:00 PM - 6:00 PM">5:00 PM – 6:00 PM (Evening)</option>
                 <option value="6:00 PM - 7:00 PM">6:00 PM – 7:00 PM (Evening)</option>
-                <option value="7:00 PM - 8:00 PM">7:00 PM – 8:00 PM (Evening)</option>
               </select>
             </div>
           </div>
-
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block font-bold uppercase text-slate-600 mb-1">Flat Number</label>
-              <input type="text" id="pool-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none">
+              <input type="text" id="pool-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none uppercase font-bold">
             </div>
             <div>
               <label class="block font-bold uppercase text-slate-600 mb-1">Swimmers Count</label>
               <input type="number" id="pool-count" min="1" max="4" value="1" required class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none">
             </div>
           </div>
-
           <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs transition cursor-pointer mt-2 shadow-md">
             Confirm Pool Reservation
           </button>
@@ -237,7 +292,7 @@
       </div>
     </section>
 
-    <!-- 3. CLUBHOUSE BANQUET RESERVATION -->
+    <!-- D. CLUBHOUSE BANQUET RESERVATION -->
     <section id="clubhouse" class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4 pb-6 border-b border-slate-100">
         <div class="flex items-center space-x-3">
@@ -255,7 +310,6 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Tariff Cards -->
         <div class="space-y-4">
           <div class="grid grid-cols-2 gap-4">
             <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-center">
@@ -275,10 +329,8 @@
           </div>
         </div>
 
-        <!-- Booking Form -->
         <form onsubmit="handleClubhouseBooking(event)" class="bg-amber-50/70 p-6 rounded-3xl border border-amber-200 space-y-3 text-xs">
           <h4 class="font-extrabold text-slate-900 text-sm mb-2"><i class="fa-solid fa-calendar-plus text-amber-600 mr-1.5"></i> Request Hall Booking</h4>
-          
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block font-bold uppercase text-slate-600 mb-1">Event Date</label>
@@ -293,18 +345,16 @@
               </select>
             </div>
           </div>
-
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block font-bold uppercase text-slate-600 mb-1">Flat Number</label>
-              <input type="text" id="ch-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none">
+              <input type="text" id="ch-flat" required placeholder="e.g. A-207" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none uppercase font-bold">
             </div>
             <div>
               <label class="block font-bold uppercase text-slate-600 mb-1">Contact Phone</label>
               <input type="tel" id="ch-phone" required placeholder="+91 98765 00000" class="w-full bg-white border border-slate-300 px-3 py-2 rounded-xl text-xs outline-none">
             </div>
           </div>
-
           <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs transition cursor-pointer mt-2 shadow-md">
             Submit Hall Reservation Request
           </button>
@@ -314,51 +364,132 @@
 
   </main>
 
-  <!-- Footer -->
+  <!-- 4. ON-DEMAND OWNER APPROVAL POPUP MODAL -->
+  <div id="approval-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100vh; background-color: rgba(15, 23, 42, 0.9); z-index: 9999999; align-items: center; justify-content: center; padding: 1rem;">
+    <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100 text-center relative" onclick="event.stopPropagation();">
+      
+      <div id="appr-header" class="bg-slate-950 text-white p-6 border-b border-slate-800">
+        <div class="w-12 h-12 bg-amber-400 text-slate-950 rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold mb-2">
+          <i class="fa-solid fa-bell animate-bounce"></i>
+        </div>
+        <h3 class="text-lg font-bold">Visitor at Main Gate</h3>
+        <p class="text-xs text-slate-400">Security Gate Ext 101 Request</p>
+      </div>
+
+      <div class="p-6 space-y-4 text-xs">
+        <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl text-left space-y-1.5 text-slate-700 font-medium">
+          <p><strong>👤 Visitor Name:</strong> <span id="appr-guest-name" class="text-slate-900 font-bold">Rahul Sharma</span></p>
+          <p><strong>🏠 Destination:</strong> <span id="appr-flat-name" class="text-slate-900 font-bold">Flat A-207</span></p>
+          <p><strong>📦 Purpose:</strong> <span id="appr-purpose-name" class="text-slate-900">Food / Courier Delivery</span></p>
+          <p><strong>⏰ Timestamp:</strong> <span id="appr-time" class="text-slate-900 font-bold">Just Now</span></p>
+        </div>
+
+        <!-- Approval Buttons -->
+        <div id="appr-action-box" class="space-y-2">
+          <button type="button" onclick="confirmApproval()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3.5 rounded-xl text-xs transition shadow-lg shadow-emerald-600/20 cursor-pointer flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-circle-check text-base"></i>
+            <span>✅ APPROVE VISITOR ENTRY</span>
+          </button>
+          <button type="button" onclick="document.getElementById('approval-modal').style.display='none';" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl text-xs transition cursor-pointer">
+            ❌ Deny / Dismiss Request
+          </button>
+        </div>
+
+        <!-- Approved Green Screen (Hidden by default) -->
+        <div id="appr-success-box" style="display: none;" class="bg-emerald-600 text-white p-6 rounded-2xl space-y-2">
+          <div class="text-4xl">🎉</div>
+          <h4 class="text-lg font-black uppercase">ENTRY APPROVED!</h4>
+          <p class="text-xs text-emerald-100">Security Gate (Ext 101) has been authorized. You can show this screen to the guard.</p>
+          <div class="bg-emerald-700 p-2 rounded-lg font-mono font-bold text-sm tracking-widest" id="appr-code-disp">
+            CODE: #VV-PASS
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. FOOTER -->
   <footer class="bg-slate-950 text-slate-400 py-10 text-sm border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
-      <p class="font-extrabold text-white text-base">Vascon Venus Co-operative Housing Society</p>
+      <p class="font-extrabold text-white text-base">Vascon Venus Apartment Owners Welfare Association</p>
       <p class="text-xs text-slate-500">&copy; 2026 Vascon Venus Apartment. All rights reserved.</p>
     </div>
   </footer>
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    // Set default dates
     window.addEventListener('DOMContentLoaded', () => {
       const today = new Date().toISOString().split('T')[0];
       if (document.getElementById('pool-date')) document.getElementById('pool-date').value = today;
       if (document.getElementById('ch-date')) document.getElementById('ch-date').value = today;
+
+      // Check if URL has Approval parameter from WhatsApp link (e.g. ?approve_flat=A-207&guest=Rahul)
+      const urlParams = new URLSearchParams(window.location.search);
+      const approveFlat = urlParams.get('approve_flat');
+      const guestParam = urlParams.get('guest');
+
+      if (approveFlat) {
+        document.getElementById('appr-flat-name').innerText = `Flat ${approveFlat}`;
+        document.getElementById('appr-guest-name').innerText = guestParam || 'Visitor';
+        document.getElementById('appr-time').innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        document.getElementById('approval-modal').style.display = 'flex';
+      }
     });
 
-    // 1. Gate Pass Generator Logic
-    function handleGeneratePass(e) {
+    // 1. Unannounced Gate Request Logic
+    function handleRequestGateApproval(e) {
       e.preventDefault();
-      const guestName = document.getElementById('gp-name').value.trim();
-      const flatNo = document.getElementById('gp-flat').value.trim().toUpperCase();
-      const purpose = document.getElementById('gp-purpose').value;
+      const visitor = document.getElementById('req-visitor-name').value.trim();
+      const flat = document.getElementById('req-flat').value.trim().toUpperCase();
+      const purpose = document.getElementById('req-purpose').value;
       const passCode = '#VV-' + Math.floor(1000 + Math.random() * 9000);
-      const todayDate = new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+      const todayTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-      document.getElementById('pv-code').innerText = passCode;
-      document.getElementById('pv-guest').innerText = guestName;
-      document.getElementById('pv-flat').innerText = flatNo;
-      document.getElementById('pv-date').innerText = todayDate + ' (Today)';
+      const approvalUrl = `https://vascon-venus-web.vercel.app/services.html?approve_flat=${encodeURIComponent(flat)}&guest=${encodeURIComponent(visitor)}&code=${passCode}`;
 
-      const qrData = `VASCON VENUS GATE PASS | Code: ${passCode} | Visitor: ${guestName} | Flat: ${flatNo} | Status: APPROVED`;
-      
-      const waText = `🎟️ *VASCON VENUS - OFFICIAL VISITOR GATE PASS*\n\n` +
-        `Hello *${guestName}*,\nHere is your digital gate pass for *Vascon Venus Society*.\n\n` +
-        `🔑 *Entry Passcode:* ${passCode}\n` +
-        `🏠 *Visiting Flat:* ${flatNo}\n` +
-        `📅 *Valid Date:* ${todayDate}\n` +
-        `🛡️ *Gate Instructions:* Please show this code to security at Main Gate (Ext 101).`;
+      const waMessage = `🔔 *VISITOR AT MAIN GATE - VASCON VENUS*\n\n` +
+        `Hello Flat Owner (*${flat}*),\nA visitor has arrived at the Security Gate (Ext 101) requesting entry to your flat:\n\n` +
+        `👤 *Visitor:* ${visitor}\n` +
+        `📦 *Purpose:* ${purpose}\n` +
+        `⏰ *Time:* ${todayTime}\n\n` +
+        `👉 *Tap below to 1-Click APPROVE Entry:*\n${approvalUrl}`;
 
-      document.getElementById('pv-wa-btn').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(waText)}`;
-      alert(`🎉 Pass Generated Successfully!\nPass Code: ${passCode}\nClick "Share on WhatsApp" to send it to ${guestName}!`);
+      const waLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(waMessage)}`;
+      window.open(waLink, '_blank');
+      alert(`✅ Approval Request sent to Flat ${flat} via WhatsApp! When the owner taps the link, entry will be authorized.`);
     }
 
-    // 2. Pool Booking Handler
+    // 2. Confirm Approval (Resident Taps Green Button)
+    function confirmApproval() {
+      document.getElementById('appr-action-box').style.display = 'none';
+      document.getElementById('appr-success-box').style.display = 'block';
+      document.getElementById('appr-header').className = "bg-emerald-800 text-white p-6 border-b border-emerald-700";
+    }
+
+    // 3. Pre-Approved Pass Logic
+    function handleGeneratePrePass(e) {
+      e.preventDefault();
+      const name = document.getElementById('pre-name').value.trim();
+      const flat = document.getElementById('pre-flat').value.trim().toUpperCase();
+      const code = '#VV-' + Math.floor(1000 + Math.random() * 9000);
+      const date = new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+
+      document.getElementById('pre-code').innerText = code;
+      document.getElementById('pre-guest-val').innerText = name;
+      document.getElementById('pre-flat-val').innerText = flat;
+
+      const waText = `🎟️ *VASCON VENUS - PRE-APPROVED VISITOR GATE PASS*\n\n` +
+        `Hello *${name}*,\nHere is your digital entry pass for *Vascon Venus Society*.\n\n` +
+        `🔑 *Entry Code:* ${code}\n` +
+        `🏠 *Visiting Flat:* ${flat}\n` +
+        `📅 *Valid Date:* ${date} (Today Only)\n` +
+        `🛡️ *Instructions:* Show this code to security at Main Gate (Ext 101) for direct entry.`;
+
+      document.getElementById('pre-wa-btn').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(waText)}`;
+      alert(`🎉 Pre-Approved Pass Created for ${name} (${code})! Tap "Send Pass to Guest on WhatsApp" to share.`);
+    }
+
+    // 4. Pool Booking
     function handlePoolBooking(e) {
       e.preventDefault();
       const flat = document.getElementById('pool-flat').value.toUpperCase();
@@ -366,7 +497,7 @@
       alert(`✅ Swimming Pool Slot Confirmed!\n\nFlat: ${flat}\nTime: ${slot}\n\nPlease carry your resident ID card to the pool deck.`);
     }
 
-    // 3. Clubhouse Booking Handler
+    // 5. Clubhouse Booking
     function handleClubhouseBooking(e) {
       e.preventDefault();
       const flat = document.getElementById('ch-flat').value.toUpperCase();
