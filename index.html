@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+  <!-- Inside <head> of index.html -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth-guard.js"></script>
+<script>
+  // Block unauthorized visitors before page renders
+  document.addEventListener('DOMContentLoaded', async () => {
+    const user = await protectPage(['resident', 'ec_member', 'admin']);
+    if (!user) return;
+    
+    // Hide EC Admin login button for regular residents
+    if (user.role === 'resident') {
+      const adminNavBtn = document.querySelector('a[href="admin.html"]');
+      if (adminNavBtn) adminNavBtn.style.display = 'none';
+    }
+  });
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vascon Venus Apartment - Official Digital Portal</title>
