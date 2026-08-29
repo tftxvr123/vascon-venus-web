@@ -1,86 +1,69 @@
 // ====================================================================
-// VASCON VENUS - CLIENT-SIDE AUTHENTICATION & ACCESS GUARD
+// NATIVE AUTH GUARD (Zero Dependencies)
 // ====================================================================
 const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
 
-let supabaseClient = null;
-if (typeof window.supabase !== 'undefined') {
-  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-}
-
-/**
- * Protects the current page. Redirects to /login.html if unauthenticated.
- * @param {Array<string>} allowedRoles - Roles permitted on this page (e.g., ['resident', 'ec_member', 'admin'])
- */
 async function protectPage(allowedRoles = ['resident', 'ec_member', 'admin']) {
-  if (!supabaseClient) {
+  const token = localStorage.getItem('venus_auth_token');
+  const email = localStorage.getItem('venus_auth_email');
+
+  if (!token || !email) {
     window.location.href = 'login.html';
     return null;
   }
 
   try {
-    const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
-
-    if (sessionError || !session || !session.user) {
-      window.location.href = `login.html?redirect=${encodeURIComponent(window.location.pathname)}`;
-      return null;
-    }
-
-    // Verify user status and role against the approved_residents table
-    const userEmail = (session.user.email || '').toLowerCase().trim();
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/approved_residents?email=eq.${encodeURIComponent(userEmail)}&select=*`, {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/approved_residents?email=ilike.${encodeURIComponent(email)}&select=*`, {
       headers: {
         "apikey": SUPABASE_ANON_KEY,
-        "Authorization": `Bearer ${session.access_token}`
+        "Authorization": `Bearer ${token}`
       }
     });
 
-    if (!response.ok) {
-      await handleUnauthorizedLogout("Access is restricted to Vascon Venus residents. Please contact the Association/EC.");
+    if (!res.ok) {
+      localStorage.clear();
+      window.location.href = 'login.html';
       return null;
     }
 
-    const records = await response.json();
+    const records = await res.json();
     if (!records || records.length === 0) {
-      await handleUnauthorizedLogout("Access is restricted to Vascon Venus residents. Please contact the Association/EC.");
+      localStorage.clear();
+      window.location.href = 'login.html';
       return null;
     }
 
     const resident = records[0];
 
     if (resident.status !== 'Active') {
-      await handleUnauthorizedLogout("Your resident account is currently inactive. Please contact the Association/EC.");
+      localStorage.clear();
+      alert("Your account is currently inactive. Contact the Association.");
+      window.location.href = 'login.html';
       return null;
     }
 
     if (!allowedRoles.includes(resident.role)) {
-      alert("Access Denied: You do not have permissions to view this committee page.");
+      alert("Access Denied: You do not have permission to view this committee page.");
       window.location.href = 'index.html';
       return null;
     }
 
-    // Attach user profile to page session
-    window.currentUserProfile = resident;
-    window.currentAuthSession = session;
+    // Update Nav with User profile & Logout
     updateUserNavUI(resident);
     return resident;
 
-  } catch (err) {
-    console.error("Auth Guard Error:", err);
-    window.location.href = 'login.html';
+  } catch (e) {
+    console.error("Auth Guard Error:", e);
     return null;
   }
 }
 
-/**
- * Updates navigation bar with logged-in user details and Logout button
- */
 function updateUserNavUI(resident) {
   const userDisplayEl = document.getElementById('user-profile-nav');
   if (userDisplayEl) {
     userDisplayEl.innerHTML = `
-      <div class="flex items-center space-x-2 bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-200">
+      <div class="flex items-center space-x-2 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-200">
         <div class="w-6 h-6 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-[10px]">
           ${resident.name.charAt(0).toUpperCase()}
         </div>
@@ -94,20 +77,7 @@ function updateUserNavUI(resident) {
   }
 }
 
-/**
- * Handles clean user logout
- */
-async function handleLogout() {
-  if (supabaseClient) {
-    await supabaseClient.auth.signOut();
-  }
-  window.location.href = 'login.html';
-}
-
-async function handleUnauthorizedLogout(message) {
-  if (supabaseClient) {
-    await supabaseClient.auth.signOut();
-  }
-  alert(message);
+function handleLogout() {
+  localStorage.clear();
   window.location.href = 'login.html';
 }
