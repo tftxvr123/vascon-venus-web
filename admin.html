@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Inside <head> of admin.html -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth-guard.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Only EC Members and Admins are permitted
+    const user = await protectPage(['ec_member', 'admin']);
+    if (user) {
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('dashboard-section').style.display = 'block';
+      if (user.role === 'admin') {
+        document.getElementById('admin-residents-manager').classList.remove('hidden');
+        loadApprovedResidents();
+      }
+    }
+  });
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EC Admin Portal - Vascon Venus</title>
