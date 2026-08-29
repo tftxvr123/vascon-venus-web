@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth-guard.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    protectPage(['resident', 'ec_member', 'admin']);
+  });
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resident Services & Gate Pass - Vascon Venus</title>
