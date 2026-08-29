@@ -49,7 +49,7 @@
         <p class="text-xs text-slate-400">Enter your approved email and password to access the portal.</p>
       </div>
 
-      <!-- Alert Box -->
+      <!-- Real-time Diagnostic Alert Box -->
       <div id="auth-alert" class="hidden p-4 rounded-2xl text-xs font-semibold leading-relaxed"></div>
 
       <!-- Login Form -->
@@ -58,7 +58,7 @@
           <label class="block font-bold uppercase text-slate-400 mb-1.5">Email Address</label>
           <div class="relative">
             <i class="fa-solid fa-envelope absolute left-3.5 top-3.5 text-slate-500"></i>
-            <input type="email" id="auth-email" required value="admin@vasconvenus.com" placeholder="resident@email.com" class="w-full bg-slate-950 border border-slate-800 pl-10 pr-4 py-3 rounded-xl text-xs text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-amber-500">
+            <input type="email" id="auth-email" required placeholder="your-email@gmail.com" class="w-full bg-slate-950 border border-slate-800 pl-10 pr-4 py-3 rounded-xl text-xs text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-amber-500">
           </div>
         </div>
 
@@ -89,7 +89,7 @@
     &copy; 2026 Vascon Venus Apartment Owners Welfare Association. Private & Confidential.
   </footer>
 
-  <!-- Script Logic -->
+  <!-- Script Logic with Full Error Visibility -->
   <script>
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
@@ -113,17 +113,18 @@
       btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Verifying...`;
 
       try {
+        // 1. Authenticate with Supabase Auth
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
         if (error) {
-          showAlert(error.message);
+          showAlert("Supabase Auth Error: " + error.message, true);
           btn.disabled = false;
           btn.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket mr-1.5"></i> Sign In to Portal`;
           return;
         }
 
-        // Check Whitelist Table
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/approved_residents?email=eq.${encodeURIComponent(email)}&select=*`, {
+        // 2. Check Whitelist in approved_residents table (Case-insensitive)
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/approved_residents?email=ilike.${encodeURIComponent(email)}&select=*`, {
           headers: {
             "apikey": SUPABASE_ANON_KEY,
             "Authorization": `Bearer ${data.session.access_token}`
@@ -134,7 +135,7 @@
 
         if (!records || records.length === 0) {
           await supabase.auth.signOut();
-          showAlert("Access is restricted to Vascon Venus residents. Please contact the Association/EC if you believe you should have access.", true);
+          showAlert(`Your login was verified, but "${email}" is not on the approved residents whitelist. Please add it to approved_residents table in Supabase.`, true);
           btn.disabled = false;
           btn.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket mr-1.5"></i> Sign In to Portal`;
           return;
@@ -144,20 +145,20 @@
 
         if (resident.status !== 'Active') {
           await supabase.auth.signOut();
-          showAlert("Your account is currently inactive. Please contact the Association/EC.", true);
+          showAlert(`Account inactive for "${email}". Please contact the Association/EC.`, true);
           btn.disabled = false;
           btn.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket mr-1.5"></i> Sign In to Portal`;
           return;
         }
 
-        showAlert("Login Successful! Redirecting...", false);
+        showAlert(`Welcome ${resident.name}! Redirecting to portal...`, false);
         setTimeout(() => {
           const urlParams = new URLSearchParams(window.location.search);
           window.location.href = urlParams.get('redirect') || 'index.html';
         }, 500);
 
       } catch (err) {
-        showAlert("Server/network error: " + err.message);
+        showAlert("System/Network Error: " + err.message, true);
         btn.disabled = false;
         btn.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket mr-1.5"></i> Sign In to Portal`;
       }
