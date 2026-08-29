@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -49,11 +48,11 @@
         <p class="text-xs text-slate-400">Enter your approved email and password to access the portal.</p>
       </div>
 
-      <!-- Real-time Diagnostic Alert Box -->
+      <!-- Real-time Alert Box -->
       <div id="auth-alert" class="hidden p-4 rounded-2xl text-xs font-semibold leading-relaxed"></div>
 
-      <!-- Login Form -->
-      <form onsubmit="handleAuthSubmit(event)" class="space-y-4 text-xs">
+      <!-- Native Form (Zero Reload) -->
+      <div class="space-y-4 text-xs">
         <div>
           <label class="block font-bold uppercase text-slate-400 mb-1.5">Email Address</label>
           <div class="relative">
@@ -70,11 +69,11 @@
           </div>
         </div>
 
-        <button type="submit" id="auth-btn" class="w-full bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black py-3.5 rounded-xl text-xs transition cursor-pointer shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-2">
+        <button type="button" onclick="performNativeLogin()" id="auth-btn" class="w-full bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black py-3.5 rounded-xl text-xs transition cursor-pointer shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-2">
           <i class="fa-solid fa-arrow-right-to-bracket"></i>
           <span>Sign In to Portal</span>
         </button>
-      </form>
+      </div>
 
       <div class="bg-slate-950/60 p-4 rounded-2xl border border-slate-800 text-[11px] text-slate-400 space-y-1">
         <p class="font-bold text-slate-300"><i class="fa-solid fa-circle-info text-amber-400 mr-1"></i> Access Restricted</p>
@@ -89,11 +88,10 @@
     &copy; 2026 Vascon Venus Apartment Owners Welfare Association. Private & Confidential.
   </footer>
 
-  <!-- Script Logic with Full Error Visibility -->
+  <!-- NATIVE AUTHENTICATION SCRIPT (Zero Dependencies) -->
   <script>
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     function showAlert(msg, isError = true) {
       const box = document.getElementById('auth-alert');
@@ -103,39 +101,61 @@
       box.innerHTML = (isError ? '<i class="fa-solid fa-triangle-exclamation mr-1.5"></i> ' : '<i class="fa-solid fa-circle-check mr-1.5"></i> ') + msg;
     }
 
-    async function handleAuthSubmit(e) {
-      e.preventDefault();
-      const email = document.getElementById('auth-email').value.toLowerCase().trim();
-      const password = document.getElementById('auth-password').value;
+    async function performNativeLogin() {
+      const emailInput = document.getElementById('auth-email');
+      const passInput = document.getElementById('auth-password');
       const btn = document.getElementById('auth-btn');
 
+      const email = (emailInput.value || '').toLowerCase().trim();
+      const password = passInput.value || '';
+
+      if (!email || !password) {
+        showAlert("Please enter both Email and Password.", true);
+        return;
+      }
+
       btn.disabled = true;
-      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Verifying...`;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Signing In...`;
 
       try {
-        // 1. Authenticate with Supabase Auth
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        // 1. Direct Native Authentication Request to Supabase Auth API
+        const authRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email, password })
+        });
 
-        if (error) {
-          showAlert("Supabase Auth Error: " + error.message, true);
+        const authData = await authRes.json();
+
+        if (!authRes.ok) {
+          showAlert("Authentication Error: " + (authData.error_description || authData.msg || authData.message || "Invalid login credentials."), true);
           btn.disabled = false;
           btn.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket mr-1.5"></i> Sign In to Portal`;
           return;
         }
 
-        // 2. Check Whitelist in approved_residents table (Case-insensitive)
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/approved_residents?email=ilike.${encodeURIComponent(email)}&select=*`, {
+        // Save token to localStorage
+        const accessToken = authData.access_token;
+        localStorage.setItem('venus_auth_token', accessToken);
+        localStorage.setItem('venus_auth_email', email);
+
+        // 2. Direct Whitelist Verification in approved_residents table
+        const whitelistRes = await fetch(`${SUPABASE_URL}/rest/v1/approved_residents?email=ilike.${encodeURIComponent(email)}&select=*`, {
           headers: {
             "apikey": SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${data.session.access_token}`
+            "Authorization": `Bearer ${accessToken}`
           }
         });
 
-        const records = await res.json();
+        const records = await whitelistRes.json();
 
         if (!records || records.length === 0) {
-          await supabase.auth.signOut();
-          showAlert(`Your login was verified, but "${email}" is not on the approved residents whitelist. Please add it to approved_residents table in Supabase.`, true);
+          localStorage.removeItem('venus_auth_token');
+          localStorage.removeItem('venus_auth_email');
+          showAlert(`Access Denied: "${email}" is not registered on the Vascon Venus approved residents list. Please contact the EC.`, true);
           btn.disabled = false;
           btn.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket mr-1.5"></i> Sign In to Portal`;
           return;
@@ -144,21 +164,26 @@
         const resident = records[0];
 
         if (resident.status !== 'Active') {
-          await supabase.auth.signOut();
-          showAlert(`Account inactive for "${email}". Please contact the Association/EC.`, true);
+          localStorage.removeItem('venus_auth_token');
+          localStorage.removeItem('venus_auth_email');
+          showAlert(`Account Inactive for "${email}". Please contact the Association/EC.`, true);
           btn.disabled = false;
           btn.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket mr-1.5"></i> Sign In to Portal`;
           return;
         }
 
-        showAlert(`Welcome ${resident.name}! Redirecting to portal...`, false);
+        // Save resident profile
+        localStorage.setItem('venus_resident_profile', JSON.stringify(resident));
+
+        showAlert(`Welcome ${resident.name} (${resident.flat_no})! Opening portal...`, false);
+
         setTimeout(() => {
           const urlParams = new URLSearchParams(window.location.search);
           window.location.href = urlParams.get('redirect') || 'index.html';
-        }, 500);
+        }, 400);
 
       } catch (err) {
-        showAlert("System/Network Error: " + err.message, true);
+        showAlert("Network/Server Error: " + err.message, true);
         btn.disabled = false;
         btn.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket mr-1.5"></i> Sign In to Portal`;
       }
