@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <!-- Inside <head> of index.html -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="auth-guard.js"></script>
-<script>
-  // Block unauthorized visitors before page renders
-  document.addEventListener('DOMContentLoaded', async () => {
-    const user = await protectPage(['resident', 'ec_member', 'admin']);
-    if (!user) return;
-    
-    // Hide EC Admin login button for regular residents
-    if (user.role === 'resident') {
-      const adminNavBtn = document.querySelector('a[href="admin.html"]');
-      if (adminNavBtn) adminNavBtn.style.display = 'none';
-    }
-  });
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vascon Venus Apartment - Official Digital Portal</title>
   
   <!-- Modern Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Supabase JS SDK & Auth Guard -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth-guard.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
+
+  <!-- Server-Side Authentication & Role Gatekeeper -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Protect this page: Only verified active residents, EC members, and admins can view
+      const user = await protectPage(['resident', 'ec_member', 'admin']);
+      if (!user) return;
+
+      // Auto-hide EC Dashboard link for regular residents
+      if (user.role === 'resident') {
+        const ecBtn = document.getElementById('ec-dashboard-btn');
+        if (ecBtn) ecBtn.style.display = 'none';
+      }
+    });
+  </script>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-slate-950 relative">
 
-<!-- 1. CLEAN LUXURY NAVIGATION BAR -->
+  <!-- 1. GLASSMORPHIC NAVIGATION BAR -->
   <nav class="bg-slate-950/95 backdrop-blur-md text-white sticky top-0 z-50 border-b border-slate-800 shadow-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
       
-      <!-- Brand Logo + Integrated BETA Badge -->
+      <!-- Brand Logo -->
       <a href="index.html" class="flex items-center space-x-3 group">
         <div class="w-10 h-10 bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 rounded-xl flex items-center justify-center text-xl font-black shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
           <i class="fa-solid fa-building"></i>
         </div>
         <div>
-          <div class="flex items-center space-x-2">
-            <span class="font-extrabold text-lg sm:text-xl tracking-tight text-white leading-none">VASCON VENUS</span>
-            <span class="bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider">
-              BETA
-            </span>
-          </div>
-          <span class="text-[10px] font-bold text-amber-400 tracking-wider uppercase mt-1 block">Owners Welfare Association</span>
+          <span class="font-extrabold text-lg sm:text-xl tracking-tight text-white block leading-none">VASCON VENUS APARTMENT</span>
+          <span class="text-[10px] font-bold text-amber-400 tracking-widest uppercase mt-1 block">Owners Welfare Association</span>
         </div>
+        <span class="bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider ml-1">
+          BETA
+        </span>
       </a>
 
-      <!-- Clean Desktop Nav Links (Spaced Out & High Contrast) -->
+      <!-- Desktop Nav Links -->
       <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-300">
         <a href="#amenities" class="hover:text-amber-400 transition">Amenities</a>
         <a href="services.html" class="text-amber-400 hover:text-amber-300 transition font-bold flex items-center bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-xl">
@@ -69,18 +69,21 @@
         <a href="#ec-team" class="hover:text-amber-400 transition">EC Team</a>
       </div>
 
-      <!-- Single Primary Action Button -->
-      <div class="flex items-center">
-        <a href="admin.html" class="bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-extrabold px-5 py-2.5 rounded-xl text-xs shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 flex items-center space-x-1.5">
+      <!-- Action Buttons & Logged-In User Profile Nav -->
+      <div class="flex items-center space-x-3">
+        <!-- Dynamic User Profile & Logout (Injected by auth-guard.js) -->
+        <div id="user-profile-nav"></div>
+
+        <!-- EC Dashboard Link (Visible to EC & Admins only) -->
+        <a id="ec-dashboard-btn" href="admin.html" class="bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-extrabold px-4 py-2.5 rounded-xl text-xs shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 flex items-center space-x-1.5">
           <i class="fa-solid fa-lock text-[11px]"></i>
-          <span>EC Login</span>
+          <span>EC Dashboard</span>
         </a>
       </div>
-
     </div>
   </nav>
 
-  <!-- 2. LUXURY HERO BANNER WITH ARCHITECTURAL BACKGROUND -->
+  <!-- 2. LUXURY HERO BANNER -->
   <header class="relative bg-slate-950 text-white overflow-hidden border-b border-slate-800">
     <div class="absolute inset-0 z-0">
       <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&auto=format&fit=crop&q=80" alt="Vascon Venus" class="w-full h-full object-cover opacity-20 filter brightness-90 scale-105 animate-pulse duration-[10000ms]">
@@ -89,14 +92,11 @@
     </div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
-      
-      <!-- Welcome Pill -->
       <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 shadow-inner">
         <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-        <span>Welcome to our Community</span>
+        <span>Verified Resident Access</span>
       </div>
 
-      <!-- Main Headline -->
       <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-6 leading-tight">
         Vascon Venus <br>
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-400">
@@ -120,7 +120,7 @@
         </a>
         <a href="directory.html" class="bg-slate-900/90 hover:bg-slate-800 text-white font-bold px-7 py-4 rounded-2xl border border-slate-700 transition transform hover:-translate-y-0.5 flex items-center space-x-2 text-sm">
           <i class="fa-solid fa-address-book text-amber-400"></i>
-          <span>Resident Directory (79 Flats)</span>
+          <span>Directory (79 Flats)</span>
         </a>
       </div>
 
@@ -143,7 +143,6 @@
           <p class="text-[11px] text-slate-400 uppercase font-bold tracking-wider mt-1">CCTV & Security</p>
         </div>
       </div>
-
     </div>
   </header>
 
@@ -152,9 +151,7 @@
     <div class="text-center max-w-3xl mx-auto mb-16">
       <span class="text-amber-600 font-extrabold uppercase text-xs tracking-widest bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">Lifestyle & Facilities</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">Apartment Amenities</h2>
-      <p class="text-slate-500 mt-2 text-sm sm:text-base">
-        Explore premium lifestyle amenities available for all residents and families at Vascon Venus.
-      </p>
+      <p class="text-slate-500 mt-2 text-sm sm:text-base">Explore premium amenities available for all verified residents and families at Vascon Venus.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -288,7 +285,7 @@
     <div id="notices-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="col-span-3 text-center py-12 text-slate-400">
         <i class="fa-solid fa-spinner fa-spin text-2xl mb-2 text-amber-500"></i>
-        <p class="text-xs font-semibold">Connecting to society notice board...</p>
+        <p class="text-xs font-semibold">Loading notices...</p>
       </div>
     </div>
   </section>
@@ -392,7 +389,6 @@
   <!-- 7. RESIDENT DIRECTORY SHOWCASE HUB CARD -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 rounded-3xl p-8 md:p-12 text-white shadow-2xl border border-slate-800 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
-      
       <div class="space-y-3 max-w-xl text-center lg:text-left z-10">
         <span class="inline-flex items-center space-x-2 bg-amber-500/20 border border-amber-500/40 text-amber-400 text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full">
           <i class="fa-solid fa-address-book"></i>
@@ -410,7 +406,6 @@
           <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
-
     </div>
   </section>
 
@@ -422,10 +417,8 @@
       <p class="text-slate-500 text-sm mt-2">Reach out to committee members for society queries, maintenance, or suggestions</p>
     </div>
 
-    <!-- Top 4 Core Office Bearers -->
+    <!-- Top 4 Core Bearers -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      
-      <!-- Member 1: President -->
       <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 hover:border-amber-400 p-6 text-center transition duration-300 group transform hover:-translate-y-1">
         <div class="w-20 h-20 mx-auto bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 rounded-full flex items-center justify-center text-2xl font-black mb-3 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
           <i class="fa-solid fa-user-tie"></i>
@@ -435,7 +428,6 @@
         <p class="text-xs text-slate-400 font-semibold mt-2">Flat: <strong class="text-slate-700">A-207</strong></p>
       </div>
 
-      <!-- Member 2: Secretary -->
       <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-300 p-6 text-center transition duration-300 group transform hover:-translate-y-1">
         <div class="w-20 h-20 mx-auto bg-slate-900 text-amber-400 rounded-full flex items-center justify-center text-2xl font-black mb-3 shadow-lg group-hover:scale-105 transition">
           <i class="fa-solid fa-user-shield"></i>
@@ -445,7 +437,6 @@
         <p class="text-xs text-slate-400 font-semibold mt-2">Flat: <strong class="text-slate-700">A-104</strong></p>
       </div>
 
-      <!-- Member 3: Vice President -->
       <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-300 p-6 text-center transition duration-300 group transform hover:-translate-y-1">
         <div class="w-20 h-20 mx-auto bg-slate-900 text-amber-400 rounded-full flex items-center justify-center text-2xl font-black mb-3 shadow-lg group-hover:scale-105 transition">
           <i class="fa-solid fa-user-check"></i>
@@ -455,7 +446,6 @@
         <p class="text-xs text-slate-400 font-semibold mt-2">Flat: <strong class="text-slate-700">B-211</strong></p>
       </div>
 
-      <!-- Member 4: Treasurer -->
       <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-300 p-6 text-center transition duration-300 group transform hover:-translate-y-1">
         <div class="w-20 h-20 mx-auto bg-slate-900 text-amber-400 rounded-full flex items-center justify-center text-2xl font-black mb-3 shadow-lg group-hover:scale-105 transition">
           <i class="fa-solid fa-wallet"></i>
@@ -480,45 +470,36 @@
       </div>
 
       <!-- Member 6 -->
-      <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-5 text-center transition hover:shadow-md">
-        <div class="w-16 h-16 mx-auto bg-slate-100 text-slate-700 rounded-full flex items-center justify-center text-xl font-bold mb-2">
-          <i class="fa-solid fa-user"></i>
-        </div>
+      <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-5 text-center">
+        <div class="w-16 h-16 mx-auto bg-slate-100 text-slate-700 rounded-full flex items-center justify-center text-xl font-bold mb-2"><i class="fa-solid fa-user"></i></div>
         <h4 class="font-bold text-slate-900 text-sm">Niju Jose</h4>
         <span class="inline-block bg-slate-100 text-slate-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full mt-1">Committee Member</span>
         <p class="text-xs text-slate-400 mt-1">Flat: <strong class="text-slate-700">A-001</strong></p>
       </div>
 
       <!-- Member 7 -->
-      <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-5 text-center transition hover:shadow-md">
-        <div class="w-16 h-16 mx-auto bg-slate-100 text-slate-700 rounded-full flex items-center justify-center text-xl font-bold mb-2">
-          <i class="fa-solid fa-user"></i>
-        </div>
+      <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-5 text-center">
+        <div class="w-16 h-16 mx-auto bg-slate-100 text-slate-700 rounded-full flex items-center justify-center text-xl font-bold mb-2"><i class="fa-solid fa-user"></i></div>
         <h4 class="font-bold text-slate-900 text-sm">Sujith</h4>
         <span class="inline-block bg-slate-100 text-slate-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full mt-1">Committee Member</span>
         <p class="text-xs text-slate-400 mt-1">Flat: <strong class="text-slate-700">A-206</strong></p>
       </div>
 
       <!-- Member 8 -->
-      <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-5 text-center transition hover:shadow-md">
-        <div class="w-16 h-16 mx-auto bg-slate-100 text-slate-700 rounded-full flex items-center justify-center text-xl font-bold mb-2">
-          <i class="fa-solid fa-user"></i>
-        </div>
+      <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-5 text-center">
+        <div class="w-16 h-16 mx-auto bg-slate-100 text-slate-700 rounded-full flex items-center justify-center text-xl font-bold mb-2"><i class="fa-solid fa-user"></i></div>
         <h4 class="font-bold text-slate-900 text-sm">Deepak Pareek</h4>
         <span class="inline-block bg-slate-100 text-slate-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full mt-1">Committee Member</span>
         <p class="text-xs text-slate-400 mt-1">Flat: <strong class="text-slate-700">C-012</strong></p>
       </div>
 
       <!-- Member 9 -->
-      <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-5 text-center transition hover:shadow-md">
-        <div class="w-16 h-16 mx-auto bg-slate-100 text-slate-700 rounded-full flex items-center justify-center text-xl font-bold mb-2">
-          <i class="fa-solid fa-wrench"></i>
-        </div>
+      <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-5 text-center">
+        <div class="w-16 h-16 mx-auto bg-slate-100 text-slate-700 rounded-full flex items-center justify-center text-xl font-bold mb-2"><i class="fa-solid fa-wrench"></i></div>
         <h4 class="font-bold text-slate-900 text-sm">Vipin Madathil</h4>
         <span class="inline-block bg-slate-100 text-slate-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full mt-1">Committee Member</span>
         <p class="text-xs text-slate-400 mt-1">Flat: <strong class="text-slate-700">B-119</strong></p>
       </div>
-
     </div>
 
     <!-- Expand/Collapse Toggle Button -->
@@ -728,7 +709,7 @@
     </div>
   </div>
 
-  <!-- 3. VENUS AI FLOATING BUTTON & DRAWER -->
+  <!-- 3. VENUS AI RESIDENT ASSISTANT -->
   <div id="ai-launcher" onclick="var w=document.getElementById('ai-chat-window'); w.style.display = (w.style.display === 'none' || w.style.display === '') ? 'flex' : 'none';" style="position: fixed; bottom: 24px; right: 24px; z-index: 999999; cursor: pointer;" class="flex items-center space-x-2 group">
     <div class="bg-slate-900/90 backdrop-blur-md text-white text-xs font-bold px-3.5 py-2 rounded-full shadow-2xl border border-amber-400/40 hidden sm:flex items-center space-x-2 group-hover:bg-slate-800 transition">
       <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
@@ -796,16 +777,17 @@
     </div>
   </footer>
 
-  <!-- NATIVE LIVE REST API SYNC SCRIPT -->
+  <!-- AUTHENTICATED REST SYNC SCRIPT -->
   <script>
-    const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
-
     // 1. Fetch Live Notices
     async function loadLiveNotices() {
       try {
+        const session = window.currentAuthSession;
         const res = await fetch(`${SUPABASE_URL}/rest/v1/notices?select=*&order=created_at.desc`, {
-          headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": `Bearer ${SUPABASE_ANON_KEY}` }
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${session ? session.access_token : SUPABASE_ANON_KEY}`
+          }
         });
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
@@ -837,8 +819,12 @@
     // 2. Fetch Live Works
     async function loadLiveWorks() {
       try {
+        const session = window.currentAuthSession;
         const res = await fetch(`${SUPABASE_URL}/rest/v1/works_tracker?select=*&order=created_at.desc`, {
-          headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": `Bearer ${SUPABASE_ANON_KEY}` }
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${session ? session.access_token : SUPABASE_ANON_KEY}`
+          }
         });
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
@@ -876,8 +862,12 @@
     // 3. Fetch Live Meeting Minutes
     async function loadLiveMinutes() {
       try {
+        const session = window.currentAuthSession;
         const res = await fetch(`${SUPABASE_URL}/rest/v1/meeting_minutes?select=*&order=meeting_date.desc`, {
-          headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": `Bearer ${SUPABASE_ANON_KEY}` }
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${session ? session.access_token : SUPABASE_ANON_KEY}`
+          }
         });
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
@@ -902,10 +892,12 @@
       }
     }
 
-    // Initialize all data loaders
-    loadLiveNotices();
-    loadLiveWorks();
-    loadLiveMinutes();
+    // Initialize all data loaders once session is verified
+    window.addEventListener('DOMContentLoaded', () => {
+      loadLiveNotices();
+      loadLiveWorks();
+      loadLiveMinutes();
+    });
 
     // Toggle EC Members Expansion
     function toggleECMembers() {
@@ -933,7 +925,7 @@
 
     window.handleClubhouseBooking = function(e) {
       e.preventDefault();
-      alert(`🎉 Clubhouse Booking Request Received!\n\nPlease contact Treasurer/Secretary for security deposit and key handover.`);
+      alert(`🎉 Clubhouse Booking Request Received!\n\nPlease contact Treasurer Abdul Rehman for deposit payment and key handover.`);
       document.getElementById('clubhouse-modal').style.display = 'none';
     };
 
