@@ -4,133 +4,237 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resident Directory - Vascon Venus</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between antialiased">
 
   <!-- Navigation Bar -->
-  <nav class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+  <nav class="bg-slate-950 text-white sticky top-0 z-50 shadow-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
       <a href="index.html" class="flex items-center space-x-2.5">
-        <i class="fa-solid fa-building text-amber-400 text-2xl"></i>
-        <span class="font-bold text-xl tracking-wide">VASCON VENUS</span>
-        <span class="bg-amber-400 text-slate-900 text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow-sm">
+        <div class="w-10 h-10 bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 rounded-xl flex items-center justify-center text-xl font-black shadow-lg shadow-amber-500/20">
+          <i class="fa-solid fa-building"></i>
+        </div>
+        <div>
+          <span class="font-extrabold text-xl tracking-tight text-white block leading-none">VASCON VENUS</span>
+          <span class="text-[10px] font-bold text-amber-400 tracking-widest uppercase mt-1 block">Owners Welfare Association</span>
+        </div>
+        <span class="bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider ml-1">
           BETA
         </span>
       </a>
-      <div class="hidden md:flex space-x-6 text-sm font-medium">
-        <a href="index.html" class="hover:text-amber-400 transition"><i class="fa-solid fa-house mr-1"></i> Home</a>
-        <a href="index.html#amenities" class="hover:text-amber-400 transition">Amenities</a>
-        <a href="index.html#notices" class="hover:text-amber-400 transition">Notices</a>
-        <a href="index.html#tracker" class="hover:text-amber-400 transition">Work Tracker</a>
+
+      <div class="hidden md:flex space-x-6 text-sm font-semibold text-slate-300">
+        <a href="index.html" class="hover:text-amber-400 transition"><i class="fa-solid fa-house mr-1 text-xs"></i> Home</a>
+        <a href="services.html" class="hover:text-amber-400 transition">Services & Passes</a>
         <a href="directory.html" class="text-amber-400 font-bold border-b-2 border-amber-400 pb-1">Directory</a>
+        <a href="index.html#notices" class="hover:text-amber-400 transition">Notices</a>
       </div>
-      <a href="admin.html" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg text-sm transition">
+
+      <a href="admin.html" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition">
         EC Login
       </a>
     </div>
   </nav>
 
-  <!-- Header Banner -->
-  <header class="bg-slate-900 text-white py-12 px-4 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
-      <div>
-        <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
-          <i class="fa-solid fa-address-book"></i>
-          <span>Official Society Database</span>
-        </div>
-        <h1 class="text-3xl md:text-4xl font-extrabold text-white">Resident & Flat Directory</h1>
-        <p class="text-slate-400 text-sm mt-1">Directory of apartment owners, tenants, and parking allocations</p>
-      </div>
-
-      <!-- Quick Summary Stats -->
-      <div class="flex items-center space-x-3 text-center">
-        <div class="bg-slate-800 border border-slate-700 px-4 py-2.5 rounded-xl">
-          <p id="stat-total" class="text-xl font-black text-amber-400">...</p>
-          <p class="text-[10px] text-slate-400 uppercase font-semibold">Total Flats</p>
-        </div>
-        <div class="bg-slate-800 border border-slate-700 px-4 py-2.5 rounded-xl">
-          <p class="text-xl font-black text-blue-400">3</p>
-          <p class="text-[10px] text-slate-400 uppercase font-semibold">Wings (A,B,C)</p>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Directory Container -->
-  <main class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
-
-    <!-- Search & Filter Control Bar -->
-    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex flex-col md:flex-row items-center justify-between gap-4">
+  <!-- 1. RESIDENT ACCESS LOCK SCREEN (Shown to Public by Default) -->
+  <div id="lock-screen" class="flex-1 flex items-center justify-center p-4 py-16">
+    <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-xl w-full max-w-md border border-slate-200 text-center space-y-6">
       
-      <!-- Wing Filters -->
-      <div class="flex items-center space-x-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200 w-full sm:w-auto overflow-x-auto">
-        <button type="button" onclick="filterByWing('', this)" class="wing-btn bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition">All Flats</button>
-        <button type="button" onclick="filterByWing('A', this)" class="wing-btn hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold transition">Wing A</button>
-        <button type="button" onclick="filterByWing('B', this)" class="wing-btn hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold transition">Wing B</button>
-        <button type="button" onclick="filterByWing('C', this)" class="wing-btn hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold transition">Wing C</button>
+      <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner">
+        <i class="fa-solid fa-lock"></i>
       </div>
 
-      <!-- Live Search Input -->
-      <div class="relative w-full md:w-80">
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
-        <input type="text" id="dir-search" oninput="handleSearch()" placeholder="Search by Flat, Name, or Parking..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-gray-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm">
+      <div>
+        <span class="bg-amber-100 text-amber-800 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full">
+          Private Resident Database
+        </span>
+        <h2 class="text-2xl font-extrabold text-slate-900 mt-2">Resident Access Required</h2>
+        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+          For privacy and security, the resident directory is restricted to verified flat owners and residents of Vascon Venus.
+        </p>
+      </div>
+
+      <!-- PIN Form -->
+      <form onsubmit="handleUnlockDirectory(event)" class="space-y-4">
+        <div>
+          <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1.5 text-left">Enter Society Resident Passcode</label>
+          <input type="password" id="resident-pin" required placeholder="Enter 4-digit passcode..." class="w-full px-4 py-3 border border-slate-300 rounded-xl text-center text-lg font-bold tracking-widest outline-none focus:ring-2 focus:ring-amber-500 bg-slate-50">
+        </div>
+
+        <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl text-xs transition cursor-pointer shadow-lg shadow-slate-900/20 flex items-center justify-center space-x-2">
+          <i class="fa-solid fa-key text-amber-400"></i>
+          <span>Unlock Resident Directory</span>
+        </button>
+      </form>
+
+      <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 text-[11px] text-slate-500 text-left space-y-1">
+        <p><i class="fa-solid fa-circle-info text-amber-500 mr-1"></i> Don't know the passcode?</p>
+        <p>Check the pinned message in the official <strong>Vascon Venus WhatsApp Group</strong> or contact the Secretary (A-104).</p>
       </div>
     </div>
+  </div>
 
-    <!-- Table Container -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse">
-          <thead>
-            <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
-              <th class="py-4 px-6 font-semibold">Flat No</th>
-              <th class="py-4 px-6 font-semibold">Owner Name</th>
-              <th class="py-4 px-6 font-semibold">Occupancy Status</th>
-              <th class="py-4 px-6 font-semibold">Tenant Name</th>
-              <th class="py-4 px-6 font-semibold">Parking Slot</th>
-            </tr>
-          </thead>
-          <tbody id="directory-container" class="divide-y divide-gray-100 text-sm">
-            <tr><td colspan="5" class="text-center py-12 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading full building directory...</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <!-- 2. UNLOCKED DIRECTORY CONTAINER (Hidden until PIN is entered) -->
+  <div id="unlocked-content" style="display: none;" class="flex-1 flex flex-col justify-between">
+    
+    <!-- Header Banner -->
+    <header class="bg-slate-900 text-white py-12 px-4 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-shield-check"></i>
+            <span>Verified Resident Session</span>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white">Resident & Flat Directory</h1>
+          <p class="text-slate-400 text-sm mt-1">Official database of flat owners, tenants, and parking allocations</p>
+        </div>
 
-      <!-- Pagination Bar -->
-      <div class="p-4 bg-slate-50 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
-        <span id="page-info">Showing 0 of 0 flats</span>
-        <div class="flex items-center space-x-2">
-          <button type="button" onclick="prevPage()" id="prev-btn" class="bg-white border border-gray-300 px-3.5 py-1.5 rounded-lg font-bold hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition">
-            <i class="fa-solid fa-chevron-left mr-1"></i> Previous
-          </button>
-          <span id="current-page-badge" class="px-3 py-1.5 bg-slate-900 text-white rounded-lg font-bold">1</span>
-          <button type="button" onclick="nextPage()" id="next-btn" class="bg-white border border-gray-300 px-3.5 py-1.5 rounded-lg font-bold hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition">
-            Next <i class="fa-solid fa-chevron-right ml-1"></i>
+        <!-- Quick Summary Stats -->
+        <div class="flex items-center space-x-3 text-center">
+          <div class="bg-slate-800 border border-slate-700 px-4 py-2.5 rounded-xl">
+            <p id="stat-total" class="text-xl font-black text-amber-400">79</p>
+            <p class="text-[10px] text-slate-400 uppercase font-semibold">Total Flats</p>
+          </div>
+          <div class="bg-slate-800 border border-slate-700 px-4 py-2.5 rounded-xl">
+            <p class="text-xl font-black text-blue-400">3</p>
+            <p class="text-[10px] text-slate-400 uppercase font-semibold">Wings (A,B,C)</p>
+          </div>
+          <button type="button" onclick="lockDirectory()" class="bg-red-950/80 hover:bg-red-900 text-red-300 border border-red-800/40 text-xs font-bold px-3 py-2.5 rounded-xl transition cursor-pointer" title="Lock directory">
+            <i class="fa-solid fa-lock mr-1"></i> Lock
           </button>
         </div>
       </div>
-    </div>
-  </main>
+    </header>
 
-  <!-- Footer -->
-  <footer class="bg-slate-900 text-slate-400 py-8 text-sm border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-      <p class="font-bold text-white text-base mb-1">Vascon Venus Co-operative Housing Society</p>
-      <p>&copy; 2025 Vascon Venus Apartment. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Main Directory Table & Filter Controls -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
 
-  <!-- DIRECTORY FETCH & PAGINATION SCRIPT -->
+      <!-- Search & Filter Bar -->
+      <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <!-- Wing Filters -->
+        <div class="flex items-center space-x-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200 w-full sm:w-auto overflow-x-auto">
+          <button type="button" onclick="filterByWing('', this)" class="wing-btn bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition">All Flats</button>
+          <button type="button" onclick="filterByWing('A', this)" class="wing-btn hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold transition">Wing A</button>
+          <button type="button" onclick="filterByWing('B', this)" class="wing-btn hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold transition">Wing B</button>
+          <button type="button" onclick="filterByWing('C', this)" class="wing-btn hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold transition">Wing C</button>
+        </div>
+
+        <!-- Live Search Input -->
+        <div class="relative w-full md:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
+          <input type="text" id="dir-search" oninput="handleSearch()" placeholder="Search by Flat, Name, or Parking..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-gray-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm font-medium">
+        </div>
+      </div>
+
+      <!-- Table Container -->
+      <div class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                <th class="py-4 px-6 font-semibold">Flat No</th>
+                <th class="py-4 px-6 font-semibold">Owner Name</th>
+                <th class="py-4 px-6 font-semibold">Occupancy Status</th>
+                <th class="py-4 px-6 font-semibold">Tenant Name</th>
+                <th class="py-4 px-6 font-semibold">Parking Slot</th>
+              </tr>
+            </thead>
+            <tbody id="directory-container" class="divide-y divide-gray-100 text-sm">
+              <tr><td colspan="5" class="text-center py-12 text-gray-400"><i class="fa-solid fa-spinner fa-spin mr-2 text-amber-500"></i> Loading verified directory...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Bar -->
+        <div class="p-4 bg-slate-50 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 font-medium">
+          <span id="page-info">Showing 0 of 0 flats</span>
+          <div class="flex items-center space-x-2">
+            <button type="button" onclick="prevPage()" id="prev-btn" class="bg-white border border-gray-300 px-3.5 py-1.5 rounded-lg font-bold hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer">
+              <i class="fa-solid fa-chevron-left mr-1"></i> Previous
+            </button>
+            <span id="current-page-badge" class="px-3 py-1.5 bg-slate-900 text-white rounded-lg font-bold">1</span>
+            <button type="button" onclick="nextPage()" id="next-btn" class="bg-white border border-gray-300 px-3.5 py-1.5 rounded-lg font-bold hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer">
+              Next <i class="fa-solid fa-chevron-right ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-8 text-sm border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+        <p class="font-extrabold text-white text-base">Vascon Venus Apartment Owners Welfare Association</p>
+        <p class="text-xs text-slate-500">Hosur Rd, Lavakusha Nagar, Bangalore</p>
+        <p class="text-xs text-slate-600 pt-1">&copy; 2026 Vascon Venus Apartment. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JAVASCRIPT & SECURITY GATEKEEPER LOGIC -->
   <script>
     const SUPABASE_URL = "https://hhlqktcxnyivdnfnlzag.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhobHFrdGN4bnlpdmRuZm5semFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjE1MDcsImV4cCI6MjEwMjUzNzUwN30.mMrDEdi1ikcId6P0-FJp6bCRJ0vn8lArI3DIRErIzFI";
 
+    // -------------------------------------------------------------
+    // 🔒 RESIDENT ACCESS GATEKEEPER (PIN CODE)
+    // -------------------------------------------------------------
+    // You can change or add passcodes here:
+    const VALID_RESIDENT_PINS = ['2026', 'venus2026', '7979', 'admin123'];
+
+    window.addEventListener('DOMContentLoaded', () => {
+      // Check if already authenticated on this phone/browser
+      const isUnlocked = localStorage.getItem('venus_resident_unlocked');
+      if (isUnlocked === 'true') {
+        showUnlockedDirectory();
+      }
+    });
+
+    function handleUnlockDirectory(e) {
+      e.preventDefault();
+      const enteredPin = document.getElementById('resident-pin').value.trim();
+
+      if (VALID_RESIDENT_PINS.includes(enteredPin)) {
+        localStorage.setItem('venus_resident_unlocked', 'true');
+        showUnlockedDirectory();
+      } else {
+        alert("⚠️ Incorrect Passcode. Please enter the valid 4-digit resident PIN (e.g. 2026) shared in the society WhatsApp group.");
+        document.getElementById('resident-pin').value = '';
+      }
+    }
+
+    function showUnlockedDirectory() {
+      document.getElementById('lock-screen').style.display = 'none';
+      document.getElementById('unlocked-content').style.display = 'flex';
+      loadDirectory();
+    }
+
+    function lockDirectory() {
+      localStorage.removeItem('venus_resident_unlocked');
+      document.getElementById('unlocked-content').style.display = 'none';
+      document.getElementById('lock-screen').style.display = 'flex';
+      if (document.getElementById('resident-pin')) document.getElementById('resident-pin').value = '';
+    }
+
+    // -------------------------------------------------------------
+    // DIRECTORY FETCH & PAGINATION
+    // -------------------------------------------------------------
     let rawResidents = [];
     let filteredResidents = [];
     let currentPage = 1;
-    const pageSize = 15; // 15 flats per page
+    const pageSize = 15;
     let selectedWing = '';
 
     async function loadDirectory() {
@@ -145,7 +249,7 @@
         if (Array.isArray(data)) {
           rawResidents = data;
           filteredResidents = [...rawResidents];
-          document.getElementById('stat-total').innerText = rawResidents.length;
+          document.getElementById('stat-total').innerText = rawResidents.length || 79;
           renderCurrentPage();
         }
       } catch (e) {
@@ -188,7 +292,6 @@
         `).join('');
       }
 
-      // Update Pagination UI
       const showingEnd = Math.min(end, total);
       document.getElementById('page-info').innerText = `Showing ${total > 0 ? start + 1 : 0}–${showingEnd} of ${total} Flats`;
       document.getElementById('current-page-badge').innerText = `${currentPage} / ${totalPages}`;
@@ -214,8 +317,8 @@
     function filterByWing(wing, btnElement) {
       selectedWing = wing.toUpperCase().trim();
       const buttons = document.querySelectorAll('.wing-btn');
-      buttons.forEach(b => b.className = "wing-btn hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold transition");
-      if (btnElement) btnElement.className = "wing-btn bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition";
+      buttons.forEach(b => b.className = "wing-btn hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold transition cursor-pointer");
+      if (btnElement) btnElement.className = "wing-btn bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition cursor-pointer";
       applyFilter();
     }
 
@@ -235,8 +338,6 @@
       currentPage = 1;
       renderCurrentPage();
     }
-
-    loadDirectory();
   </script>
 </body>
 </html>
